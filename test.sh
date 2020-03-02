@@ -7,6 +7,8 @@ readonly PREV_DIR=$(pwd)
 
 cd $DIR
 
+./run.sh > /dev/null
+
 diff old_result.txt result.txt 
 
 cd $PREV_DIR
