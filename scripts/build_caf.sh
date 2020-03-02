@@ -14,7 +14,7 @@ cd ./actor-framework
 if [ ! -d ./build ] || [ "$1" == "rebuild" ]; then
     rm -rf ./build
     
-    ./configure --no-examples --no-python --no-unit-tests --with-log-level=TRACE --with-actor-profiler
+    ./configure --build-type=Debug --no-examples --no-python --no-unit-tests --with-log-level=TRACE --with-actor-profiler
 
     cd ./build
 
