@@ -99,7 +99,6 @@
 {"actor4":37,"actor5":11} 1 caf TRACE actor4 caf.execution_unit*)<GLOBAL operator() scheduled_actor.cpp:158 EXIT
 {"actor4":38,"actor5":11} 1 caf TRACE actor4 caf.response_promise operator() response_promise.cpp:87 EXIT
 {"actor4":39,"actor5":11} 1 caf TRACE actor4 operator() default_invoke_result_visitor.hpp:48 EXIT
-1 caf_flow DEBUG actor4 140432126007040 caf.scheduled_actor consume scheduled_actor.cpp:729 FINALIZE
 {"actor4":40,"actor5":11} 1 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:626 EXIT
 {"actor4":41,"actor5":11} 1 caf TRACE actor4 caf.scheduled_actor finalize scheduled_actor.cpp:836 ENTRY
 {"actor4":42,"actor5":11} 1 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:836 EXIT
