@@ -594,11 +594,16 @@ void second_pass(blocking_actor* self, const group& grp,
                                  state_t{x, std::move(vzero)});
   }
   // lambda for accessing state via logger ID
-  auto state = [&](const logger_id& x) -> state_t& {
+  auto state = [&](const logger_id& x) -> caf::optional<state_t&> {
     auto i = local_entities_state.find(x);
-    if (i != local_entities_state.end())
+
+    if (i == local_entities_state.end()) {
+      if (x.aid == 0)
+        return caf::none;
+
+      CAF_RAISE_ERROR("logger ID not found");
+    } else
       return i->second;
-    CAF_RAISE_ERROR("logger ID not found"); // TODO: This line throws.
   };
   // additional state for second pass
   size_t line = 0;
@@ -641,7 +646,13 @@ void second_pass(blocking_actor* self, const group& grp,
   while (in >> plain_entry) {
     ++line;
     // increment local time
-    auto& st = state(plain_entry.id);
+    auto opt = state(plain_entry.id);
+
+    if (!opt)
+      continue;
+
+    auto& st = *opt;
+
     // do not produce log output for internal actors but still track messages
     // through those actors, because they might be forwarding messages
     bool internal = drop_hidden_actors && st.eid.hidden;
@@ -702,7 +713,13 @@ void second_pass(blocking_actor* self, const group& grp,
           auto i = scoped_actors.find(plain_entry.id);
           if (i != scoped_actors.end()) {
             // merge timestamp with parent to capture happens-before relation
-            auto& parent_state = state(i->second);
+            auto parent_state_opt = state(i->second);
+
+            if (!parent_state_opt)
+              continue;
+
+            auto& parent_state = *parent_state_opt;
+
             merge(parent_state.clock, st.clock);
             scoped_actors.erase(i);
           }
