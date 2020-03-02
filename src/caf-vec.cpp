@@ -598,7 +598,7 @@ void second_pass(blocking_actor* self, const group& grp,
     auto i = local_entities_state.find(x);
     if (i != local_entities_state.end())
       return i->second;
-    CAF_RAISE_ERROR("logger ID not found");
+    CAF_RAISE_ERROR("logger ID not found"); // TODO: This line throws.
   };
   // additional state for second pass
   size_t line = 0;
