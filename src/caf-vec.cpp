@@ -536,8 +536,9 @@ expected<first_pass_result> first_pass(blocking_actor* self, std::istream& in,
   // _ caf INFO actor0 _ caf.logger start _:_ level = _, node = NODE
   if (!(in >> skip_word >> consume("caf") >> consume("DEBUG")
         >> consume("actor0") >> skip_word >> consume("caf.logger")
-        >> consume("log_first_line") >> skip_word >> consume("level =") >> skip_word
-        >> consume("node = ") >> res.this_node >> skip_to_next_line)) {
+        >> consume("log_first_line") >> skip_word >> consume("level =")
+        >> skip_word >> consume("node = ") >> res.this_node
+        >> skip_to_next_line)) {
     std::cerr << "*** malformed log file, expect the first line to contain "
               << "an INFO entry of the logger" << std::endl;
     return sec::invalid_argument;
@@ -751,7 +752,7 @@ struct config : public actor_system_config {
 
 // two pass parser for CAF log files that enhances logs with vector
 // clock timestamps
-void caf_main(actor_system& sys, const config& cfg) {
+void caf_main(actor_system& sys, const config& cfg) try {
   using namespace std;
   if (cfg.output_file.empty()) {
     cerr << "*** no output file specified" << std::endl;
@@ -866,9 +867,9 @@ void caf_main(actor_system& sys, const config& cfg) {
     });
   }
   sys.await_all_actors_done();
+} catch (const std::runtime_error& ex) {
+  printf("Caught std::runtime_error: \"%s\"\n", ex.what());
 }
-
 } // namespace
 
 CAF_MAIN()
-
