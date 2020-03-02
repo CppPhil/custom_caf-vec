@@ -7,9 +7,7 @@ readonly PREV_DIR=$(pwd)
 
 cd $DIR
 
-file=$(ls ../caf_shiviz_trial/build/*.log | head -1)
-
-./build/custom_caf_vec_app --output-file=result.txt --verbosity=2 $file
+./build/custom_caf_vec_app --output-file=result.txt --verbosity=2 ./example_log.log
 
 cd $PREV_DIR
 

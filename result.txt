@@ -6,13 +6,13 @@
 {"thread1":4} 0 caf TRACE thread1 caf.group_manager operator() group_manager.cpp:465 EXIT
 {"thread1":5} 0 caf TRACE thread1 caf.detail.tick_emitter interval tick_emitter.cpp:50 ENTRY x = 5ms
 {"thread1":6} 0 caf TRACE thread1 caf.detail.tick_emitter operator() tick_emitter.cpp:50 EXIT
-{"thread1":7} 0 caf DEBUG thread1 caf.scheduled_actor scheduled_actor scheduled_actor.cpp:143 interval = 5ms max_batch_delay_ticks_ = 1 credit_round_ticks_ = 2
+{"thread1":7} 0 caf DEBUG thread1 caf.scheduled_actor scheduled_actor scheduled_actor.cpp:142 interval = 5ms max_batch_delay_ticks_ = 1 credit_round_ticks_ = 2
 {"thread1":8} 0 caf_flow DEBUG thread1 caf make_actor make_actor.hpp:43 SPAWN ; ID = 1 ; NAME = spawn_server ; TYPE = caf.stateful_actor ; ARGS = (actor_config(hidden_flag)) ; NODE = invalid-node ; GROUPS = []
 {"actor1":1} 0 caf TRACE actor1 caf.scheduled_actor launch scheduled_actor.cpp:204 ENTRY lazy = true hide = true
 {"actor1":2} 0 caf TRACE actor1 bool,%20bool)<GLOBAL operator() scheduled_actor.cpp:204 EXIT
 {"thread1":9} 0 caf TRACE thread1 caf.detail.tick_emitter interval tick_emitter.cpp:50 ENTRY x = 5ms
 {"thread1":10} 0 caf TRACE thread1 caf.detail.tick_emitter operator() tick_emitter.cpp:50 EXIT
-{"thread1":11} 0 caf DEBUG thread1 caf.scheduled_actor scheduled_actor scheduled_actor.cpp:143 interval = 5ms max_batch_delay_ticks_ = 1 credit_round_ticks_ = 2
+{"thread1":11} 0 caf DEBUG thread1 caf.scheduled_actor scheduled_actor scheduled_actor.cpp:142 interval = 5ms max_batch_delay_ticks_ = 1 credit_round_ticks_ = 2
 {"thread1":12} 0 caf_flow DEBUG thread1 caf make_actor make_actor.hpp:43 SPAWN ; ID = 2 ; NAME = config_server ; TYPE = caf.stateful_actor ; ARGS = (actor_config(hidden_flag)) ; NODE = invalid-node ; GROUPS = []
 {"actor2":1} 0 caf TRACE actor2 caf.scheduled_actor launch scheduled_actor.cpp:204 ENTRY lazy = true hide = true
 {"actor2":2} 0 caf TRACE actor2 bool,%20bool)<GLOBAL operator() scheduled_actor.cpp:204 EXIT
@@ -28,13 +28,13 @@
 {"actor3":5} 0 caf TRACE actor3 caf.blocking_actor receive_impl blocking_actor.cpp:234 ENTRY mid = message_id(1152921504606846976)
 {"thread1":18} 0 caf TRACE thread1 caf.detail.tick_emitter interval tick_emitter.cpp:50 ENTRY x = 5ms
 {"thread1":19} 0 caf TRACE thread1 caf.detail.tick_emitter operator() tick_emitter.cpp:50 EXIT
-{"thread1":20} 0 caf DEBUG thread1 caf.scheduled_actor scheduled_actor scheduled_actor.cpp:143 interval = 5ms max_batch_delay_ticks_ = 1 credit_round_ticks_ = 2
+{"thread1":20} 0 caf DEBUG thread1 caf.scheduled_actor scheduled_actor scheduled_actor.cpp:142 interval = 5ms max_batch_delay_ticks_ = 1 credit_round_ticks_ = 2
 {"actor4":1} 0 caf TRACE actor4 caf.scheduled_actor launch scheduled_actor.cpp:204 ENTRY lazy = false hide = false
 {"actor4":2} 0 caf DEBUG actor4 caf.actor_registry inc_running actor_registry.cpp:102 value = 1
 {"actor4":3} 0 caf TRACE actor4 bool,%20bool)<GLOBAL operator() scheduled_actor.cpp:204 EXIT
 {"thread1":21} 0 caf TRACE thread1 caf.detail.tick_emitter interval tick_emitter.cpp:50 ENTRY x = 5ms
 {"thread1":22} 0 caf TRACE thread1 caf.detail.tick_emitter operator() tick_emitter.cpp:50 EXIT
-{"thread1":23} 0 caf DEBUG thread1 caf.scheduled_actor scheduled_actor scheduled_actor.cpp:143 interval = 5ms max_batch_delay_ticks_ = 1 credit_round_ticks_ = 2
+{"thread1":23} 0 caf DEBUG thread1 caf.scheduled_actor scheduled_actor scheduled_actor.cpp:142 interval = 5ms max_batch_delay_ticks_ = 1 credit_round_ticks_ = 2
 {"actor5":1} 0 caf TRACE actor5 caf.scheduled_actor launch scheduled_actor.cpp:204 ENTRY lazy = false hide = false
 {"actor5":2} 0 caf DEBUG actor5 caf.actor_registry inc_running actor_registry.cpp:102 value = 2
 {"actor5":3} 0 caf TRACE actor5 bool,%20bool)<GLOBAL operator() scheduled_actor.cpp:204 EXIT
@@ -42,91 +42,92 @@
 {"thread1":25} 0 caf DEBUG thread1 caf.actor_system ~actor_system actor_system.cpp:296 shutdown actor system
 {"thread1":26} 0 caf TRACE thread1 caf.actor_registry await_running_count_equal actor_registry.cpp:123 ENTRY expected = 0
 {"thread1":27} 0 caf DEBUG thread1 caf.actor_registry await_running_count_equal actor_registry.cpp:126 running_.load() = 2
-{"actor5":4} 1 caf TRACE actor5 caf.scheduled_actor resume scheduled_actor.cpp:381 ENTRY max_throughput = 18446744073709551615
-{"actor4":4} 1 caf TRACE actor4 caf.scheduled_actor resume scheduled_actor.cpp:381 ENTRY max_throughput = 18446744073709551615
-{"actor4":5} 1 caf TRACE actor4 caf.scheduled_actor activate scheduled_actor.cpp:744 ENTRY
-{"actor5":5} 1 caf TRACE actor5 caf.scheduled_actor activate scheduled_actor.cpp:744 ENTRY
-{"actor4":6} 1 caf TRACE actor4 caf.event_based_actor initialize event_based_actor.cpp:36 ENTRY subtype = "caf.event_based_actor"
-{"actor5":6} 1 caf TRACE actor5 caf.event_based_actor initialize event_based_actor.cpp:36 ENTRY subtype = "caf.event_based_actor"
-{"actor5":7} 1 caf TRACE actor5 caf.local_actor initialize local_actor.cpp:120 ENTRY id = 5 name = "scheduled_actor"
-{"actor4":7} 1 caf TRACE actor4 caf.local_actor initialize local_actor.cpp:120 ENTRY id = 4 name = "scheduled_actor"
-{"actor5":8} 1 caf TRACE actor5 caf.local_actor operator() local_actor.cpp:120 EXIT
-{"actor4":8} 1 caf TRACE actor4 caf.local_actor operator() local_actor.cpp:120 EXIT
-{"actor5":9} 1 caf TRACE actor5 caf.event_based_actor make_behavior event_based_actor.cpp:50 ENTRY
-{"actor4":9} 1 caf TRACE actor4 caf.event_based_actor make_behavior event_based_actor.cpp:50 ENTRY
-{"actor4":10} 1 caf TRACE actor4 caf.event_based_actor operator() event_based_actor.cpp:50 EXIT
-{"actor4":11} 1 caf DEBUG actor4 caf.event_based_actor initialize event_based_actor.cpp:44 make_behavior() did return a valid behavior
-{"actor4":12} 1 caf TRACE actor4 caf.scheduled_actor set_receive_timeout scheduled_actor.cpp:482 ENTRY
-{"actor4":13} 1 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:482 EXIT
-{"actor4":14} 1 caf TRACE actor4 caf.event_based_actor operator() event_based_actor.cpp:36 EXIT
-{"actor4":15} 1 caf TRACE actor4 caf.scheduled_actor finalize scheduled_actor.cpp:836 ENTRY
-{"actor4":16} 1 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:836 EXIT
-{"actor4":17} 1 caf DEBUG actor4 caf.scheduled_actor activate scheduled_actor.cpp:761 initialized actor: name() = "scheduled_actor"
-{"actor4":18} 1 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:744 EXIT
-{"actor4":19} 1 caf DEBUG actor4 caf.scheduled_actor resume scheduled_actor.cpp:402 start new DRR round
-{"actor4":20} 1 caf TRACE actor4 size_t)<GLOBAL operator() scheduled_actor.cpp:381 EXIT
-{"actor5":10} 1 caf TRACE actor5 caf.scheduled_actor enqueue scheduled_actor.cpp:158 ENTRY *ptr = mailbox_element(5@invalid-node, message_id(1152921504606846977), <unprintable>, ("HiTheRe"))
-{"actor5":11} 1 caf_flow DEBUG actor5 caf.scheduled_actor enqueue scheduled_actor.cpp:159 SEND ; TO = 4@invalid-node ; FROM = 5@invalid-node ; STAGES = [] ; CONTENT = ("HiTheRe")
-{"actor5":12} 1 caf_flow DEBUG actor5 caf.scheduled_actor enqueue scheduled_actor.cpp:164 ACCEPT ; UNBLOCKED = true
-{"actor5":13} 1 caf TRACE actor5 caf.execution_unit*)<GLOBAL operator() scheduled_actor.cpp:158 EXIT
-{"actor5":14} 1 caf TRACE actor5 caf.local_actor request_response_timeout local_actor.cpp:63 ENTRY timeout = 9223372036854775807ns mid = message_id(1152921504606846977)
-{"actor5":15} 1 caf TRACE actor5 caf.message_id)<GLOBAL operator() local_actor.cpp:63 EXIT
-{"actor5":16} 1 caf TRACE actor5 caf.event_based_actor operator() event_based_actor.cpp:50 EXIT
-{"actor5":17} 1 caf DEBUG actor5 caf.event_based_actor initialize event_based_actor.cpp:41 make_behavior() did not return a behavior: alive = true
-{"actor5":18} 1 caf TRACE actor5 caf.event_based_actor operator() event_based_actor.cpp:36 EXIT
-{"actor5":19} 1 caf TRACE actor5 caf.scheduled_actor finalize scheduled_actor.cpp:836 ENTRY
-{"actor5":20} 1 caf TRACE actor5 caf.scheduled_actor operator() scheduled_actor.cpp:836 EXIT
-{"actor5":21} 1 caf DEBUG actor5 caf.scheduled_actor activate scheduled_actor.cpp:761 initialized actor: name() = "scheduled_actor"
-{"actor5":22} 1 caf TRACE actor5 caf.scheduled_actor operator() scheduled_actor.cpp:744 EXIT
-{"actor5":23} 1 caf DEBUG actor5 caf.scheduled_actor resume scheduled_actor.cpp:402 start new DRR round
-{"actor5":24} 1 caf TRACE actor5 size_t)<GLOBAL operator() scheduled_actor.cpp:381 EXIT
-{"actor4":21} 1 caf TRACE actor4 caf.scheduled_actor resume scheduled_actor.cpp:381 ENTRY max_throughput = 18446744073709551615
-{"actor4":22} 1 caf TRACE actor4 caf.scheduled_actor activate scheduled_actor.cpp:744 ENTRY
-{"actor4":23} 1 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:744 EXIT
-{"actor4":24} 1 caf DEBUG actor4 caf.scheduled_actor resume scheduled_actor.cpp:402 start new DRR round
-{"actor4":25} 1 caf TRACE actor4 caf.scheduled_actor.mailbox_visitor operator() scheduled_actor.cpp:364 ENTRY x = mailbox_element(5@invalid-node, message_id(1152921504606846977), <unprintable>, ("HiTheRe")) handled_msgs = 0
-{"actor4":26} 1 caf TRACE actor4 caf.scheduled_actor reactivate scheduled_actor.cpp:787 ENTRY x = mailbox_element(5@invalid-node, message_id(1152921504606846977), <unprintable>, ("HiTheRe"))
-{"actor4":27} 1 caf TRACE actor4 caf.scheduled_actor consume scheduled_actor.cpp:626 ENTRY x = mailbox_element(5@invalid-node, message_id(1152921504606846977), <unprintable>, ("HiTheRe"))
-{"actor4":28,"actor5":11} 1 caf_flow DEBUG actor4 caf.scheduled_actor consume scheduled_actor.cpp:628 RECEIVE ; FROM = 5@invalid-node ; STAGES = [] ; CONTENT = ("HiTheRe")
-{"actor4":29,"actor5":11} 1 caf TRACE actor4 caf.scheduled_actor categorize scheduled_actor.cpp:551 ENTRY x = mailbox_element(5@invalid-node, message_id(1152921504606846977), <unprintable>, ("HiTheRe"))
-{"actor4":30,"actor5":11} 1 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:551 EXIT
-{"actor4":31,"actor5":11} 1 caf TRACE actor4 caf.detail.default_invoke_result_visitor<Self> operator() default_invoke_result_visitor.hpp:48 ENTRY x = ("HITHERE")
-{"actor4":32,"actor5":11} 1 caf DEBUG actor4 caf.detail.default_invoke_result_visitor<Self> deliver default_invoke_result_visitor.hpp:64 respond via response_promise
-{"actor4":33,"actor5":11} 1 caf TRACE actor4 caf.response_promise deliver_impl response_promise.cpp:87 ENTRY msg = ("HITHERE")
-{"actor4":34,"actor5":11} 1 caf TRACE actor4 caf.scheduled_actor enqueue scheduled_actor.cpp:158 ENTRY *ptr = mailbox_element(4@invalid-node, message_id(10376293541461622785), <unprintable>, ("HITHERE"))
-{"actor4":35,"actor5":11} 1 caf_flow DEBUG actor4 caf.scheduled_actor enqueue scheduled_actor.cpp:159 SEND ; TO = 5@invalid-node ; FROM = 4@invalid-node ; STAGES = [] ; CONTENT = ("HITHERE")
-{"actor4":36,"actor5":11} 1 caf_flow DEBUG actor4 caf.scheduled_actor enqueue scheduled_actor.cpp:164 ACCEPT ; UNBLOCKED = true
-{"actor4":37,"actor5":11} 1 caf TRACE actor4 caf.execution_unit*)<GLOBAL operator() scheduled_actor.cpp:158 EXIT
-{"actor4":38,"actor5":11} 1 caf TRACE actor4 caf.response_promise operator() response_promise.cpp:87 EXIT
-{"actor4":39,"actor5":11} 1 caf TRACE actor4 operator() default_invoke_result_visitor.hpp:48 EXIT
-{"actor4":40,"actor5":11} 1 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:626 EXIT
-{"actor4":41,"actor5":11} 1 caf TRACE actor4 caf.scheduled_actor finalize scheduled_actor.cpp:836 ENTRY
-{"actor4":42,"actor5":11} 1 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:836 EXIT
-{"actor4":43,"actor5":11} 1 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:787 EXIT
-{"actor4":44,"actor5":11} 1 caf TRACE actor4 caf.scheduled_actor.mailbox_visitor operator() scheduled_actor.cpp:364 EXIT
-{"actor4":45,"actor5":11} 1 caf TRACE actor4 caf.scheduled_actor finalize scheduled_actor.cpp:836 ENTRY
-{"actor4":46,"actor5":11} 1 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:836 EXIT
-{"actor4":47,"actor5":11} 1 caf TRACE actor4 caf.scheduled_actor advance_streams scheduled_actor.cpp:1153 ENTRY
-{"actor4":48,"actor5":11} 1 caf DEBUG actor4 caf.scheduled_actor advance_streams scheduled_actor.cpp:1155 tick emitter not started yet
-{"actor4":49,"actor5":11} 1 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:1153 EXIT
-{"actor4":50,"actor5":11} 1 caf DEBUG actor4 caf.scheduled_actor resume scheduled_actor.cpp:402 start new DRR round
-{"actor4":51,"actor5":11} 1 caf TRACE actor4 caf.scheduled_actor set_receive_timeout scheduled_actor.cpp:482 ENTRY
-{"actor4":52,"actor5":11} 1 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:482 EXIT
-{"actor4":53,"actor5":11} 1 caf TRACE actor4 size_t)<GLOBAL operator() scheduled_actor.cpp:381 EXIT
-{"actor5":25} 1 caf TRACE actor5 caf.scheduled_actor resume scheduled_actor.cpp:381 ENTRY max_throughput = 18446744073709551615
-{"actor5":26} 1 caf TRACE actor5 caf.scheduled_actor activate scheduled_actor.cpp:744 ENTRY
-{"actor5":27} 1 caf TRACE actor5 caf.scheduled_actor operator() scheduled_actor.cpp:744 EXIT
-{"actor5":28} 1 caf DEBUG actor5 caf.scheduled_actor resume scheduled_actor.cpp:402 start new DRR round
-{"actor5":29} 1 caf TRACE actor5 caf.scheduled_actor.mailbox_visitor operator() scheduled_actor.cpp:364 ENTRY x = mailbox_element(4@invalid-node, message_id(10376293541461622785), <unprintable>, ("HITHERE")) handled_msgs = 0
-{"actor5":30} 1 caf TRACE actor5 caf.scheduled_actor reactivate scheduled_actor.cpp:787 ENTRY x = mailbox_element(4@invalid-node, message_id(10376293541461622785), <unprintable>, ("HITHERE"))
-{"actor5":31} 1 caf TRACE actor5 caf.scheduled_actor consume scheduled_actor.cpp:626 ENTRY x = mailbox_element(4@invalid-node, message_id(10376293541461622785), <unprintable>, ("HITHERE"))
-{"actor4":35,"actor5":32} 1 caf_flow DEBUG actor5 caf.scheduled_actor consume scheduled_actor.cpp:628 RECEIVE ; FROM = 4@invalid-node ; STAGES = [] ; CONTENT = ("HITHERE")
-{"actor4":35,"actor5":33} 1 caf TRACE actor5 caf.blocking_actor enqueue blocking_actor.cpp:67 ENTRY *ptr = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (caf::add_atom(), 5, "test_actor_buddy_function: Got \""))
-{"actor4":35,"actor5":34} 1 caf_flow DEBUG actor5 caf.blocking_actor enqueue blocking_actor.cpp:68 SEND ; TO = 3@invalid-node ; FROM = null:pointer ; STAGES = [] ; CONTENT = (caf::add_atom(), 5, "test_actor_buddy_function: Got \"")
-{"actor4":35,"actor5":35} 1 caf_flow DEBUG actor5 caf.blocking_actor enqueue blocking_actor.cpp:79 ACCEPT ; UNBLOCKED = false
-{"actor4":35,"actor5":36} 1 caf TRACE actor5 caf.execution_unit*)<GLOBAL operator() blocking_actor.cpp:67 EXIT
-{"actor4":35,"actor5":37} 1 caf TRACE actor5 caf.blocking_actor enqueue blocking_actor.cpp:67 ENTRY *ptr = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (caf::add_atom(), 5, "HITHERE"))
-{"actor4":35,"actor5":38} 1 caf_flow DEBUG actor5 caf.blocking_actor enqueue blocking_actor.cpp:68 SEND ; TO = 3@invalid-node ; FROM = null:pointer ; STAGES = [] ; CONTENT = (caf::add_atom(), 5, "HITHERE")
-{"actor4":35,"actor5":39} 1 caf_flow DEBUG actor5 caf.blocking_actor enqueue blocking_actor.cpp:79 ACCEPT ; UNBLOCKED = false
-{"actor4":35,"actor5":40} 1 caf TRACE actor5 caf.execution_unit*)<GLOBAL operator() blocking_actor.cpp:67 EXIT
-{"actor4":35,"actor5":41} 1 caf TRACE actor5 caf.blocking_actor enqueue blocking_actor.cpp:67 ENTRY *ptr = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (caf::add_atom(), 5, ".
+{"actor4":4} 0 caf TRACE actor4 caf.scheduled_actor resume scheduled_actor.cpp:381 ENTRY max_throughput = 18446744073709551615
+{"actor4":5} 0 caf TRACE actor4 caf.scheduled_actor activate scheduled_actor.cpp:744 ENTRY
+{"actor5":4} 0 caf TRACE actor5 caf.scheduled_actor resume scheduled_actor.cpp:381 ENTRY max_throughput = 18446744073709551615
+{"actor5":5} 0 caf TRACE actor5 caf.scheduled_actor activate scheduled_actor.cpp:744 ENTRY
+{"actor4":6} 0 caf TRACE actor4 caf.event_based_actor initialize event_based_actor.cpp:35 ENTRY subtype = "caf.event_based_actor"
+{"actor4":7} 0 caf TRACE actor4 caf.local_actor initialize local_actor.cpp:120 ENTRY id = 4 name = "scheduled_actor"
+{"actor4":8} 0 caf TRACE actor4 caf.local_actor operator() local_actor.cpp:120 EXIT
+{"actor4":9} 0 caf TRACE actor4 caf.event_based_actor make_behavior event_based_actor.cpp:50 ENTRY
+{"actor4":10} 0 caf TRACE actor4 caf.event_based_actor operator() event_based_actor.cpp:50 EXIT
+{"actor4":11} 0 caf DEBUG actor4 caf.event_based_actor initialize event_based_actor.cpp:44 make_behavior() did return a valid behavior
+{"actor5":6} 0 caf TRACE actor5 caf.event_based_actor initialize event_based_actor.cpp:35 ENTRY subtype = "caf.event_based_actor"
+{"actor5":7} 0 caf TRACE actor5 caf.local_actor initialize local_actor.cpp:120 ENTRY id = 5 name = "scheduled_actor"
+{"actor5":8} 0 caf TRACE actor5 caf.local_actor operator() local_actor.cpp:120 EXIT
+{"actor4":12} 0 caf TRACE actor4 caf.scheduled_actor set_receive_timeout scheduled_actor.cpp:482 ENTRY
+{"actor5":9} 0 caf TRACE actor5 caf.event_based_actor make_behavior event_based_actor.cpp:50 ENTRY
+{"actor4":13} 0 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:482 EXIT
+{"actor4":14} 0 caf TRACE actor4 caf.event_based_actor operator() event_based_actor.cpp:35 EXIT
+{"actor4":15} 0 caf TRACE actor4 caf.scheduled_actor finalize scheduled_actor.cpp:842 ENTRY
+{"actor4":16} 0 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:842 EXIT
+{"actor4":17} 0 caf DEBUG actor4 caf.scheduled_actor activate scheduled_actor.cpp:761 initialized actor: name() = "scheduled_actor"
+{"actor4":18} 0 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:744 EXIT
+{"actor4":19} 0 caf DEBUG actor4 caf.scheduled_actor resume scheduled_actor.cpp:402 start new DRR round
+{"actor4":20} 0 caf TRACE actor4 size_t)<GLOBAL operator() scheduled_actor.cpp:381 EXIT
+{"actor5":10} 0 caf TRACE actor5 caf.scheduled_actor enqueue scheduled_actor.cpp:158 ENTRY *ptr = mailbox_element(5@invalid-node, message_id(1152921504606846977), <unprintable>, ("HiTheRe"))
+{"actor5":11} 0 caf_flow DEBUG actor5 caf.scheduled_actor enqueue scheduled_actor.cpp:159 SEND ; TO = 4@invalid-node ; FROM = 5@invalid-node ; STAGES = [] ; CONTENT = ("HiTheRe")
+{"actor5":12} 0 caf_flow DEBUG actor5 caf.scheduled_actor enqueue scheduled_actor.cpp:164 ACCEPT ; UNBLOCKED = true
+{"actor5":13} 0 caf TRACE actor5 caf.execution_unit*)<GLOBAL operator() scheduled_actor.cpp:158 EXIT
+{"actor5":14} 0 caf TRACE actor5 caf.local_actor request_response_timeout local_actor.cpp:63 ENTRY timeout = 9223372036854775807ns mid = message_id(1152921504606846977)
+{"actor5":15} 0 caf TRACE actor5 caf.message_id)<GLOBAL operator() local_actor.cpp:63 EXIT
+{"actor5":16} 0 caf TRACE actor5 caf.event_based_actor operator() event_based_actor.cpp:50 EXIT
+{"actor5":17} 0 caf DEBUG actor5 caf.event_based_actor initialize event_based_actor.cpp:40 make_behavior() did not return a behavior: alive = true
+{"actor5":18} 0 caf TRACE actor5 caf.event_based_actor operator() event_based_actor.cpp:35 EXIT
+{"actor5":19} 0 caf TRACE actor5 caf.scheduled_actor finalize scheduled_actor.cpp:842 ENTRY
+{"actor5":20} 0 caf TRACE actor5 caf.scheduled_actor operator() scheduled_actor.cpp:842 EXIT
+{"actor5":21} 0 caf DEBUG actor5 caf.scheduled_actor activate scheduled_actor.cpp:761 initialized actor: name() = "scheduled_actor"
+{"actor5":22} 0 caf TRACE actor5 caf.scheduled_actor operator() scheduled_actor.cpp:744 EXIT
+{"actor5":23} 0 caf DEBUG actor5 caf.scheduled_actor resume scheduled_actor.cpp:402 start new DRR round
+{"actor5":24} 0 caf TRACE actor5 size_t)<GLOBAL operator() scheduled_actor.cpp:381 EXIT
+{"actor4":21} 0 caf TRACE actor4 caf.scheduled_actor resume scheduled_actor.cpp:381 ENTRY max_throughput = 18446744073709551615
+{"actor4":22} 0 caf TRACE actor4 caf.scheduled_actor activate scheduled_actor.cpp:744 ENTRY
+{"actor4":23} 0 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:744 EXIT
+{"actor4":24} 0 caf DEBUG actor4 caf.scheduled_actor resume scheduled_actor.cpp:402 start new DRR round
+{"actor4":25} 0 caf TRACE actor4 caf.scheduled_actor.mailbox_visitor operator() scheduled_actor.cpp:364 ENTRY x = mailbox_element(5@invalid-node, message_id(1152921504606846977), <unprintable>, ("HiTheRe")) handled_msgs = 0
+{"actor4":26} 0 caf TRACE actor4 caf.scheduled_actor reactivate scheduled_actor.cpp:787 ENTRY x = mailbox_element(5@invalid-node, message_id(1152921504606846977), <unprintable>, ("HiTheRe"))
+{"actor4":27} 0 caf TRACE actor4 caf.scheduled_actor consume scheduled_actor.cpp:626 ENTRY x = mailbox_element(5@invalid-node, message_id(1152921504606846977), <unprintable>, ("HiTheRe"))
+{"actor4":28,"actor5":11} 0 caf_flow DEBUG actor4 caf.scheduled_actor consume scheduled_actor.cpp:628 RECEIVE ; FROM = 5@invalid-node ; STAGES = [] ; CONTENT = ("HiTheRe")
+{"actor4":29,"actor5":11} 0 caf TRACE actor4 caf.scheduled_actor categorize scheduled_actor.cpp:551 ENTRY x = mailbox_element(5@invalid-node, message_id(1152921504606846977), <unprintable>, ("HiTheRe"))
+{"actor4":30,"actor5":11} 0 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:551 EXIT
+{"actor4":31,"actor5":11} 0 caf TRACE actor4 caf.detail.default_invoke_result_visitor<Self> operator() default_invoke_result_visitor.hpp:48 ENTRY x = ("HITHERE")
+{"actor4":32,"actor5":11} 0 caf DEBUG actor4 caf.detail.default_invoke_result_visitor<Self> deliver default_invoke_result_visitor.hpp:64 respond via response_promise
+{"actor4":33,"actor5":11} 0 caf TRACE actor4 caf.response_promise deliver_impl response_promise.cpp:87 ENTRY msg = ("HITHERE")
+{"actor4":34,"actor5":11} 0 caf TRACE actor4 caf.scheduled_actor enqueue scheduled_actor.cpp:158 ENTRY *ptr = mailbox_element(4@invalid-node, message_id(10376293541461622785), <unprintable>, ("HITHERE"))
+{"actor4":35,"actor5":11} 0 caf_flow DEBUG actor4 caf.scheduled_actor enqueue scheduled_actor.cpp:159 SEND ; TO = 5@invalid-node ; FROM = 4@invalid-node ; STAGES = [] ; CONTENT = ("HITHERE")
+{"actor4":36,"actor5":11} 0 caf_flow DEBUG actor4 caf.scheduled_actor enqueue scheduled_actor.cpp:164 ACCEPT ; UNBLOCKED = true
+{"actor4":37,"actor5":11} 0 caf TRACE actor4 caf.execution_unit*)<GLOBAL operator() scheduled_actor.cpp:158 EXIT
+{"actor4":38,"actor5":11} 0 caf TRACE actor4 caf.response_promise operator() response_promise.cpp:87 EXIT
+{"actor4":39,"actor5":11} 0 caf TRACE actor4 [with%20Self%20=%20caf.scheduled_actor]<GLOBAL operator() default_invoke_result_visitor.hpp:48 EXIT
+{"actor4":40,"actor5":11} 0 caf_flow DEBUG actor4 caf.scheduled_actor consume scheduled_actor.cpp:729 FINALIZE
+{"actor4":41,"actor5":11} 0 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:626 EXIT
+{"actor4":42,"actor5":11} 0 caf TRACE actor4 caf.scheduled_actor finalize scheduled_actor.cpp:842 ENTRY
+{"actor4":43,"actor5":11} 0 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:842 EXIT
+{"actor4":44,"actor5":11} 0 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:787 EXIT
+{"actor4":45,"actor5":11} 0 caf TRACE actor4 caf.scheduled_actor.mailbox_visitor operator() scheduled_actor.cpp:364 EXIT
+{"actor4":46,"actor5":11} 0 caf TRACE actor4 caf.scheduled_actor finalize scheduled_actor.cpp:842 ENTRY
+{"actor4":47,"actor5":11} 0 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:842 EXIT
+{"actor4":48,"actor5":11} 0 caf TRACE actor4 caf.scheduled_actor advance_streams scheduled_actor.cpp:1159 ENTRY
+{"actor4":49,"actor5":11} 0 caf DEBUG actor4 caf.scheduled_actor advance_streams scheduled_actor.cpp:1161 tick emitter not started yet
+{"actor4":50,"actor5":11} 0 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:1159 EXIT
+{"actor4":51,"actor5":11} 0 caf DEBUG actor4 caf.scheduled_actor resume scheduled_actor.cpp:402 start new DRR round
+{"actor4":52,"actor5":11} 0 caf TRACE actor4 caf.scheduled_actor set_receive_timeout scheduled_actor.cpp:482 ENTRY
+{"actor4":53,"actor5":11} 0 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:482 EXIT
+{"actor4":54,"actor5":11} 0 caf TRACE actor4 size_t)<GLOBAL operator() scheduled_actor.cpp:381 EXIT
+{"actor5":25} 0 caf TRACE actor5 caf.scheduled_actor resume scheduled_actor.cpp:381 ENTRY max_throughput = 18446744073709551615
+{"actor5":26} 0 caf TRACE actor5 caf.scheduled_actor activate scheduled_actor.cpp:744 ENTRY
+{"actor5":27} 0 caf TRACE actor5 caf.scheduled_actor operator() scheduled_actor.cpp:744 EXIT
+{"actor5":28} 0 caf DEBUG actor5 caf.scheduled_actor resume scheduled_actor.cpp:402 start new DRR round
+{"actor5":29} 0 caf TRACE actor5 caf.scheduled_actor.mailbox_visitor operator() scheduled_actor.cpp:364 ENTRY x = mailbox_element(4@invalid-node, message_id(10376293541461622785), <unprintable>, ("HITHERE")) handled_msgs = 0
+{"actor5":30} 0 caf TRACE actor5 caf.scheduled_actor reactivate scheduled_actor.cpp:787 ENTRY x = mailbox_element(4@invalid-node, message_id(10376293541461622785), <unprintable>, ("HITHERE"))
+{"actor5":31} 0 caf TRACE actor5 caf.scheduled_actor consume scheduled_actor.cpp:626 ENTRY x = mailbox_element(4@invalid-node, message_id(10376293541461622785), <unprintable>, ("HITHERE"))
+{"actor4":35,"actor5":32} 0 caf_flow DEBUG actor5 caf.scheduled_actor consume scheduled_actor.cpp:628 RECEIVE ; FROM = 4@invalid-node ; STAGES = [] ; CONTENT = ("HITHERE")
+{"actor4":35,"actor5":33} 0 caf TRACE actor5 caf.blocking_actor enqueue blocking_actor.cpp:67 ENTRY *ptr = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (caf::add_atom(), 5, "test_actor_buddy_function: Got \""))
+{"actor4":35,"actor5":34} 0 caf_flow DEBUG actor5 caf.blocking_actor enqueue blocking_actor.cpp:68 SEND ; TO = 3@invalid-node ; FROM = null:pointer ; STAGES = [] ; CONTENT = (caf::add_atom(), 5, "test_actor_buddy_function: Got \"")
+{"actor4":35,"actor5":35} 0 caf_flow DEBUG actor5 caf.blocking_actor enqueue blocking_actor.cpp:79 ACCEPT ; UNBLOCKED = false
+{"actor4":35,"actor5":36} 0 caf TRACE actor5 caf.execution_unit*)<GLOBAL operator() blocking_actor.cpp:67 EXIT
+{"actor4":35,"actor5":37} 0 caf TRACE actor5 caf.blocking_actor enqueue blocking_actor.cpp:67 ENTRY *ptr = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (caf::add_atom(), 5, "HITHERE"))
+{"actor4":35,"actor5":38} 0 caf_flow DEBUG actor5 caf.blocking_actor enqueue blocking_actor.cpp:68 SEND ; TO = 3@invalid-node ; FROM = null:pointer ; STAGES = [] ; CONTENT = (caf::add_atom(), 5, "HITHERE")
+{"actor4":35,"actor5":39} 0 caf_flow DEBUG actor5 caf.blocking_actor enqueue blocking_actor.cpp:79 ACCEPT ; UNBLOCKED = false
+{"actor4":35,"actor5":40} 0 caf TRACE actor5 caf.execution_unit*)<GLOBAL operator() blocking_actor.cpp:67 EXIT
+{"actor4":35,"actor5":41} 0 caf TRACE actor5 caf.blocking_actor enqueue blocking_actor.cpp:67 ENTRY *ptr = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (caf::add_atom(), 5, ".
