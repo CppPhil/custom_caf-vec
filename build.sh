@@ -13,7 +13,7 @@ if [ -z "$build_type" ]; then
     build_type="Release"
 fi
 
-mkdir build
+mkdir build > /dev/null 2>&1
 cd build
 cmake -DCMAKE_BUILD_TYPE=$build_type -G "Unix Makefiles" ..
 cmake --build . -- -j$(nproc)
