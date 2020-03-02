@@ -1,0 +1,6 @@
+Figure out why there's this weird line 
+
+1 caf_flow DEBUG actor4 140432126007040 caf.scheduled_actor consume scheduled_ac    tor.cpp:729 FINALIZE
+
+in the caf-vec output file that doesn't begin with some JSON object.
+
