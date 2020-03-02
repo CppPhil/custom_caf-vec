@@ -24,8 +24,6 @@ void trim(std::string& s) {
 
 // -- convenience functions for I/O streams
 
-using istream_fun = std::function<std::istream&(std::istream&)>;
-
 std::istream& skip_whitespaces(std::istream& in) {
   while (in.peek() == ' ')
     in.get();
@@ -392,14 +390,12 @@ std::string to_string(se_type x) {
   return tbl[static_cast<int>(x)];
 }
 
-using string_map = std::map<std::string, std::string>;
-
 /// An SE-0001 event, see http://actor-framework.github.io/rfcs/
 struct se_event {
   const entity* source;
   vector_timestamp vstamp;
   se_type type;
-  string_map fields;
+  std::map<std::string, std::string> fields;
 };
 
 std::string to_string(const se_event& x) {
@@ -443,7 +439,8 @@ bool field_key_compare(const std::pair<const std::string, std::string>& x,
     return caf::sec::invalid_argument;
 
 caf::expected<se_event> parse_event(const enhanced_log_entry& x) {
-  se_event y{&x.id, x.vstamp, se_type::none, string_map{}};
+  se_event y{&x.id, x.vstamp, se_type::none,
+             std::map<std::string, std::string>{}};
   std::istringstream in{x.data.message};
   std::string type;
   if (!(in >> type))
@@ -784,20 +781,23 @@ void caf_main(caf::actor_system& sys, const config& cfg) {
     std::cerr << "unable to open output file: " << cfg.output_file << std::endl;
     return;
   }
-  using file_path = std::string;
-  static constexpr size_t irsize = sizeof(file_path) + sizeof(std::ifstream)
+
+  static constexpr size_t irsize = sizeof(std::string) + sizeof(std::ifstream)
                                    + sizeof(first_pass_result);
-  using ifstream_ptr = std::unique_ptr<std::ifstream>;
+
   struct intermediate_res {
-    file_path fname;
-    ifstream_ptr fstream;
+    std::string file_path;
+    std::unique_ptr<std::ifstream> fstream;
     first_pass_result res;
     char pad[irsize >= CAF_CACHE_LINE_SIZE ? 1 : CAF_CACHE_LINE_SIZE - irsize];
     intermediate_res() = default;
     intermediate_res(intermediate_res&&) = default;
     intermediate_res& operator=(intermediate_res&&) = default;
-    intermediate_res(file_path fp, ifstream_ptr fs, first_pass_result&& fr)
-      : fname(std::move(fp)), fstream(std::move(fs)), res(std::move(fr)) {
+    intermediate_res(std::string file_path, std::unique_ptr<std::ifstream> fs,
+                     first_pass_result&& fr)
+      : file_path(std::move(file_path)),
+        fstream(std::move(fs)),
+        res(std::move(fr)) {
       // nop
     }
   };
@@ -807,8 +807,8 @@ void caf_main(caf::actor_system& sys, const config& cfg) {
   for (size_t i = 0; i < cfg.remainder.size(); ++i) {
     auto& file = cfg.remainder[i];
     auto ptr = &intermediate_results[i];
-    ptr->fname = file;
-    ptr->fstream.reset(new std::ifstream(file));
+    ptr->file_path = file;
+    ptr->fstream = std::make_unique<std::ifstream>(file);
     if (!*ptr->fstream) {
       std::cerr << "could not open file: " << file << std::endl;
       continue;
@@ -837,7 +837,7 @@ void caf_main(caf::actor_system& sys, const config& cfg) {
   std::sort(intermediate_results.begin(), intermediate_results.end(),
             sort_pred);
   for (auto& ir : intermediate_results) {
-    auto node_as_string = to_string(ir.res.this_node);
+    auto node_as_string = caf::to_string(ir.res.this_node);
     for (auto& kvp : ir.res.entities) {
       std::string pretty_name;
       // make each (pretty) actor and thread name unique
