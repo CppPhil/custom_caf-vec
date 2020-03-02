@@ -752,7 +752,7 @@ struct config : public actor_system_config {
 
 // two pass parser for CAF log files that enhances logs with vector
 // clock timestamps
-void caf_main(actor_system& sys, const config& cfg) try {
+void caf_main(actor_system& sys, const config& cfg) {
   using namespace std;
   if (cfg.output_file.empty()) {
     cerr << "*** no output file specified" << std::endl;
@@ -862,13 +862,15 @@ void caf_main(actor_system& sys, const config& cfg) try {
   auto grp = sys.groups().anonymous();
   for (auto& fpr : intermediate_results) {
     sys.spawn_in_group(grp, [&](blocking_actor* self) {
-      second_pass(self, grp, entities, fpr.res.this_node, entity_names,
-                  *fpr.fstream, out, out_mtx, !cfg.include_hidden_actors, vl);
+      try {
+        second_pass(self, grp, entities, fpr.res.this_node, entity_names,
+                    *fpr.fstream, out, out_mtx, !cfg.include_hidden_actors, vl);
+      } catch (const std::runtime_error& ex) {
+        fprintf(stderr, "Caught std::runtime_error: \"%s\"\n", ex.what());
+      }
     });
   }
   sys.await_all_actors_done();
-} catch (const std::runtime_error& ex) {
-  printf("Caught std::runtime_error: \"%s\"\n", ex.what());
 }
 } // namespace
 
