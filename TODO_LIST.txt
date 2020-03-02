@@ -1,3 +1,6 @@
+Figure out why the log produced by caf-vec ends up so
+that ShiViz won't accept it on the laptop.
+
 Refactor caf-vec
 
 Try to set up sourcetrail for caf-vec
