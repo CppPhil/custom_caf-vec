@@ -3,6 +3,7 @@
 
 #include "log_level.hpp"
 
+namespace vec {
 constexpr const char* log_level_name[] = {"ERROR", "WARN",  "INFO",
                                           "DEBUG", "TRACE", "?????"};
 
@@ -23,3 +24,4 @@ std::istream& operator>>(std::istream& in, log_level& lvl) {
     lvl = static_cast<log_level>(std::distance(b, i));
   return in;
 }
+} // namespace vec
