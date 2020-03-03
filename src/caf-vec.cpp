@@ -36,6 +36,7 @@
 #include "thread_range.hpp"
 #include "trim.hpp"
 #include "vector_timestamp.hpp"
+#include "verbosity_level.hpp"
 
 /// Stores all log entities and their node ID.
 struct first_pass_result {
@@ -45,8 +46,6 @@ struct first_pass_result {
   /// hidden, otherwise `false`.
   std::map<logger_id, logger_id_meta_data> entities;
 };
-
-enum verbosity_level { silent, informative, noisy };
 
 caf::expected<first_pass_result>
 first_pass(caf::blocking_actor* self, std::istream& in, verbosity_level vl) {
@@ -297,7 +296,7 @@ void caf_main(caf::actor_system& sys, const config& cfg) {
   verbosity_level vl;
   switch (cfg.verbosity) {
     case 0:
-      vl = silent;
+      vl = verbosity_level::silent;
       break;
     case 1:
       vl = verbosity_level::informative;
