@@ -31,7 +31,8 @@ set(HEADERS
     include/io/skip_to_next_line.hpp
     include/io/skip_word.hpp
     include/io/line_reader.hpp
-    include/io/istream_char_consumer.hpp)
+    include/io/istream_char_consumer.hpp
+    include/merge.hpp)
 
 set(SOURCES
     src/caf-vec.cpp
@@ -40,7 +41,8 @@ set(SOURCES
     src/io/skip_to_next_line.cpp
     src/io/skip_word.cpp
     src/io/line_reader.cpp
-    src/io/istream_char_consumer.cpp)
+    src/io/istream_char_consumer.cpp
+    src/merge.cpp)
 
 add_executable(
     ${APP_NAME}

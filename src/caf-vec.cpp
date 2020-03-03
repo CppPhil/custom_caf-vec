@@ -13,19 +13,12 @@
 #include "io/skip_to_next_line.hpp"
 #include "io/skip_whitespaces.hpp"
 #include "io/skip_word.hpp"
+#include "merge.hpp"
 #include "thread_id.hpp"
 #include "trim.hpp"
 #include "vector_timestamp.hpp"
 
 // -- convenience functions for vector timestamps
-
-vector_timestamp& merge(vector_timestamp& x, const vector_timestamp& y) {
-  assert(x.size() == y.size());
-  for (size_t i = 0; i < x.size(); ++i)
-    x[i] = std::max(x[i], y[i]);
-  return x;
-}
-
 constexpr const char* log_level_name[] = {"ERROR", "WARN",  "INFO",
                                           "DEBUG", "TRACE", "?????"};
 
