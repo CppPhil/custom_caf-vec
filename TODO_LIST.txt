@@ -1,5 +1,4 @@
 Refactor caf-vec
- -> Add namespacing
  -> General clean up
     -> Make things be member functions for instance if it makes sense.
  -> Add doxygen
