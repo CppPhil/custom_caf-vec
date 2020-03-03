@@ -36,7 +36,8 @@ set(HEADERS
     include/log_level.hpp
     include/logger_id.hpp
     include/node_id.hpp
-    include/mailbox_id.hpp)
+    include/mailbox_id.hpp
+    include/entity.hpp)
 
 set(SOURCES
     src/caf-vec.cpp
@@ -50,7 +51,8 @@ set(SOURCES
     src/log_level.cpp
     src/logger_id.cpp
     src/node_id.cpp
-    src/mailbox_id.cpp)
+    src/mailbox_id.cpp
+    src/entity.cpp)
 
 add_executable(
     ${APP_NAME}

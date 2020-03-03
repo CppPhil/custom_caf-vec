@@ -8,6 +8,7 @@
 
 #include "caf/all.hpp"
 
+#include "entity.hpp"
 #include "io/istream_char_consumer.hpp"
 #include "io/line_reader.hpp"
 #include "io/skip_to_next_line.hpp"
@@ -21,48 +22,6 @@
 #include "thread_id.hpp"
 #include "trim.hpp"
 #include "vector_timestamp.hpp"
-
-/// An entity in our distributed system, i.e., either an actor or a thread.
-struct entity {
-  /// The ID of this entity if it is an actor, otherwise 0.
-  caf::actor_id aid;
-  /// The ID of this entity if it is a thread, otherwise empty.
-  thread_id tid;
-  /// The ID of the node this entity is running at.
-  caf::node_id nid;
-  /// The ID of this node in the vector clock.
-  size_t vid;
-  /// Marks system-level actors to enable filtering.
-  bool hidden;
-  /// A human-redable name, e.g., "actor42" or "thread23".
-  std::string pretty_name;
-};
-
-template <class Inspector>
-typename Inspector::result_type inspect(Inspector& f, entity& x) {
-  return f(caf::meta::type_name("entity"), x.aid, x.tid, x.nid, x.vid, x.hidden,
-           x.pretty_name);
-}
-
-mailbox_id to_mailbox_id(const entity& x) {
-  if (x.aid == 0)
-    CAF_RAISE_ERROR("threads do not have a mailbox ID");
-  return {x.aid, x.nid};
-}
-
-logger_id to_logger_id(const entity& x) {
-  return {x.aid, x.tid};
-}
-
-/// Sorts entities by `nid` first, then places threads before actors
-/// and finally compares `aid` or `tid`.
-bool operator<(const entity& x, const entity& y) {
-  // We sort by node ID first.
-  auto cres = x.nid.compare(y.nid);
-  if (cres != 0)
-    return cres < 0;
-  return (x.aid == 0 && y.aid == 0) ? x.tid < y.tid : x.aid < y.aid;
-}
 
 /// Set of `entity` sorted in ascending order by node ID, actor ID,
 /// and thread ID (in that order).
