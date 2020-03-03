@@ -27,44 +27,17 @@
 #include "node_cmp.hpp"
 #include "node_id.hpp"
 #include "node_range.hpp"
+#include "se_event.hpp"
 #include "se_type.hpp"
 #include "thread_id.hpp"
 #include "thread_range.hpp"
 #include "trim.hpp"
 #include "vector_timestamp.hpp"
 
-/// An SE-0001 event, see http://actor-framework.github.io/rfcs/
-struct se_event {
-  const entity* source;
-  vector_timestamp vstamp;
-  se_type type;
-  std::map<std::string, std::string> fields;
-};
-
-std::string to_string(const se_event& x) {
-  std::string res;
-  res += "node{";
-  res += caf::to_string(*x.source);
-  res += ", ";
-  res += caf::deep_to_string(x.vstamp);
-  res += ", ";
-  res += to_string(x.type);
-  res += ", ";
-  res += caf::deep_to_string(x.fields);
-  res += "}";
-  return res;
-}
-
-CAF_ALLOW_UNSAFE_MESSAGE_TYPE(se_event)
-
 bool field_key_compare(const std::pair<const std::string, std::string>& x,
                        const std::string& y) {
   return x.first == y;
 }
-
-#define ATM_CASE(name, value)                                                  \
-  if (type == name)                                                            \
-  y.type = se_type::value
 
 #define CHECK_FIELDS(...)                                                      \
   {                                                                            \
