@@ -20,21 +20,11 @@
 #include "logger_id.hpp"
 #include "mailbox_id.hpp"
 #include "merge.hpp"
+#include "node_cmp.hpp"
 #include "node_id.hpp"
 #include "thread_id.hpp"
 #include "trim.hpp"
 #include "vector_timestamp.hpp"
-
-struct node_cmp_t {
-  bool operator()(const entity& x, const caf::node_id& y) const {
-    return x.nid < y;
-  }
-  bool operator()(const caf::node_id& x, const entity& y) const {
-    return x < y.nid;
-  }
-};
-
-constexpr node_cmp_t node_cmp = node_cmp_t{};
 
 /// Range within an `entity_set` containing all entities for a given actor.
 struct actor_cmp_t {
