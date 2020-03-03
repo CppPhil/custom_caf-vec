@@ -12,13 +12,15 @@ readonly DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 readonly PREV_DIR=$(pwd)
 
-set -e
-
 cd $DIR
 
 ./format.sh
 
 ./build.sh
+
+if [ -f result.txt ]; then
+    rm -f ./result.txt
+fi
 
 ./run.sh
 
