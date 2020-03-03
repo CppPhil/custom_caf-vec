@@ -48,7 +48,8 @@ set(HEADERS
     include/log_entry.hpp
     include/enhanced_log_entry.hpp
     include/se_type.hpp
-    include/se_event.hpp)
+    include/se_event.hpp
+    include/field_key_compare.hpp)
 
 set(SOURCES
     src/caf-vec.cpp
@@ -73,7 +74,8 @@ set(SOURCES
     src/log_entry.cpp
     src/enhanced_log_entry.cpp
     src/se_type.cpp
-    src/se_event.cpp)
+    src/se_event.cpp
+    src/field_key_compare.cpp)
 
 add_executable(
     ${APP_NAME}
