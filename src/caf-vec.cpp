@@ -10,6 +10,7 @@
 
 #include "entity.hpp"
 #include "entity_set.hpp"
+#include "entity_set_range.hpp"
 #include "io/istream_char_consumer.hpp"
 #include "io/line_reader.hpp"
 #include "io/skip_to_next_line.hpp"
@@ -23,27 +24,6 @@
 #include "thread_id.hpp"
 #include "trim.hpp"
 #include "vector_timestamp.hpp"
-
-class entity_set_range {
-public:
-  using iterator = entity_set::const_iterator;
-
-  entity_set_range() = default;
-  entity_set_range(const entity_set_range&) = default;
-  entity_set_range& operator=(const entity_set_range&) = default;
-
-  iterator begin() const {
-    return begin_;
-  }
-
-  iterator end() const {
-    return end_;
-  }
-
-protected:
-  iterator begin_;
-  iterator end_;
-};
 
 struct node_cmp_t {
   bool operator()(const entity& x, const caf::node_id& y) const {
