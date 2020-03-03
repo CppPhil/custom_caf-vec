@@ -8,6 +8,7 @@
 
 #include "caf/all.hpp"
 
+#include "actor_cmp.hpp"
 #include "entity.hpp"
 #include "entity_set.hpp"
 #include "entity_set_range.hpp"
@@ -25,18 +26,6 @@
 #include "thread_id.hpp"
 #include "trim.hpp"
 #include "vector_timestamp.hpp"
-
-/// Range within an `entity_set` containing all entities for a given actor.
-struct actor_cmp_t {
-  bool operator()(const entity& x, caf::actor_id y) const {
-    return x.aid < y;
-  }
-  bool operator()(caf::actor_id x, const entity& y) const {
-    return x < y.aid;
-  }
-};
-
-constexpr actor_cmp_t actor_cmp = actor_cmp_t{};
 
 class node_range : public entity_set_range {
 public:

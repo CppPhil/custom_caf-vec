@@ -40,7 +40,8 @@ set(HEADERS
     include/entity.hpp
     include/entity_set.hpp
     include/entity_set_range.hpp
-    include/node_cmp.hpp)
+    include/node_cmp.hpp
+    include/actor_cmp.hpp)
 
 set(SOURCES
     src/caf-vec.cpp
@@ -57,7 +58,8 @@ set(SOURCES
     src/mailbox_id.cpp
     src/entity.cpp
     src/entity_set_range.cpp
-    src/node_cmp.cpp)
+    src/node_cmp.cpp
+    src/actor_cmp.cpp)
 
 add_executable(
     ${APP_NAME}
