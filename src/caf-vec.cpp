@@ -10,19 +10,12 @@
 
 #include "io/skip_to_next_line.hpp"
 #include "io/skip_whitespaces.hpp"
+#include "io/skip_word.hpp"
 #include "thread_id.hpp"
 #include "trim.hpp"
 #include "vector_timestamp.hpp"
 
 // -- convenience functions for I/O streams
-std::istream& skip_word(std::istream& in) {
-  skip_whitespaces(in);
-  auto nonspace = [](char x) { return (isprint(x) != 0) && (isspace(x) == 0); };
-  while (nonspace(static_cast<char>(in.peek())))
-    in.get();
-  return in;
-}
-
 struct line_reader {
   std::string& line;
   char delim;

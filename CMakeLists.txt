@@ -28,13 +28,15 @@ set(HEADERS
     include/vector_timestamp.hpp
     include/trim.hpp
     include/io/skip_whitespaces.hpp
-    include/io/skip_to_next_line.hpp)
+    include/io/skip_to_next_line.hpp
+    include/io/skip_word.hpp)
 
 set(SOURCES
     src/caf-vec.cpp
     src/trim.cpp
     src/io/skip_whitespaces.cpp
-    src/io/skip_to_next_line.cpp)
+    src/io/skip_to_next_line.cpp
+    src/io/skip_word.cpp)
 
 add_executable(
     ${APP_NAME}
