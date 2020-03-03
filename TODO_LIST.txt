@@ -3,6 +3,7 @@ Refactor caf-vec
  -> rename caf-vec.cpp to main.cpp
  -> Add namespacing
  -> General clean up
+    -> Make things be member functions for instance if it makes sense.
  -> Add doxygen
  -> Check coding_guidelines.txt
 

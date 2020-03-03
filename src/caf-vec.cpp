@@ -25,29 +25,9 @@
 #include "node_id.hpp"
 #include "node_range.hpp"
 #include "thread_id.hpp"
+#include "thread_range.hpp"
 #include "trim.hpp"
 #include "vector_timestamp.hpp"
-
-/// Range within an `entity_set` containing all entities for a given node.
-class thread_range : public entity_set_range {
-public:
-  thread_range(const node_range& xs) : node_(xs.node()) {
-    caf::actor_id dummy = 0;
-    // get range for the node
-    begin_ = xs.begin();
-    end_ = std::upper_bound(begin_, xs.end(), dummy, actor_cmp);
-  }
-
-  thread_range(const thread_range&) = default;
-  thread_range& operator=(const thread_range&) = default;
-
-  const caf::node_id& node() const {
-    return node_;
-  }
-
-private:
-  caf::node_id node_;
-};
 
 const entity* get(const thread_range& xs, const thread_id& y) {
   // only compares thread ID

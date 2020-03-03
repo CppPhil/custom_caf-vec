@@ -42,7 +42,8 @@ set(HEADERS
     include/entity_set_range.hpp
     include/node_cmp.hpp
     include/actor_cmp.hpp
-    include/node_range.hpp)
+    include/node_range.hpp
+    include/thread_range.hpp)
 
 set(SOURCES
     src/caf-vec.cpp
@@ -61,7 +62,8 @@ set(SOURCES
     src/entity_set_range.cpp
     src/node_cmp.cpp
     src/actor_cmp.cpp
-    src/node_range.cpp)
+    src/node_range.cpp
+    src/thread_range.cpp)
 
 add_executable(
     ${APP_NAME}
