@@ -58,7 +58,7 @@ set(HEADERS
     include/config.hpp)
 
 set(SOURCES
-    src/caf-vec.cpp
+    src/main.cpp
     src/trim.cpp
     src/io/skip_whitespaces.cpp
     src/io/skip_to_next_line.cpp
