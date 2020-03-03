@@ -1,44 +1,11 @@
-#include <cassert>
-#include <cctype>
-#include <fstream>
+#include <cstdio>
+
 #include <iostream>
-#include <string>
-#include <utility>
-#include <vector>
 
-#include "caf/all.hpp"
-
-#include "actor_cmp.hpp"
 #include "config.hpp"
-#include "enhanced_log_entry.hpp"
-#include "entity.hpp"
 #include "entity_set.hpp"
-#include "entity_set_range.hpp"
-#include "field_key_compare.hpp"
 #include "first_pass.hpp"
-#include "get.hpp"
-#include "io/istream_char_consumer.hpp"
-#include "io/line_reader.hpp"
-#include "io/skip_to_next_line.hpp"
-#include "io/skip_whitespaces.hpp"
-#include "io/skip_word.hpp"
-#include "log_entry.hpp"
-#include "log_level.hpp"
-#include "logger_id.hpp"
-#include "logger_id_meta_data.hpp"
-#include "mailbox_id.hpp"
-#include "merge.hpp"
-#include "node_cmp.hpp"
-#include "node_id.hpp"
-#include "node_range.hpp"
-#include "parse_event.hpp"
-#include "se_event.hpp"
-#include "se_type.hpp"
 #include "second_pass.hpp"
-#include "thread_id.hpp"
-#include "thread_range.hpp"
-#include "trim.hpp"
-#include "vector_timestamp.hpp"
 #include "verbosity_level.hpp"
 
 namespace {
