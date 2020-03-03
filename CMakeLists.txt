@@ -34,7 +34,8 @@ set(HEADERS
     include/io/istream_char_consumer.hpp
     include/merge.hpp
     include/log_level.hpp
-    include/logger_id.hpp)
+    include/logger_id.hpp
+    include/node_id.hpp)
 
 set(SOURCES
     src/caf-vec.cpp
@@ -46,7 +47,8 @@ set(SOURCES
     src/io/istream_char_consumer.cpp
     src/merge.cpp
     src/log_level.cpp
-    src/logger_id.cpp)
+    src/logger_id.cpp
+    src/node_id.cpp)
 
 add_executable(
     ${APP_NAME}
