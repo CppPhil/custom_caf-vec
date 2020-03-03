@@ -15,35 +15,12 @@
 #include "io/skip_word.hpp"
 #include "log_level.hpp"
 #include "logger_id.hpp"
+#include "mailbox_id.hpp"
 #include "merge.hpp"
 #include "node_id.hpp"
 #include "thread_id.hpp"
 #include "trim.hpp"
 #include "vector_timestamp.hpp"
-
-/// The ID of a mailbox in a logfile. Parsed from `<actor>@<node>` entries.
-struct mailbox_id {
-  /// Actor ID of the receiver.
-  caf::actor_id aid;
-  /// Node ID of the receiver.
-  caf::node_id nid;
-};
-
-std::string to_string(const mailbox_id& x) {
-  auto res = std::to_string(x.aid);
-  res += '@';
-  res += to_string(x.nid);
-  return res;
-}
-
-std::istream& operator>>(std::istream& in, mailbox_id& x) {
-  // format is <actor>@<node>
-  return in >> x.aid >> consume("@") >> x.nid;
-}
-
-std::ostream& operator<<(std::ostream& out, const mailbox_id& x) {
-  return out << x.aid << '@' << to_string(x.nid);
-}
 
 /// An entity in our distributed system, i.e., either an actor or a thread.
 struct entity {

@@ -9,9 +9,9 @@ cd $DIR
 
 ./format.sh
 
-./build.sh 
+./build.sh || exit 1 
 
-./run.sh
+./run.sh || exit 2
 
 if [ -z $(diff old_result.txt result.txt) ]; then
     printf "\nSUCCESS: 1 out of 1 tests executed successfully.\n"

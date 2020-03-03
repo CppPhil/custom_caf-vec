@@ -10,7 +10,7 @@ set(CMAKE_MODULE_PATH ${custom_caf_vec_SOURCE_DIR}/cmake)
 set(CAF_ROOT_DIR ${custom_caf_vec_SOURCE_DIR}/external/actor-framework/build)
 find_package(CAF COMPONENTS core io test)
 
-string(APPEND CMAKE_CXX_FLAGS " -Werror -Wall -Wextra -Wcast-align -Wcast-qual -Wmissing-field-initializers -Wmissing-include-dirs -Wpointer-arith -Wstack-protector -Wstrict-aliasing=2 -Wunreachable-code -Wlogical-op -Wduplicated-cond -Wnull-dereference -Wrestrict -Wno-unknown-pragmas -Wno-unused-function -Wno-deprecated-copy -Wno-pessimizing-move")
+string(APPEND CMAKE_CXX_FLAGS " -Werror -Wall -Wextra -Wcast-align -Wcast-qual -Wmissing-field-initializers -Wmissing-include-dirs -Wpointer-arith -Wstack-protector -Wstrict-aliasing=2 -Wunreachable-code -Wlogical-op -Wduplicated-cond -Wnull-dereference -Wrestrict -Wno-unknown-pragmas -Wno-unused-function")
 string(APPEND CMAKE_CXX_FLAGS_DEBUG " -g -O0")
 string(APPEND CMAKE_CXX_FLAGS_RELEASE " -O3 -march=native -funroll-loops -flto -fwhole-program -DNDEBUG")
 
@@ -35,7 +35,8 @@ set(HEADERS
     include/merge.hpp
     include/log_level.hpp
     include/logger_id.hpp
-    include/node_id.hpp)
+    include/node_id.hpp
+    include/mailbox_id.hpp)
 
 set(SOURCES
     src/caf-vec.cpp
@@ -48,7 +49,8 @@ set(SOURCES
     src/merge.cpp
     src/log_level.cpp
     src/logger_id.cpp
-    src/node_id.cpp)
+    src/node_id.cpp
+    src/mailbox_id.cpp)
 
 add_executable(
     ${APP_NAME}
