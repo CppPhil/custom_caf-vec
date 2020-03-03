@@ -1,5 +1,6 @@
 #include "entity.hpp"
 
+namespace vec {
 mailbox_id to_mailbox_id(const entity& x) {
   if (x.aid == 0)
     CAF_RAISE_ERROR("threads do not have a mailbox ID");
@@ -17,3 +18,4 @@ bool operator<(const entity& x, const entity& y) {
     return cres < 0;
   return (x.aid == 0 && y.aid == 0) ? x.tid < y.tid : x.aid < y.aid;
 }
+} // namespace vec

@@ -1,6 +1,7 @@
 #include "se_event.hpp"
 #include "entity.hpp"
 
+namespace vec {
 std::string to_string(const se_event& x) {
   std::string res;
   res += "node{";
@@ -14,3 +15,4 @@ std::string to_string(const se_event& x) {
   res += "}";
   return res;
 }
+} // namespace vec

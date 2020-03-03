@@ -3,6 +3,7 @@
 
 #include <caf/all.hpp>
 
+namespace vec {
 struct node_cmp_t {
   bool operator()(const entity& x, const caf::node_id& y) const;
 
@@ -10,3 +11,4 @@ struct node_cmp_t {
 };
 
 constexpr node_cmp_t node_cmp = node_cmp_t{};
+} // namespace vec

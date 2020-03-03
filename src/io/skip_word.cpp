@@ -2,6 +2,7 @@
 
 #include "io/skip_whitespaces.hpp"
 
+namespace vec::io {
 std::istream& skip_word(std::istream& in) {
   skip_whitespaces(in);
 
@@ -12,3 +13,4 @@ std::istream& skip_word(std::istream& in) {
 
   return in;
 }
+} // namespace vec::io

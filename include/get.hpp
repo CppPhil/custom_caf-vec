@@ -3,6 +3,7 @@
 
 #include "thread_id.hpp"
 
+namespace vec {
 struct entity;
 class thread_range;
 class node_range;
@@ -16,3 +17,4 @@ const entity* get(const node_range& xs, const thread_id& y);
 const entity* get(const node_range& xs, caf::actor_id y);
 
 const entity* get(const node_range& xs, const logger_id& y);
+} // namespace vec

@@ -1,6 +1,7 @@
 #pragma once
 #include <iosfwd>
 
+namespace vec::io {
 struct istream_char_consumer {
   const char* what;
   size_t count;
@@ -12,3 +13,4 @@ template <size_t S>
 istream_char_consumer consume(const char (&what)[S]) {
   return {what, S - 1};
 }
+} // namespace vec::io

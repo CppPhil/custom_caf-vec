@@ -7,6 +7,7 @@
 #include "mailbox_id.hpp"
 #include "thread_id.hpp"
 
+namespace vec {
 /// An entity in our distributed system, i.e., either an actor or a thread.
 struct entity {
   /// The ID of this entity if it is an actor, otherwise 0.
@@ -36,3 +37,4 @@ logger_id to_logger_id(const entity& x);
 /// Sorts entities by `nid` first, then places threads before actors
 /// and finally compares `aid` or `tid`.
 bool operator<(const entity& x, const entity& y);
+} // namespace vec

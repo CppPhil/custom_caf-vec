@@ -8,10 +8,11 @@
 #include "second_pass.hpp"
 #include "verbosity_level.hpp"
 
+namespace vec {
 namespace {
 // two pass parser for CAF log files that enhances logs with vector
 // clock timestamps
-void caf_main(caf::actor_system& sys, const config& cfg) {
+void entry_point(caf::actor_system& sys, const config& cfg) {
   if (cfg.output_file.empty()) {
     std::cerr << "*** no output file specified" << std::endl;
     return;
@@ -133,6 +134,13 @@ void caf_main(caf::actor_system& sys, const config& cfg) {
     });
   }
   sys.await_all_actors_done();
+}
+} // namespace
+} // namespace vec
+
+namespace {
+void caf_main(caf::actor_system& sys, const vec::config& cfg) {
+  return vec::entry_point(sys, cfg);
 }
 } // namespace
 

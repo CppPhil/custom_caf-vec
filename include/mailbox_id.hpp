@@ -4,6 +4,7 @@
 
 #include <caf/all.hpp>
 
+namespace vec {
 /// The ID of a mailbox in a logfile. Parsed from `<actor>@<node>` entries.
 struct mailbox_id {
   /// Actor ID of the receiver.
@@ -17,3 +18,4 @@ std::string to_string(const mailbox_id& x);
 std::istream& operator>>(std::istream& in, mailbox_id& x);
 
 std::ostream& operator<<(std::ostream& out, const mailbox_id& x);
+} // namespace vec

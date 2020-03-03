@@ -1,5 +1,6 @@
 #include "config.hpp"
 
+namespace vec {
 config::config() {
   opt_group{custom_options_, "global"}
     .add(output_file, "output-file,o", "Path for the output file")
@@ -9,3 +10,4 @@ config::config() {
   // shutdown logging per default
   set("logger.verbosity", "quiet");
 }
+} // namespace vec

@@ -7,6 +7,7 @@
 #include "logger_id_meta_data.hpp"
 #include "verbosity_level.hpp"
 
+namespace vec {
 /// Stores all log entities and their node ID.
 struct first_pass_result {
   /// Node ID used in the parsed file.
@@ -18,3 +19,4 @@ struct first_pass_result {
 
 caf::expected<first_pass_result>
 first_pass(caf::blocking_actor* self, std::istream& in, verbosity_level vl);
+} // namespace vec

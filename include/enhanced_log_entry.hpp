@@ -4,6 +4,7 @@
 #include <iosfwd>
 #include <string>
 
+namespace vec {
 struct log_entry;
 struct entity;
 
@@ -20,3 +21,4 @@ struct enhanced_log_entry {
 };
 
 std::ostream& operator<<(std::ostream& out, const enhanced_log_entry& x);
+} // namespace vec

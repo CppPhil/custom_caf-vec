@@ -1,5 +1,6 @@
 #include "entity_set_range.hpp"
 
+namespace vec {
 entity_set_range::entity_set_range() = default;
 
 entity_set_range::entity_set_range(const entity_set_range&) = default;
@@ -14,3 +15,4 @@ entity_set_range::iterator entity_set_range::begin() const {
 entity_set_range::iterator entity_set_range::end() const {
   return end_;
 }
+} // namespace vec

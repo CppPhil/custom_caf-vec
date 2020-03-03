@@ -14,6 +14,8 @@
 #include "second_pass.hpp"
 #include "vector_timestamp.hpp"
 
+namespace vec {
+namespace {
 const std::string& get(const std::map<std::string, std::string>& xs,
                        const std::string& x) {
   auto i = xs.find(x);
@@ -21,6 +23,7 @@ const std::string& get(const std::map<std::string, std::string>& xs,
     return i->second;
   CAF_RAISE_ERROR("key not found");
 }
+} // namespace
 
 void second_pass(caf::blocking_actor* self, const caf::group& grp,
                  const entity_set& entities, const caf::node_id& nid,
@@ -199,3 +202,4 @@ void second_pass(caf::blocking_actor* self, const caf::group& grp,
     }
   }
 }
+} // namespace vec

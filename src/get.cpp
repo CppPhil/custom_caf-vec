@@ -6,6 +6,7 @@
 #include "node_range.hpp"
 #include "thread_range.hpp"
 
+namespace vec {
 const entity* get(const thread_range& xs, const thread_id& y) {
   // only compares thread ID
   auto thread_cmp = [](const entity& lhs, thread_id rhs) {
@@ -37,3 +38,4 @@ const entity* get(const node_range& xs, caf::actor_id y) {
 const entity* get(const node_range& xs, const logger_id& y) {
   return y.aid > 0 ? get(xs, y.aid) : get(xs, y.tid);
 }
+} // namespace vec

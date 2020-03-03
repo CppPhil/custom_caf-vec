@@ -5,6 +5,7 @@
 #include "io/skip_word.hpp"
 #include "node_id.hpp"
 
+namespace vec {
 caf::expected<first_pass_result>
 first_pass(caf::blocking_actor* self, std::istream& in, verbosity_level vl) {
   first_pass_result res;
@@ -40,3 +41,4 @@ first_pass(caf::blocking_actor* self, std::istream& in, verbosity_level vl) {
                << res.this_node << std::endl;
   return res;
 }
+} // namespace vec

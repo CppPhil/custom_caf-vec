@@ -3,6 +3,7 @@
 #include "io/istream_char_consumer.hpp"
 #include "io/skip_whitespaces.hpp"
 
+namespace vec::io {
 std::istream& operator>>(std::istream& in, istream_char_consumer x) {
   if (!in)
     return in;
@@ -18,3 +19,4 @@ std::istream& operator>>(std::istream& in, istream_char_consumer x) {
   }
   return in;
 }
+} // namespace vec::io

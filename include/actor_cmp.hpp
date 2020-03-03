@@ -1,6 +1,7 @@
 #pragma once
 #include "entity.hpp"
 
+namespace vec {
 /// Range within an `entity_set` containing all entities for a given actor.
 struct actor_cmp_t {
   bool operator()(const entity& x, caf::actor_id y) const;
@@ -9,3 +10,4 @@ struct actor_cmp_t {
 };
 
 constexpr actor_cmp_t actor_cmp = actor_cmp_t{};
+} // namespace vec

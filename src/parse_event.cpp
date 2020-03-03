@@ -12,6 +12,7 @@
 #include "log_entry.hpp"
 #include "parse_event.hpp"
 
+namespace vec {
 #define CHECK_FIELDS(...)                                                      \
   {                                                                            \
     std::set<std::string> keys{__VA_ARGS__};                                   \
@@ -72,3 +73,4 @@ caf::expected<se_event> parse_event(const enhanced_log_entry& x) {
   }
   return {std::move(y)};
 }
+} // namespace vec

@@ -3,6 +3,7 @@
 #include "actor_cmp.hpp"
 #include "thread_range.hpp"
 
+namespace vec {
 thread_range::thread_range(const node_range& xs) : node_(xs.node()) {
   caf::actor_id dummy = 0;
   // get range for the node
@@ -17,3 +18,4 @@ thread_range& thread_range::operator=(const thread_range&) = default;
 const caf::node_id& thread_range::node() const {
   return node_;
 }
+} // namespace vec

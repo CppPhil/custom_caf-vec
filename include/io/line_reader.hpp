@@ -2,6 +2,7 @@
 #include <iosfwd>
 #include <string>
 
+namespace vec::io {
 struct line_reader {
   std::string& line;
   char delim;
@@ -10,3 +11,4 @@ struct line_reader {
 std::istream& operator>>(std::istream& in, line_reader x);
 
 line_reader rd_line(std::string& line, char delim = '\n');
+} // namespace vec::io

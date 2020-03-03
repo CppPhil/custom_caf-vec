@@ -7,6 +7,7 @@
 #include "log_level.hpp"
 #include "logger_id.hpp"
 
+namespace vec {
 /// A single entry in a logfile.
 struct log_entry {
   /// A UNIX timestamp.
@@ -30,3 +31,4 @@ struct log_entry {
 };
 
 std::istream& operator>>(std::istream& in, log_entry& x);
+} // namespace vec

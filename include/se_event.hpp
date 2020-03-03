@@ -7,6 +7,7 @@
 #include "se_type.hpp"
 #include "vector_timestamp.hpp"
 
+namespace vec {
 struct entity;
 
 /// An SE-0001 event, see http://actor-framework.github.io/rfcs/
@@ -18,5 +19,6 @@ struct se_event {
 };
 
 std::string to_string(const se_event& x);
+} // namespace vec
 
-CAF_ALLOW_UNSAFE_MESSAGE_TYPE(se_event)
+CAF_ALLOW_UNSAFE_MESSAGE_TYPE(vec::se_event)
