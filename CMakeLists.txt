@@ -29,14 +29,16 @@ set(HEADERS
     include/trim.hpp
     include/io/skip_whitespaces.hpp
     include/io/skip_to_next_line.hpp
-    include/io/skip_word.hpp)
+    include/io/skip_word.hpp
+    include/io/line_reader.hpp)
 
 set(SOURCES
     src/caf-vec.cpp
     src/trim.cpp
     src/io/skip_whitespaces.cpp
     src/io/skip_to_next_line.cpp
-    src/io/skip_word.cpp)
+    src/io/skip_word.cpp
+    src/io/line_reader.cpp)
 
 add_executable(
     ${APP_NAME}

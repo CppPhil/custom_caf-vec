@@ -8,6 +8,7 @@
 
 #include "caf/all.hpp"
 
+#include "io/line_reader.hpp"
 #include "io/skip_to_next_line.hpp"
 #include "io/skip_whitespaces.hpp"
 #include "io/skip_word.hpp"
@@ -16,21 +17,6 @@
 #include "vector_timestamp.hpp"
 
 // -- convenience functions for I/O streams
-struct line_reader {
-  std::string& line;
-  char delim;
-};
-
-std::istream& operator>>(std::istream& in, line_reader x) {
-  std::getline(in, x.line, x.delim);
-  trim(x.line);
-  return in;
-}
-
-line_reader rd_line(std::string& line, char delim = '\n') {
-  return {line, delim};
-}
-
 struct istream_char_consumer {
   const char* what;
   size_t count;
