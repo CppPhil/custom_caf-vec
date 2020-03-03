@@ -23,6 +23,7 @@
 #include "log_entry.hpp"
 #include "log_level.hpp"
 #include "logger_id.hpp"
+#include "logger_id_meta_data.hpp"
 #include "mailbox_id.hpp"
 #include "merge.hpp"
 #include "node_cmp.hpp"
@@ -35,11 +36,6 @@
 #include "thread_range.hpp"
 #include "trim.hpp"
 #include "vector_timestamp.hpp"
-
-struct logger_id_meta_data {
-  bool hidden;
-  std::string pretty_name;
-};
 
 /// Stores all log entities and their node ID.
 struct first_pass_result {

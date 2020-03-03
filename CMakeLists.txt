@@ -50,7 +50,8 @@ set(HEADERS
     include/se_type.hpp
     include/se_event.hpp
     include/field_key_compare.hpp
-    include/parse_event.hpp)
+    include/parse_event.hpp
+    include/logger_id_meta_data.hpp)
 
 set(SOURCES
     src/caf-vec.cpp
