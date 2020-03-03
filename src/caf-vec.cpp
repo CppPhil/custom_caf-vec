@@ -34,7 +34,8 @@ void caf_main(caf::actor_system& sys, const config& cfg) {
     return;
   }
 
-  static constexpr size_t irsize = sizeof(std::string) + sizeof(std::ifstream)
+  static constexpr size_t irsize = sizeof(std::string)
+                                   + sizeof(std::unique_ptr<std::ifstream>)
                                    + sizeof(first_pass_result);
 
   struct intermediate_res {
