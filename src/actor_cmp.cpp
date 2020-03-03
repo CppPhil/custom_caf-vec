@@ -1,6 +1,7 @@
 #include "actor_cmp.hpp"
 
-namespace vec {bool actor_cmp_t::operator()(const entity& x, caf::actor_id y) const {
+namespace vec {
+bool actor_cmp_t::operator()(const entity& x, caf::actor_id y) const {
   return x.aid < y;
 }
 

@@ -26,6 +26,10 @@ format () {
     rm -f ./.clang-format
 }
 
+delete_file_if_exists $DOT_CLANG_FORMAT
+
+wget --quiet https://raw.githubusercontent.com/actor-framework/actor-framework/master/.clang-format
+
 # Format the source files.
 format $SRC_DIR
 format $INCLUDE_DIR
