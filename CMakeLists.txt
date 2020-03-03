@@ -44,7 +44,8 @@ set(HEADERS
     include/actor_cmp.hpp
     include/node_range.hpp
     include/thread_range.hpp
-    include/get.hpp)
+    include/get.hpp
+    include/log_entry.hpp)
 
 set(SOURCES
     src/caf-vec.cpp
@@ -65,7 +66,8 @@ set(SOURCES
     src/actor_cmp.cpp
     src/node_range.cpp
     src/thread_range.cpp
-    src/get.cpp)
+    src/get.cpp
+    src/log_entry.cpp)
 
 add_executable(
     ${APP_NAME}

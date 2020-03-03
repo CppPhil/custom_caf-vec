@@ -18,6 +18,7 @@
 #include "io/skip_to_next_line.hpp"
 #include "io/skip_whitespaces.hpp"
 #include "io/skip_word.hpp"
+#include "log_entry.hpp"
 #include "log_level.hpp"
 #include "logger_id.hpp"
 #include "mailbox_id.hpp"
@@ -29,28 +30,6 @@
 #include "thread_range.hpp"
 #include "trim.hpp"
 #include "vector_timestamp.hpp"
-
-/// A single entry in a logfile.
-struct log_entry {
-  /// A UNIX timestamp.
-  int64_t timestamp;
-  /// Identifies the logging component, e.g., "caf".
-  std::string component;
-  /// Severity level of this entry.
-  log_level level;
-  /// ID of the logging entity.
-  logger_id id;
-  /// Context information about currently active class.
-  std::string class_name;
-  /// Context information about currently executed function.
-  std::string function_name;
-  /// Context information about currently executed source file.
-  std::string file_name;
-  /// Context information about currently executed source line.
-  int32_t line_number;
-  /// Description of the log entry.
-  std::string message;
-};
 
 /// Stores a log event along with context information.
 struct enhanced_log_entry {
@@ -184,16 +163,6 @@ std::ostream& operator<<(std::ostream& out, const enhanced_log_entry& x) {
              << x.id.pretty_name << ' ' << x.data.class_name << ' '
              << x.data.function_name << ' ' << x.data.file_name << ':'
              << x.data.line_number << ' ' << x.data.message;
-}
-
-std::istream& operator>>(std::istream& in, log_entry& x) {
-  in >> x.timestamp >> x.component >> x.level >> consume("actor") >> x.id.aid
-    >> x.id.tid >> x.class_name >> x.function_name >> skip_whitespaces
-    >> rd_line(x.file_name, ':') >> x.line_number >> skip_whitespaces
-    >> rd_line(x.message);
-  if (x.level == log_level::invalid)
-    in.setstate(std::ios::failbit);
-  return in;
 }
 
 struct logger_id_meta_data {
