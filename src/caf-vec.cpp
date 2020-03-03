@@ -8,17 +8,13 @@
 
 #include "caf/all.hpp"
 
+#include "io/skip_to_next_line.hpp"
 #include "io/skip_whitespaces.hpp"
 #include "thread_id.hpp"
 #include "trim.hpp"
 #include "vector_timestamp.hpp"
 
 // -- convenience functions for I/O streams
-std::istream& skip_to_next_line(std::istream& in) {
-  in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-  return in;
-}
-
 std::istream& skip_word(std::istream& in) {
   skip_whitespaces(in);
   auto nonspace = [](char x) { return (isprint(x) != 0) && (isspace(x) == 0); };
