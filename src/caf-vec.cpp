@@ -23,28 +23,10 @@
 #include "merge.hpp"
 #include "node_cmp.hpp"
 #include "node_id.hpp"
+#include "node_range.hpp"
 #include "thread_id.hpp"
 #include "trim.hpp"
 #include "vector_timestamp.hpp"
-
-class node_range : public entity_set_range {
-public:
-  node_range(const entity_set& xs, const caf::node_id& y) {
-    // get range for the node
-    begin_ = std::lower_bound(xs.begin(), xs.end(), y, node_cmp);
-    end_ = std::upper_bound(begin_, xs.end(), y, node_cmp);
-  }
-
-  node_range(const node_range&) = default;
-  node_range& operator=(const node_range&) = default;
-
-  const caf::node_id& node() const {
-    return node_;
-  }
-
-private:
-  caf::node_id node_;
-};
 
 /// Range within an `entity_set` containing all entities for a given node.
 class thread_range : public entity_set_range {
