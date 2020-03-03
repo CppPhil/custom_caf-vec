@@ -13,35 +13,13 @@
 #include "io/skip_to_next_line.hpp"
 #include "io/skip_whitespaces.hpp"
 #include "io/skip_word.hpp"
+#include "log_level.hpp"
 #include "merge.hpp"
 #include "thread_id.hpp"
 #include "trim.hpp"
 #include "vector_timestamp.hpp"
 
 // -- convenience functions for vector timestamps
-constexpr const char* log_level_name[] = {"ERROR", "WARN",  "INFO",
-                                          "DEBUG", "TRACE", "?????"};
-
-enum class log_level { error, warn, info, debug, trace, invalid };
-
-std::ostream& operator<<(std::ostream& out, const log_level& lvl) {
-  return out << log_level_name[static_cast<size_t>(lvl)];
-}
-
-std::istream& operator>>(std::istream& in, log_level& lvl) {
-  std::string tmp;
-  in >> tmp;
-  auto pred = [&](const char* cstr) { return cstr == tmp; };
-  auto b = std::begin(log_level_name);
-  auto e = std::end(log_level_name);
-  auto i = std::find_if(b, e, pred);
-  if (i == e)
-    lvl = log_level::invalid;
-  else
-    lvl = static_cast<log_level>(std::distance(b, i));
-  return in;
-}
-
 /// The ID of entities as used in a logfile. If the logger field is "actor0"
 /// then this line represents a thread. Otherwise, the thread field is ignored.
 struct logger_id {
