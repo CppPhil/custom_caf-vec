@@ -1,4 +1,5 @@
 Refactor caf-vec
+ -> Clean up include directives in caf-vec.cpp
  -> Add namespacing
  -> Add doxygen
  -> Check coding_guidelines.txt

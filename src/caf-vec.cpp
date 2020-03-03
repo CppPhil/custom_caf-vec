@@ -8,18 +8,12 @@
 
 #include "caf/all.hpp"
 
+#include "io/skip_whitespaces.hpp"
 #include "thread_id.hpp"
 #include "trim.hpp"
 #include "vector_timestamp.hpp"
 
 // -- convenience functions for I/O streams
-
-std::istream& skip_whitespaces(std::istream& in) {
-  while (in.peek() == ' ')
-    in.get();
-  return in;
-}
-
 std::istream& skip_to_next_line(std::istream& in) {
   in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
   return in;

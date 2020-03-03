@@ -7,6 +7,8 @@ readonly PREV_DIR=$(pwd)
 
 cd $DIR
 
+./format.sh
+
 ./build.sh 
 
 ./run.sh

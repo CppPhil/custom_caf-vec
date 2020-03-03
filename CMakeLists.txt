@@ -26,11 +26,13 @@ set(APP_NAME custom_caf_vec_app)
 set(HEADERS
     include/thread_id.hpp
     include/vector_timestamp.hpp
-    include/trim.hpp)
+    include/trim.hpp
+    include/io/skip_whitespaces.hpp)
 
 set(SOURCES
     src/caf-vec.cpp
-    src/trim.cpp)
+    src/trim.cpp
+    src/io/skip_whitespaces.cpp)
 
 add_executable(
     ${APP_NAME}
