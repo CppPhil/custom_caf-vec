@@ -23,9 +23,16 @@ find_package(Threads REQUIRED)
 ### APPLICATION
 set(APP_NAME custom_caf_vec_app)
 
+set(HEADERS
+    include/thread_id.hpp)
+
+set(SOURCES
+    src/caf-vec.cpp)
+
 add_executable(
     ${APP_NAME}
-    src/caf-vec.cpp
+    ${HEADERS}
+    ${SOURCES}
 )
 
 target_link_libraries(

@@ -7,9 +7,15 @@ readonly PREV_DIR=$(pwd)
 
 cd $DIR
 
-./run.sh > /dev/null
+./build.sh 
 
-diff old_result.txt result.txt 
+./run.sh
+
+if [ -z $(diff old_result.txt result.txt) ]; then
+    printf "\nSUCCESS: 1 out of 1 tests executed successfully.\n"
+else
+    printf "\nFAILURE: old_result.txt and result.txt differ!\n"
+fi
 
 cd $PREV_DIR
 
