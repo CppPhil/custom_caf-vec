@@ -25,10 +25,12 @@ set(APP_NAME custom_caf_vec_app)
 
 set(HEADERS
     include/thread_id.hpp
-    include/vector_timestamp.hpp)
+    include/vector_timestamp.hpp
+    include/trim.hpp)
 
 set(SOURCES
-    src/caf-vec.cpp)
+    src/caf-vec.cpp
+    src/trim.cpp)
 
 add_executable(
     ${APP_NAME}

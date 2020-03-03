@@ -9,18 +9,8 @@
 #include "caf/all.hpp"
 
 #include "thread_id.hpp"
+#include "trim.hpp"
 #include "vector_timestamp.hpp"
-
-// -- convenience functions for strings
-
-// removes leading and trailing whitespaces
-void trim(std::string& s) {
-  auto not_space = [](char c) { return isspace(c) == 0; };
-  // trim left
-  s.erase(s.begin(), find_if(s.begin(), s.end(), not_space));
-  // trim right
-  s.erase(find_if(s.rbegin(), s.rend(), not_space).base(), s.end());
-}
 
 // -- convenience functions for I/O streams
 

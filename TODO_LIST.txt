@@ -1,5 +1,6 @@
 Refactor caf-vec
  -> Add namespacing
+ -> Add doxygen
  -> Check coding_guidelines.txt
 
 Try to set up sourcetrail for caf-vec
