@@ -27,30 +27,11 @@
 #include "node_cmp.hpp"
 #include "node_id.hpp"
 #include "node_range.hpp"
+#include "se_type.hpp"
 #include "thread_id.hpp"
 #include "thread_range.hpp"
 #include "trim.hpp"
 #include "vector_timestamp.hpp"
-
-/// CAF events according to SE-0001.
-enum class se_type {
-  spawn,
-  init,
-  send,
-  reject,
-  receive,
-  drop,
-  skip,
-  finalize,
-  terminate,
-  none
-};
-
-std::string to_string(se_type x) {
-  const char* tbl[] = {"spawn", "init", "send",     "reject",    "receive",
-                       "drop",  "skip", "finalize", "terminate", "none"};
-  return tbl[static_cast<int>(x)];
-}
 
 /// An SE-0001 event, see http://actor-framework.github.io/rfcs/
 struct se_event {
