@@ -8,6 +8,7 @@
 
 #include "caf/all.hpp"
 
+#include "io/istream_char_consumer.hpp"
 #include "io/line_reader.hpp"
 #include "io/skip_to_next_line.hpp"
 #include "io/skip_whitespaces.hpp"
@@ -15,33 +16,6 @@
 #include "thread_id.hpp"
 #include "trim.hpp"
 #include "vector_timestamp.hpp"
-
-// -- convenience functions for I/O streams
-struct istream_char_consumer {
-  const char* what;
-  size_t count;
-};
-
-std::istream& operator>>(std::istream& in, istream_char_consumer x) {
-  if (!in)
-    return in;
-  // ignore leading whitespaces
-  skip_whitespaces(in);
-  // ignore trailing '\0'
-  for (size_t i = 0; i < x.count; ++i) {
-    // cout << "in: " << (char) in.peek() << ", x: " << x.what[i] << endl;
-    if (in.get() != x.what[i]) {
-      in.setstate(std::ios::failbit);
-      break;
-    }
-  }
-  return in;
-}
-
-template <size_t S>
-istream_char_consumer consume(const char (&what)[S]) {
-  return {what, S - 1};
-}
 
 // -- convenience functions for vector timestamps
 
