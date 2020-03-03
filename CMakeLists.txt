@@ -45,7 +45,8 @@ set(HEADERS
     include/node_range.hpp
     include/thread_range.hpp
     include/get.hpp
-    include/log_entry.hpp)
+    include/log_entry.hpp
+    include/enhanced_log_entry.hpp)
 
 set(SOURCES
     src/caf-vec.cpp
@@ -67,7 +68,8 @@ set(SOURCES
     src/node_range.cpp
     src/thread_range.cpp
     src/get.cpp
-    src/log_entry.cpp)
+    src/log_entry.cpp
+    src/enhanced_log_entry.cpp)
 
 add_executable(
     ${APP_NAME}

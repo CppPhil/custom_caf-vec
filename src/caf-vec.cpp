@@ -9,6 +9,7 @@
 #include "caf/all.hpp"
 
 #include "actor_cmp.hpp"
+#include "enhanced_log_entry.hpp"
 #include "entity.hpp"
 #include "entity_set.hpp"
 #include "entity_set_range.hpp"
@@ -30,18 +31,6 @@
 #include "thread_range.hpp"
 #include "trim.hpp"
 #include "vector_timestamp.hpp"
-
-/// Stores a log event along with context information.
-struct enhanced_log_entry {
-  /// The original log entry without context information.
-  const log_entry& data;
-  /// The actual ID of the logging entity.
-  const entity& id;
-  /// Current vector time as seen by `id`.
-  vector_timestamp& vstamp;
-  /// JSON representation of `vstamp`.
-  std::string json_vstamp;
-};
 
 /// CAF events according to SE-0001.
 enum class se_type {
@@ -155,14 +144,6 @@ caf::expected<se_event> parse_event(const enhanced_log_entry& x) {
     CHECK_FIELDS("REASON");
   }
   return {std::move(y)};
-}
-
-std::ostream& operator<<(std::ostream& out, const enhanced_log_entry& x) {
-  return out << x.json_vstamp << ' ' << x.data.timestamp << ' '
-             << x.data.component << ' ' << x.data.level << ' '
-             << x.id.pretty_name << ' ' << x.data.class_name << ' '
-             << x.data.function_name << ' ' << x.data.file_name << ':'
-             << x.data.line_number << ' ' << x.data.message;
 }
 
 struct logger_id_meta_data {
