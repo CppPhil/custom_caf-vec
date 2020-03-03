@@ -37,7 +37,8 @@ set(HEADERS
     include/logger_id.hpp
     include/node_id.hpp
     include/mailbox_id.hpp
-    include/entity.hpp)
+    include/entity.hpp
+    include/entity_set.hpp)
 
 set(SOURCES
     src/caf-vec.cpp

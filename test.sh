@@ -1,17 +1,26 @@
 #!/bin/bash
 
+function catch_errors() {
+    printf "\ntest.sh failed!\n" >&2
+    exit 1 
+}
+
+trap catch_errors ERR;
+
 # Directory containing this bash script
 readonly DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 readonly PREV_DIR=$(pwd)
 
+set -e
+
 cd $DIR
 
 ./format.sh
 
-./build.sh || exit 1 
+./build.sh
 
-./run.sh || exit 2
+./run.sh
 
 if [ -z $(diff old_result.txt result.txt) ]; then
     printf "\nSUCCESS: 1 out of 1 tests executed successfully.\n"

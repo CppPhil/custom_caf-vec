@@ -1,5 +1,12 @@
 #!/bin/bash
 
+function catch_errors() {
+    printf "\nbuild.sh failed!\n" >&2
+    exit 1
+}
+
+trap catch_errors ERR;
+
 # Directory containing this bash script
 readonly DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
@@ -13,7 +20,10 @@ if [ -z "$build_type" ]; then
     build_type="Release"
 fi
 
-mkdir build > /dev/null 2>&1
+if [ ! -d build ]; then
+    mkdir build
+fi
+
 cd build
 cmake -DCMAKE_BUILD_TYPE=$build_type -G "Unix Makefiles" ..
 cmake --build . -- -j$(nproc)

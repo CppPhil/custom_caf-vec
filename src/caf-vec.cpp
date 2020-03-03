@@ -9,6 +9,7 @@
 #include "caf/all.hpp"
 
 #include "entity.hpp"
+#include "entity_set.hpp"
 #include "io/istream_char_consumer.hpp"
 #include "io/line_reader.hpp"
 #include "io/skip_to_next_line.hpp"
@@ -22,10 +23,6 @@
 #include "thread_id.hpp"
 #include "trim.hpp"
 #include "vector_timestamp.hpp"
-
-/// Set of `entity` sorted in ascending order by node ID, actor ID,
-/// and thread ID (in that order).
-using entity_set = std::set<entity>;
 
 class entity_set_range {
 public:
