@@ -24,7 +24,8 @@ find_package(Threads REQUIRED)
 set(APP_NAME custom_caf_vec_app)
 
 set(HEADERS
-    include/thread_id.hpp)
+    include/thread_id.hpp
+    include/vector_timestamp.hpp)
 
 set(SOURCES
     src/caf-vec.cpp)

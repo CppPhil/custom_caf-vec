@@ -9,8 +9,7 @@
 #include "caf/all.hpp"
 
 #include "thread_id.hpp"
-
-using vector_timestamp = std::vector<size_t>;
+#include "vector_timestamp.hpp"
 
 // -- convenience functions for strings
 
