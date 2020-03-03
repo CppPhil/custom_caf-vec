@@ -14,29 +14,13 @@
 #include "io/skip_whitespaces.hpp"
 #include "io/skip_word.hpp"
 #include "log_level.hpp"
+#include "logger_id.hpp"
 #include "merge.hpp"
 #include "thread_id.hpp"
 #include "trim.hpp"
 #include "vector_timestamp.hpp"
 
 // -- convenience functions for vector timestamps
-/// The ID of entities as used in a logfile. If the logger field is "actor0"
-/// then this line represents a thread. Otherwise, the thread field is ignored.
-struct logger_id {
-  /// Content of the [LOGGER] field (0 if logger is a thread).
-  caf::actor_id aid;
-  /// Content of the [THREAD] field.
-  std::string tid;
-};
-
-bool operator<(const logger_id& x, const logger_id& y) {
-  return x.aid == 0 && y.aid == 0 ? x.tid < y.tid : x.aid < y.aid;
-}
-
-std::istream& operator>>(std::istream& in, logger_id& x) {
-  return in >> consume("actor") >> x.aid >> skip_whitespaces >> x.tid;
-}
-
 std::istream& operator>>(std::istream& in, caf::node_id& x) {
   in >> skip_whitespaces;
   if (in.peek() == 'i') {
