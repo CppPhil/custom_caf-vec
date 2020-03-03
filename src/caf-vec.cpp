@@ -9,6 +9,7 @@
 #include "caf/all.hpp"
 
 #include "actor_cmp.hpp"
+#include "config.hpp"
 #include "enhanced_log_entry.hpp"
 #include "entity.hpp"
 #include "entity_set.hpp"
@@ -41,22 +42,6 @@
 #include "verbosity_level.hpp"
 
 namespace {
-
-struct config : public caf::actor_system_config {
-  std::string output_file;
-  bool include_hidden_actors = false;
-  size_t verbosity = 0;
-  config() {
-    opt_group{custom_options_, "global"}
-      .add(output_file, "output-file,o", "Path for the output file")
-      .add(include_hidden_actors, "include-hidden-actors,i",
-           "Include hidden (system-level) actors")
-      .add(verbosity, "verbosity,v", "Debug output (from 0 to 2)");
-    // shutdown logging per default
-    set("logger.verbosity", "quiet");
-  }
-};
-
 // two pass parser for CAF log files that enhances logs with vector
 // clock timestamps
 void caf_main(caf::actor_system& sys, const config& cfg) {

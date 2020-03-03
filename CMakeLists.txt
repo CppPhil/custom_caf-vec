@@ -54,7 +54,8 @@ set(HEADERS
     include/logger_id_meta_data.hpp
     include/verbosity_level.hpp
     include/first_pass.hpp
-    include/second_pass.hpp)
+    include/second_pass.hpp
+    include/config.hpp)
 
 set(SOURCES
     src/caf-vec.cpp
@@ -83,7 +84,8 @@ set(SOURCES
     src/field_key_compare.cpp
     src/parse_event.cpp
     src/first_pass.cpp
-    src/second_pass.cpp)
+    src/second_pass.cpp
+    src/config.cpp)
 
 add_executable(
     ${APP_NAME}
