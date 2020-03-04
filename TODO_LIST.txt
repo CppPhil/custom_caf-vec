@@ -1,5 +1,4 @@
 Refactor caf-vec
- -> General clean up
  -> Add doxygen
  -> Check coding_guidelines.txt
 
