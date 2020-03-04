@@ -7,13 +7,5 @@ namespace vec {
 class thread_range : public entity_set_range {
 public:
   explicit thread_range(const node_range& xs);
-
-  thread_range(const thread_range&);
-  thread_range& operator=(const thread_range&);
-
-  [[nodiscard]] const caf::node_id& node() const;
-
-private:
-  caf::node_id node_;
 };
 } // namespace vec

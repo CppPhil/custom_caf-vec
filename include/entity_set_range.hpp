@@ -6,10 +6,6 @@ class entity_set_range {
 public:
   using iterator = entity_set::const_iterator;
 
-  entity_set_range();
-  entity_set_range(const entity_set_range&);
-  entity_set_range& operator=(const entity_set_range&);
-
   [[nodiscard]] iterator begin() const;
 
   [[nodiscard]] iterator end() const;
