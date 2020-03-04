@@ -33,14 +33,18 @@ caf::expected<se_event> parse_event(const enhanced_log_entry& x) {
              std::map<std::string, std::string>{}};
   std::istringstream in{x.data.message};
   std::string type;
+
   if (!(in >> type))
     return caf::sec::invalid_argument;
+
   std::string field_name;
   std::string field_content;
   in >> io::consume(";");
+
   while (in >> field_name >> io::consume("=")
          >> io::read_line(field_content, ';'))
     y.fields.emplace(std::move(field_name), std::move(field_content));
+
   if (type == "SPAWN") {
     y.type = se_type::spawn;
     CHECK_FIELDS("ID", "ARGS");
@@ -64,7 +68,6 @@ caf::expected<se_event> parse_event(const enhanced_log_entry& x) {
   } else if (type == "SKIP") {
     y.type = se_type::skip;
     CHECK_NO_FIELDS();
-
   } else if (type == "FINALIZE") {
     y.type = se_type::finalize;
     CHECK_NO_FIELDS();
@@ -72,6 +75,7 @@ caf::expected<se_event> parse_event(const enhanced_log_entry& x) {
     y.type = se_type::terminate;
     CHECK_FIELDS("REASON");
   }
-  return {std::move(y)};
+
+  return y;
 }
 } // namespace vec

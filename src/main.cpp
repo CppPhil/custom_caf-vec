@@ -17,7 +17,9 @@ void entry_point(caf::actor_system& sys, const config& cfg) {
     std::cerr << "*** no output file specified" << std::endl;
     return;
   }
+
   verbosity_level vl;
+
   switch (cfg.verbosity) {
     case 0:
       vl = verbosity_level::silent;
@@ -28,8 +30,10 @@ void entry_point(caf::actor_system& sys, const config& cfg) {
     default:
       vl = verbosity_level::noisy;
   }
+
   // open output file
   std::ofstream out{cfg.output_file};
+
   if (!out) {
     std::cerr << "unable to open output file: " << cfg.output_file << std::endl;
     return;
@@ -44,9 +48,9 @@ void entry_point(caf::actor_system& sys, const config& cfg) {
     std::unique_ptr<std::ifstream> fstream;
     first_pass_result res;
     char pad[irsize >= CAF_CACHE_LINE_SIZE ? 1 : CAF_CACHE_LINE_SIZE - irsize];
+
     intermediate_res() = default;
-    intermediate_res(intermediate_res&&) = default;
-    intermediate_res& operator=(intermediate_res&&) = default;
+
     intermediate_res(std::string file_path, std::unique_ptr<std::ifstream> fs,
                      first_pass_result&& fr)
       : file_path(std::move(file_path)),
@@ -55,18 +59,22 @@ void entry_point(caf::actor_system& sys, const config& cfg) {
       // nop
     }
   };
+
   // do a first pass on all files to extract node IDs and entities
   std::vector<intermediate_res> intermediate_results;
   intermediate_results.resize(cfg.remainder.size());
+
   for (size_t i = 0; i < cfg.remainder.size(); ++i) {
     auto& file = cfg.remainder[i];
     auto ptr = &intermediate_results[i];
     ptr->file_path = file;
     ptr->fstream = std::make_unique<std::ifstream>(file);
+
     if (!*ptr->fstream) {
       std::cerr << "could not open file: " << file << std::endl;
       continue;
     }
+
     sys.spawn([ptr, vl](caf::blocking_actor* self) {
       auto& f = *ptr->fstream;
       auto res = first_pass(self, f, vl);
@@ -78,7 +86,9 @@ void entry_point(caf::actor_system& sys, const config& cfg) {
       }
     });
   }
+
   sys.await_all_actors_done();
+
   // post-process collected entity IDs before second pass
   entity_set entities;
   std::vector<std::string> entity_names;
@@ -87,33 +97,41 @@ void entry_point(caf::actor_system& sys, const config& cfg) {
   };
   std::map<std::string, size_t> pretty_actor_names;
   size_t thread_count = 0;
+
   // make sure we insert in sorted order into the entities set
   std::sort(intermediate_results.begin(), intermediate_results.end(),
             sort_pred);
+
   for (auto& ir : intermediate_results) {
     auto node_as_string = caf::to_string(ir.res.this_node);
+
     for (auto& kvp : ir.res.entities) {
       std::string pretty_name;
       // make each (pretty) actor and thread name unique
       auto& pn = kvp.second.pretty_name;
+
       if (kvp.first.aid != 0)
         pretty_name = pn + std::to_string(++pretty_actor_names[pn]);
       //"actor" + std::to_string(kvp.first.aid);
       else
         pretty_name = "thread" + std::to_string(++thread_count);
+
       auto vid = entities.size(); // position in the vector timestamp
       entity_names.emplace_back(pretty_name);
       entities.emplace(entity{kvp.first.aid, kvp.first.tid, ir.res.this_node,
                               vid, kvp.second.hidden, std::move(pretty_name)});
     }
   }
+
   // check whether entities set is in the right order
   auto vid_cmp = [](const entity& x, const entity& y) { return x.vid < y.vid; };
+
   if (!std::is_sorted(entities.begin(), entities.end(), vid_cmp)) {
     std::cerr << "*** ERROR: entity set not sorted by vector timestamp ID:\n"
               << caf::deep_to_string(entities) << std::endl;
     return;
   }
+
   // do a second pass for all log files
   // first line is the regex to parse the remainder of the file
   out << R"((?<clock>\S+) (?<timestamp>\d+) (?<component>\S+) )"
@@ -123,6 +141,7 @@ void entry_point(caf::actor_system& sys, const config& cfg) {
   out << std::endl;
   std::mutex out_mtx;
   auto grp = sys.groups().anonymous();
+
   for (auto& fpr : intermediate_results) {
     sys.spawn_in_group(grp, [&](caf::blocking_actor* self) {
       try {
@@ -133,6 +152,7 @@ void entry_point(caf::actor_system& sys, const config& cfg) {
       }
     });
   }
+
   sys.await_all_actors_done();
 }
 } // namespace

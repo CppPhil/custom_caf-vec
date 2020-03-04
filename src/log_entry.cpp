@@ -9,8 +9,10 @@ std::istream& operator>>(std::istream& in, log_entry& x) {
     >> x.id.aid >> x.id.tid >> x.class_name >> x.function_name
     >> io::skip_whitespaces >> io::read_line(x.file_name, ':') >> x.line_number
     >> io::skip_whitespaces >> io::read_line(x.message);
+
   if (x.level == log_level::invalid)
     in.setstate(std::ios::failbit);
+
   return in;
 }
 } // namespace vec

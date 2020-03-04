@@ -7,8 +7,10 @@ namespace vec::io {
 std::istream& operator>>(std::istream& in, istream_char_consumer x) {
   if (!in)
     return in;
+
   // ignore leading whitespaces
   skip_whitespaces(in);
+
   // ignore trailing '\0'
   for (size_t i = 0; i < x.count; ++i) {
     // cout << "in: " << (char) in.peek() << ", x: " << x.what[i] << endl;
@@ -17,6 +19,7 @@ std::istream& operator>>(std::istream& in, istream_char_consumer x) {
       break;
     }
   }
+
   return in;
 }
 } // namespace vec::io
