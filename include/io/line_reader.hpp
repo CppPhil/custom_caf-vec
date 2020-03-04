@@ -10,5 +10,5 @@ struct line_reader {
 
 std::istream& operator>>(std::istream& in, line_reader x);
 
-line_reader rd_line(std::string& line, char delim = '\n');
+line_reader read_line(std::string& line, char delim = '\n');
 } // namespace vec::io

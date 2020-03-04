@@ -39,7 +39,7 @@ caf::expected<se_event> parse_event(const enhanced_log_entry& x) {
   std::string field_content;
   in >> io::consume(";");
   while (in >> field_name >> io::consume("=")
-         >> io::rd_line(field_content, ';'))
+         >> io::read_line(field_content, ';'))
     y.fields.emplace(std::move(field_name), std::move(field_content));
   if (type == "SPAWN") {
     y.type = se_type::spawn;

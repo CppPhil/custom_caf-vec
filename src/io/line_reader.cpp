@@ -10,7 +10,7 @@ std::istream& operator>>(std::istream& in, line_reader x) {
   return in;
 }
 
-line_reader rd_line(std::string& line, char delim) {
+line_reader read_line(std::string& line, char delim) {
   return {line, delim};
 }
 } // namespace vec::io

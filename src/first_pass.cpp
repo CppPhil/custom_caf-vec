@@ -26,14 +26,14 @@ first_pass(caf::blocking_actor* self, std::istream& in, verbosity_level vl) {
   std::string message;
   while (in >> io::skip_word >> io::skip_word >> io::skip_word >> id
          >> io::skip_word >> io::skip_word >> io::skip_word
-         >> io::rd_line(message)) {
+         >> io::read_line(message)) {
     // store in map
     auto i
       = res.entities.emplace(id, logger_id_meta_data{false, "actor"}).first;
     if (caf::starts_with(message, "INIT ; NAME = ")) {
       std::istringstream iss{message};
       iss >> io::consume("INIT ; NAME = ")
-        >> io::rd_line(i->second.pretty_name, ';');
+        >> io::read_line(i->second.pretty_name, ';');
       if (caf::ends_with(message, "HIDDEN = true"))
         i->second.hidden = true;
     }
