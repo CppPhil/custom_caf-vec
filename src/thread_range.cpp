@@ -1,7 +1,6 @@
 #include <algorithm>
 
 #include "actor_cmp.hpp"
-#include "entity.hpp"
 #include "thread_range.hpp"
 
 namespace vec {
@@ -22,10 +21,10 @@ const caf::node_id& thread_range::node() const {
 
 const entity* thread_range::get(const thread_id& y) const {
   // only compares thread ID
-  auto thread_cmp = [](const entity& lhs, thread_id rhs) {
+  auto thread_cmp = [](const entity& lhs, const thread_id& rhs) {
     return lhs.tid < rhs;
   };
-  // range [xs.first, xs.second) is sortd by thread ID
+  // range [xs.first, xs.second) is sorted by thread ID
   auto i = std::lower_bound(begin(), end(), y, thread_cmp);
   if (i->tid == y)
     return &(*i);

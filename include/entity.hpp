@@ -20,7 +20,7 @@ struct entity {
   size_t vid;
   /// Marks system-level actors to enable filtering.
   bool hidden;
-  /// A human-redable name, e.g., "actor42" or "thread23".
+  /// A human-readable name, e.g., "actor42" or "thread23".
   std::string pretty_name;
 };
 

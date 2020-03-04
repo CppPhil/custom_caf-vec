@@ -26,7 +26,7 @@ namespace vec {
 
 #define CHECK_NO_FIELDS()                                                      \
   if (!y.fields.empty())                                                       \
-    return caf::sec::invalid_argument;
+  return caf::sec::invalid_argument
 
 caf::expected<se_event> parse_event(const enhanced_log_entry& x) {
   se_event y{&x.id, x.vector_timestamp, se_type::none,
