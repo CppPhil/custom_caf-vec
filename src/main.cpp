@@ -2,6 +2,11 @@
 
 #include <iostream>
 
+#include <spdlog/async.h>
+#include <spdlog/sinks/basic_file_sink.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
+#include <spdlog/spdlog.h>
+
 #include "config.hpp"
 #include "entity_set.hpp"
 #include "first_pass.hpp"
@@ -162,6 +167,26 @@ void entry_point(caf::actor_system& sys, const config& cfg) {
 
 namespace {
 void caf_main(caf::actor_system& sys, const vec::config& cfg) {
+  constexpr size_t kibibyte = 1024;
+  constexpr size_t queue_size = 10 * kibibyte;
+  constexpr size_t thread_count = 1;
+
+  spdlog::init_thread_pool(queue_size, thread_count);
+
+  auto stdout_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+  constexpr auto do_truncate = true;
+  auto file_sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(
+    "logs/caf-vec.log", do_truncate);
+  std::vector<spdlog::sink_ptr> sinks = {stdout_sink, file_sink};
+  auto logger = std::make_shared<spdlog::async_logger>(
+    "caf-vec logger", sinks.begin(), sinks.end(), spdlog::thread_pool(),
+    spdlog::async_overflow_policy::block);
+  spdlog::set_default_logger(logger);
+  spdlog::set_level(spdlog::level::trace);
+  spdlog::set_pattern("%^[%d.%m.%Y %T.%e]%$ [%s:%# %!] [tid %t]: %v");
+
+  SPDLOG_INFO("Test test test");
+
   return vec::entry_point(sys, cfg);
 }
 } // namespace
