@@ -7,21 +7,9 @@
 #include "thread_range.hpp"
 
 namespace vec {
-const entity* get(const thread_range& xs, const thread_id& y) {
-  // only compares thread ID
-  auto thread_cmp = [](const entity& lhs, thread_id rhs) {
-    return lhs.tid < rhs;
-  };
-  // range [xs.first, xs.second) is sortd by thread ID
-  auto i = std::lower_bound(xs.begin(), xs.end(), y, thread_cmp);
-  if (i->tid == y)
-    return &(*i);
-  return nullptr;
-}
-
 const entity* get(const node_range& xs, const thread_id& y) {
   thread_range subrange{xs};
-  return get(subrange, y);
+  return subrange.get(y);
 }
 
 /// Returns the entity for `y` from the node range `xs`.

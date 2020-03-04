@@ -3,6 +3,8 @@
 #include "node_range.hpp"
 
 namespace vec {
+struct entity;
+
 /// Range within an `entity_set` containing all entities for a given node.
 class thread_range : public entity_set_range {
 public:
@@ -12,6 +14,8 @@ public:
   thread_range& operator=(const thread_range&);
 
   const caf::node_id& node() const;
+
+  const entity* get(const thread_id& y) const;
 
 private:
   caf::node_id node_;
