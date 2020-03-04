@@ -125,6 +125,12 @@ target_include_directories(
 target_compile_definitions(
     ${APP_NAME}
     PRIVATE
+    SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_TRACE
+)
+
+target_compile_definitions(
+    ${APP_NAME}
+    PRIVATE
     CAF_ENABLE_ACTOR_PROFILER
 )
 
