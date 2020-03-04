@@ -45,7 +45,7 @@ void entry_point(caf::actor_system& sys, const config& cfg) {
 
   struct intermediate_res {
     std::string file_path;
-    std::unique_ptr<std::ifstream> fstream;
+    std::unique_ptr<std::ifstream> ifstream;
     first_pass_result res;
     char pad[irsize >= CAF_CACHE_LINE_SIZE ? 1 : CAF_CACHE_LINE_SIZE - irsize];
 
@@ -54,7 +54,7 @@ void entry_point(caf::actor_system& sys, const config& cfg) {
     intermediate_res(std::string file_path, std::unique_ptr<std::ifstream> fs,
                      first_pass_result&& fr)
       : file_path(std::move(file_path)),
-        fstream(std::move(fs)),
+        ifstream(std::move(fs)),
         res(std::move(fr)) {
       // nop
     }
@@ -68,21 +68,21 @@ void entry_point(caf::actor_system& sys, const config& cfg) {
     auto& file = cfg.remainder[i];
     auto ptr = &intermediate_results[i];
     ptr->file_path = file;
-    ptr->fstream = std::make_unique<std::ifstream>(file);
+    ptr->ifstream = std::make_unique<std::ifstream>(file);
 
-    if (!*ptr->fstream) {
+    if (!*ptr->ifstream) {
       std::cerr << "could not open file: " << file << std::endl;
       continue;
     }
 
     sys.spawn([ptr, vl](caf::blocking_actor* self) {
-      auto& f = *ptr->fstream;
-      auto res = first_pass(self, f, vl);
+      auto& ifs = *ptr->ifstream;
+      auto res = first_pass(self, ifs, vl);
 
       if (res) {
         // rewind stream and push intermediate results
-        f.clear();
-        f.seekg(0);
+        ifs.clear();
+        ifs.seekg(0);
         ptr->res = std::move(*res);
       }
     });
@@ -147,7 +147,8 @@ void entry_point(caf::actor_system& sys, const config& cfg) {
     sys.spawn_in_group(grp, [&](caf::blocking_actor* self) {
       try {
         second_pass(self, grp, entities, fpr.res.this_node, entity_names,
-                    *fpr.fstream, out, out_mtx, !cfg.include_hidden_actors, vl);
+                    *fpr.ifstream, out, out_mtx, !cfg.include_hidden_actors,
+                    vl);
       } catch (const std::runtime_error& ex) {
         fprintf(stderr, "Caught std::runtime_error: \"%s\"\n", ex.what());
       }
