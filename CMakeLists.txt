@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
 
 project(custom_caf_vec VERSION 1.0.0)
 
+add_subdirectory(${custom_caf_vec_SOURCE_DIR}/external/spdlog)
+
 execute_process(
     COMMAND bash ${custom_caf_vec_SOURCE_DIR}/scripts/build_caf.sh
 )
@@ -92,31 +94,37 @@ add_executable(
 
 target_link_libraries(
     ${APP_NAME}
-    PUBLIC
+    PRIVATE
     Threads::Threads
 )
 
 target_link_libraries(
     ${APP_NAME}
-    PUBLIC
+    PRIVATE
+    spdlog::spdlog
+)
+
+target_link_libraries(
+    ${APP_NAME}
+    PRIVATE
     ${CMAKE_DL_LIBS} ${CAF_LIBRARY_CORE} ${CAF_LIBRARY_IO}
 )
 
 target_include_directories(
     ${APP_NAME}
-    PUBLIC
+    PRIVATE
     ${CAF_INCLUDE_DIRS}
 )
 
 target_include_directories(
     ${APP_NAME}
-    PUBLIC
+    PRIVATE
     ${custom_caf_vec_SOURCE_DIR}/include
 )
 
 target_compile_definitions(
     ${APP_NAME}
-    PUBLIC
+    PRIVATE
     CAF_ENABLE_ACTOR_PROFILER
 )
 
