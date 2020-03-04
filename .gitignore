@@ -658,3 +658,6 @@ build
 # .idea directory
 .idea
 
+# generated documentation
+docs
+
