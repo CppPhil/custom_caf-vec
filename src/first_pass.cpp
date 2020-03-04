@@ -1,3 +1,6 @@
+#include <spdlog/fmt/ostr.h>
+#include <spdlog/spdlog.h>
+
 #include "first_pass.hpp"
 #include "io/istream_char_consumer.hpp"
 #include "io/line_reader.hpp"
@@ -6,6 +9,25 @@
 #include "node_id.hpp"
 
 namespace vec {
+template <class OutputStream>
+OutputStream&
+operator<<(OutputStream& os,
+           const std::pair<const logger_id, logger_id_meta_data>& pair) {
+  return os << "pair{" << pair.first << ", " << pair.second << '}';
+};
+
+template <class OutputStream>
+OutputStream& operator<<(OutputStream& os,
+                         const std::map<logger_id, logger_id_meta_data>& map) {
+  os << "map{\n";
+
+  for (const auto& p : map) {
+    os << p << ",\n";
+  }
+
+  return os << '}';
+}
+
 caf::expected<first_pass_result>
 first_pass(caf::blocking_actor* self, std::istream& in, verbosity_level vl) {
   first_pass_result res;
@@ -39,10 +61,13 @@ first_pass(caf::blocking_actor* self, std::istream& in, verbosity_level vl) {
       std::istringstream iss{message};
       iss >> io::consume("INIT ; NAME = ")
         >> io::read_line(i->second.pretty_name, ';');
+
       if (caf::ends_with(message, "HIDDEN = true"))
         i->second.hidden = true;
     }
   }
+
+  SPDLOG_INFO("res.entities: {}", res.entities);
 
   if (vl >= verbosity_level::informative)
     aout(self) << "found " << res.entities.size() << " entities for node "

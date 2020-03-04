@@ -11,6 +11,11 @@ struct logger_id {
   caf::actor_id aid;
   /// Content of the [THREAD] field.
   std::string tid;
+
+  template <class OutputStream>
+  friend OutputStream& operator<<(OutputStream& os, const logger_id& id) {
+    return os << "logger_id{aid: " << id.aid << ", tid: " << id.tid << '}';
+  }
 };
 
 bool operator<(const logger_id& x, const logger_id& y);

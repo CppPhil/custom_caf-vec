@@ -81,6 +81,8 @@ void entry_point(caf::actor_system& sys, const config& cfg) {
     }
 
     sys.spawn([ptr, vl](caf::blocking_actor* self) {
+      SPDLOG_INFO("Launched blocking_actor for first_pass.");
+
       auto& ifs = *ptr->ifstream;
       auto res = first_pass(self, ifs, vl);
 
@@ -187,9 +189,6 @@ void initialize_spdlog() {
 namespace {
 void caf_main(caf::actor_system& sys, const vec::config& cfg) {
   vec::initialize_spdlog();
-
-  SPDLOG_INFO("Test test test");
-
   return vec::entry_point(sys, cfg);
 }
 } // namespace
