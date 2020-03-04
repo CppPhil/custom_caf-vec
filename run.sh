@@ -14,7 +14,7 @@ readonly PREV_DIR=$(pwd)
 
 cd $DIR
 
-./build/custom_caf_vec_app --output-file=result.txt --verbosity=2 ./example_log.log
+./build/custom_caf_vec_app --output-file=result.txt --verbosity=2 --include-hidden-actors ./example_log.log
 
 cd $PREV_DIR
 

@@ -50,9 +50,12 @@ first_pass(caf::blocking_actor* self, std::istream& in, verbosity_level vl) {
   logger_id id;
   std::string message;
 
+  // TODO: HERE actor_id 6 seems to get ignored
   while (in >> io::skip_word >> io::skip_word >> io::skip_word >> id
          >> io::skip_word >> io::skip_word >> io::skip_word
          >> io::read_line(message)) {
+    SPDLOG_INFO("logger id read: \"{}\"", id);
+
     // store in map
     auto i
       = res.entities.emplace(id, logger_id_meta_data{false, "actor"}).first;
