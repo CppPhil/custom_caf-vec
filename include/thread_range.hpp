@@ -13,8 +13,6 @@ public:
 
   [[nodiscard]] const caf::node_id& node() const;
 
-  [[nodiscard]] const entity* get(const thread_id& y) const;
-
 private:
   caf::node_id node_;
 };

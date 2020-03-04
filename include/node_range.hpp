@@ -11,13 +11,6 @@ public:
 
   [[nodiscard]] const caf::node_id& node() const;
 
-  [[nodiscard]] const entity* get(const thread_id& y) const;
-
-  /// Returns the entity for `y` from this node range.
-  [[nodiscard]] const entity* get(caf::actor_id y) const;
-
-  [[nodiscard]] const entity* get(const logger_id& y) const;
-
 private:
   caf::node_id node_;
 };
