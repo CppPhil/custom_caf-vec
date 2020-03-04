@@ -78,6 +78,7 @@ void entry_point(caf::actor_system& sys, const config& cfg) {
     sys.spawn([ptr, vl](caf::blocking_actor* self) {
       auto& f = *ptr->fstream;
       auto res = first_pass(self, f, vl);
+
       if (res) {
         // rewind stream and push intermediate results
         f.clear();
