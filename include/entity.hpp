@@ -3,6 +3,7 @@
 
 #include <caf/all.hpp>
 
+#include "boolalpha.hpp"
 #include "logger_id.hpp"
 #include "mailbox_id.hpp"
 #include "thread_id.hpp"
@@ -22,6 +23,15 @@ struct entity {
   bool hidden;
   /// A human-readable name, e.g., "actor42" or "thread23".
   std::string pretty_name;
+
+  template <class OutputStream>
+  friend OutputStream& operator<<(OutputStream& os, const entity& entity) {
+    return os << "entity{aid: " << entity.aid << ", tid: " << entity.tid
+              << ", nid: " << caf::to_string(entity.nid)
+              << ", vid: " << entity.vid
+              << ", hidden: " << boolalpha(entity.hidden)
+              << ", pretty_name: " << entity.pretty_name << '}';
+  }
 };
 
 template <class Inspector>

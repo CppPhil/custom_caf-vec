@@ -26,6 +26,7 @@ const std::string& get(const std::map<std::string, std::string>& xs,
 }
 } // namespace
 
+// TODO: Add logging statements here.
 void second_pass(caf::blocking_actor* self, const caf::group& grp,
                  const entity_set& entities, const caf::node_id& nid,
                  const std::vector<std::string>& json_names, std::istream& in,

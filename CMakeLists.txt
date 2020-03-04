@@ -55,7 +55,8 @@ set(HEADERS
     include/verbosity_level.hpp
     include/first_pass.hpp
     include/second_pass.hpp
-    include/config.hpp)
+    include/config.hpp
+    include/boolalpha.hpp)
 
 set(SOURCES
     src/main.cpp

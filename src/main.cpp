@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include <spdlog/async.h>
+#include <spdlog/fmt/ostr.h>
 #include <spdlog/sinks/basic_file_sink.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/spdlog.h>
@@ -131,6 +132,9 @@ void entry_point(caf::actor_system& sys, const config& cfg) {
     }
   }
 
+  SPDLOG_INFO("entity_names:\n{}", caf::join(entity_names, ", "));
+  SPDLOG_INFO("entities: {}", entities);
+
   // check whether entities set is in the right order
   auto vid_cmp = [](const entity& x, const entity& y) { return x.vid < y.vid; };
 
@@ -152,6 +156,8 @@ void entry_point(caf::actor_system& sys, const config& cfg) {
 
   for (auto& fpr : intermediate_results) {
     sys.spawn_in_group(grp, [&](caf::blocking_actor* self) {
+      SPDLOG_INFO("Spawned blocking_actor for second_pass.");
+
       try {
         second_pass(self, grp, entities, fpr.res.this_node, entity_names,
                     *fpr.ifstream, out, out_mtx, !cfg.include_hidden_actors,
