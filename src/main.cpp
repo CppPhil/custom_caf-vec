@@ -162,11 +162,8 @@ void entry_point(caf::actor_system& sys, const config& cfg) {
 
   sys.await_all_actors_done();
 }
-} // namespace
-} // namespace vec
 
-namespace {
-void caf_main(caf::actor_system& sys, const vec::config& cfg) {
+void initialize_spdlog() {
   constexpr size_t kibibyte = 1024;
   constexpr size_t queue_size = 10 * kibibyte;
   constexpr size_t thread_count = 1;
@@ -184,6 +181,13 @@ void caf_main(caf::actor_system& sys, const vec::config& cfg) {
   spdlog::set_default_logger(logger);
   spdlog::set_level(spdlog::level::trace);
   spdlog::set_pattern("%^[%d.%m.%Y %T.%e]%$ [%s:%# %!] [tid %t]: %v");
+}
+} // namespace
+} // namespace vec
+
+namespace {
+void caf_main(caf::actor_system& sys, const vec::config& cfg) {
+  vec::initialize_spdlog();
 
   SPDLOG_INFO("Test test test");
 
