@@ -29,7 +29,7 @@ namespace vec {
     return caf::sec::invalid_argument;
 
 caf::expected<se_event> parse_event(const enhanced_log_entry& x) {
-  se_event y{&x.id, x.vstamp, se_type::none,
+  se_event y{&x.id, x.vector_timestamp, se_type::none,
              std::map<std::string, std::string>{}};
   std::istringstream in{x.data.message};
   std::string type;

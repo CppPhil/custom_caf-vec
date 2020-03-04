@@ -1,11 +1,11 @@
 #pragma once
 #include <map>
 #include <string>
+#include <vector>
 
 #include <caf/all.hpp>
 
 #include "se_type.hpp"
-#include "vector_timestamp.hpp"
 
 namespace vec {
 struct entity;
@@ -13,7 +13,7 @@ struct entity;
 /// An SE-0001 event, see http://actor-framework.github.io/rfcs/
 struct se_event {
   const entity* source;
-  vector_timestamp vstamp;
+  std::vector<size_t> vector_timestamp;
   se_type type;
   std::map<std::string, std::string> fields;
 };

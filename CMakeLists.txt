@@ -25,7 +25,6 @@ set(APP_NAME custom_caf_vec_app)
 
 set(HEADERS
     include/thread_id.hpp
-    include/vector_timestamp.hpp
     include/trim.hpp
     include/io/skip_whitespaces.hpp
     include/io/skip_to_next_line.hpp

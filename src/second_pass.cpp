@@ -12,7 +12,6 @@
 #include "parse_event.hpp"
 #include "se_event.hpp"
 #include "second_pass.hpp"
-#include "vector_timestamp.hpp"
 
 namespace vec {
 namespace {
@@ -37,14 +36,14 @@ void second_pass(caf::blocking_actor* self, const caf::group& grp,
   // state for each local entity
   struct state_t {
     const entity& eid;
-    vector_timestamp clock;
+    std::vector<size_t> vector_timestamp;
   };
   std::map<logger_id, state_t> local_entities_state;
   for (auto& x : local_entities) {
-    vector_timestamp vzero;
-    vzero.resize(entities.size());
+    std::vector<size_t> zero_vector_timestamp;
+    zero_vector_timestamp.resize(entities.size());
     local_entities_state.emplace(logger_id{x.aid, x.tid},
-                                 state_t{x, std::move(vzero)});
+                                 state_t{x, std::move(zero_vector_timestamp)});
   }
   // lambda for accessing state via logger ID
   auto state = [&](const logger_id& x) -> caf::optional<state_t&> {
@@ -110,9 +109,10 @@ void second_pass(caf::blocking_actor* self, const caf::group& grp,
     // through those actors, because they might be forwarding messages
     bool internal = drop_hidden_actors && st.eid.hidden;
     if (!internal)
-      st.clock[st.eid.vid] += 1;
+      st.vector_timestamp[st.eid.vid] += 1;
     // generate enhanced entry (with incomplete JSON timestamp for now)
-    enhanced_log_entry entry{plain_entry, st.eid, st.clock, std::string{}};
+    enhanced_log_entry entry{plain_entry, st.eid, st.vector_timestamp,
+                             std::string{}};
     // check whether entry contains an SE-0001 event
     auto tmp = parse_event(entry);
     if (tmp) {
@@ -132,9 +132,10 @@ void second_pass(caf::blocking_actor* self, const caf::group& grp,
           auto e = in_flight_messages.end();
           auto i = std::find_if(in_flight_messages.begin(), e, pred);
           if (i != e) {
-            merge(st.clock, i->vstamp);
+            merge(st.vector_timestamp, i->vector_timestamp);
           } else {
-            merge(st.clock, fetch_message(event.fields).vstamp);
+            merge(st.vector_timestamp,
+                  fetch_message(event.fields).vector_timestamp);
           }
           break;
         }
@@ -150,7 +151,7 @@ void second_pass(caf::blocking_actor* self, const caf::group& grp,
           auto e = in_flight_spawns.end();
           auto i = std::find_if(in_flight_spawns.begin(), e, pred);
           if (i != e) {
-            merge(st.clock, i->vstamp);
+            merge(st.vector_timestamp, i->vector_timestamp);
             // keep book on scoped actors since their terminate
             // event propagates back to the parent
             if (get(event.fields, "NAME") == "scoped_actor")
@@ -173,7 +174,7 @@ void second_pass(caf::blocking_actor* self, const caf::group& grp,
 
             auto& parent_state = *parent_state_opt;
 
-            merge(parent_state.clock, st.clock);
+            merge(parent_state.vector_timestamp, st.vector_timestamp);
             scoped_actors.erase(i);
           }
           break;
@@ -183,8 +184,8 @@ void second_pass(caf::blocking_actor* self, const caf::group& grp,
     std::ostringstream oss;
     oss << '{';
     bool need_comma = false;
-    for (size_t i = 0; i < st.clock.size(); ++i) {
-      auto x = st.clock[i];
+    for (size_t i = 0; i < st.vector_timestamp.size(); ++i) {
+      auto x = st.vector_timestamp[i];
       if (x > 0) {
         if (need_comma)
           oss << ',';
@@ -194,7 +195,7 @@ void second_pass(caf::blocking_actor* self, const caf::group& grp,
       }
     }
     oss << '}';
-    entry.json_vstamp = oss.str();
+    entry.json_vector_timestamp = oss.str();
     // print entry to output file
     if (!internal) {
       std::lock_guard<std::mutex> guard{out_mtx};

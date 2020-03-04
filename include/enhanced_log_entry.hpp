@@ -1,8 +1,8 @@
 #pragma once
-#include "vector_timestamp.hpp"
 
 #include <iosfwd>
 #include <string>
+#include <vector>
 
 namespace vec {
 struct log_entry;
@@ -15,9 +15,9 @@ struct enhanced_log_entry {
   /// The actual ID of the logging entity.
   const entity& id;
   /// Current vector time as seen by `id`.
-  vector_timestamp& vstamp;
-  /// JSON representation of `vstamp`.
-  std::string json_vstamp;
+  std::vector<size_t>& vector_timestamp;
+  /// JSON representation of `vector_timestamp`.
+  std::string json_vector_timestamp;
 };
 
 std::ostream& operator<<(std::ostream& out, const enhanced_log_entry& x);
