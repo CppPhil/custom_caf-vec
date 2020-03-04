@@ -25,7 +25,7 @@ if [ ! -d build ]; then
 fi
 
 cd build
-cmake -DCMAKE_BUILD_TYPE=$build_type -G "Unix Makefiles" ..
+cmake -DCMAKE_BUILD_TYPE=$build_type -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -G "Unix Makefiles" ..
 cmake --build . -- -j$(nproc)
 
 cd $PREV_DIR
