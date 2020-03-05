@@ -82,7 +82,7 @@ void second_pass(caf::blocking_actor* self, const caf::group& grp,
 
   // additional state for second pass
   size_t line = 0;
-  log_entry plain_entry;
+  log_entry plain_entry = {};
   std::vector<se_event> in_flight_messages;
   std::vector<se_event> in_flight_spawns;
 
@@ -133,7 +133,7 @@ void second_pass(caf::blocking_actor* self, const caf::group& grp,
     auto opt = state(plain_entry.id);
 
     if (!opt) {
-      SPDLOG_INFO("Couldn't get state for {}, skipping.", plain_entry);
+      SPDLOG_WARN("Couldn't get state for {}, skipping.", plain_entry);
       continue;
     }
 
@@ -269,7 +269,7 @@ void second_pass(caf::blocking_actor* self, const caf::group& grp,
           break;
       }
     } else
-      SPDLOG_INFO("Couldn't parse event! plain_entry: {}", plain_entry);
+      SPDLOG_ERROR("Couldn't parse event! plain_entry: {}", plain_entry);
 
     // create ShiViz compatible JSON-formatted vector timestamp
     std::ostringstream oss;
@@ -289,7 +289,7 @@ void second_pass(caf::blocking_actor* self, const caf::group& grp,
 
     oss << '}';
     entry.json_vector_timestamp = oss.str();
-    SPDLOG_INFO("Creater JSON vector timestamp: \"{}\"",
+    SPDLOG_INFO("Created JSON vector timestamp: \"{}\"",
                 entry.json_vector_timestamp);
 
     // print entry to output file
