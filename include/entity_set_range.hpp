@@ -14,4 +14,15 @@ protected:
   iterator begin_;
   iterator end_;
 };
+
+template <class OutputStream>
+OutputStream& operator<<(OutputStream& os, const entity_set_range& range) {
+  os << "entity_set_range{\n";
+
+  for (const auto& element : range) {
+    os << element << ",\n";
+  }
+
+  return os << '}';
+}
 } // namespace vec

@@ -30,5 +30,16 @@ struct log_entry {
   std::string message;
 };
 
+template <class OutputStream>
+OutputStream& operator<<(OutputStream& os, const log_entry& entry) {
+  return os << "log_entry{timestamp: " << entry.timestamp
+            << ", component: " << entry.component << ", level: " << entry.level
+            << ", id: " << entry.id << ", class_name: " << entry.class_name
+            << ", function_name: " << entry.function_name
+            << ", file_name: " << entry.file_name
+            << ", line_number: " << entry.line_number << ", message: \""
+            << entry.message << "\"}";
+}
+
 std::istream& operator>>(std::istream& in, log_entry& x);
 } // namespace vec
