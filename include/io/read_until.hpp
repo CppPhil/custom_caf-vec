@@ -32,15 +32,9 @@ auto read_until(UnaryPredicate pred) {
                                   std::istream& istream) -> std::istream& {
       buffer.clear();
 
-      for (std::istream::traits_type::int_type i
-           = std::istream::traits_type::eof();
-           (i = istream.peek(),
-           (i != std::istream::traits_type::eof()
-            && !std::invoke(pred, static_cast<char>(i))));) {
-        buffer.push_back(static_cast<char>(istream.get()));
-        volatile bool b = istream.operator bool();
-        (void) b;
-      }
+      for (std::istream::char_type ch;
+           istream.get(ch) && !std::invoke(pred, ch);)
+        buffer.push_back(ch);
 
       trim(buffer);
       return istream;
