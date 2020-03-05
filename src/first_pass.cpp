@@ -4,12 +4,23 @@
 #include "first_pass.hpp"
 #include "io/istream_char_consumer.hpp"
 #include "io/line_reader.hpp"
-#include "io/read_until_decimal_digit.hpp"
+#include "io/read_until.hpp"
 #include "io/skip_to_next_line.hpp"
 #include "io/skip_word.hpp"
 #include "node_id.hpp"
 
 namespace vec {
+namespace {
+// TODO: Make it so that it reads until it has read a newline
+//       and then has read a decimal digit at some later point.
+auto read_remainder(std::string& buffer) {
+  return io::read_until([](auto c) {
+    bool b = isdigit(static_cast<unsigned char>(c)) != 0 || c == '\n';
+    return b;
+  })(buffer);
+}
+} // namespace
+
 template <class OutputStream>
 OutputStream&
 operator<<(OutputStream& os,
@@ -60,7 +71,7 @@ first_pass(caf::blocking_actor* self, std::istream& in, verbosity_level vl) {
   // TODO: Clean up around here.
   while (in >> io::skip_word >> io::skip_word >> io::skip_word >> id
          >> io::skip_word >> io::skip_word >> io::skip_word
-         >> io::read_until_decimal_digit(message)) {
+         >> read_remainder(message)) {
     if (in.rdbuf()->pubseekoff(0, std::ios_base::cur, std::ios_base::in)
         > 0x3fa7 - 0xca) {
       for (volatile int l = 1; l; ++l) {

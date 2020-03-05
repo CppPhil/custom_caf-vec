@@ -6,6 +6,8 @@
 #include <string>
 #include <utility>
 
+#include "trim.hpp"
+
 namespace vec::io {
 namespace detail {
 template <class UnaryInvocable>
@@ -28,9 +30,19 @@ auto read_until(UnaryPredicate pred) {
   return [pred = std::move(pred)](std::string& buffer) {
     return detail::read_until_t{[pred = std::move(pred), &buffer](
                                   std::istream& istream) -> std::istream& {
-      while (!std::invoke(pred, istream.peek()))
-        buffer.push_back(istream.get());
+      buffer.clear();
 
+      for (std::istream::traits_type::int_type i
+           = std::istream::traits_type::eof();
+           (i = istream.peek(),
+           (i != std::istream::traits_type::eof()
+            && !std::invoke(pred, static_cast<char>(i))));) {
+        buffer.push_back(static_cast<char>(istream.get()));
+        volatile bool b = istream.operator bool();
+        (void) b;
+      }
+
+      trim(buffer);
       return istream;
     }};
   };
