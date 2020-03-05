@@ -56,7 +56,8 @@ set(HEADERS
     include/first_pass.hpp
     include/second_pass.hpp
     include/config.hpp
-    include/boolalpha.hpp)
+    include/boolalpha.hpp
+    include/initialize_spdlog.hpp)
 
 set(SOURCES
     src/main.cpp
@@ -85,7 +86,8 @@ set(SOURCES
     src/parse_event.cpp
     src/first_pass.cpp
     src/second_pass.cpp
-    src/config.cpp)
+    src/config.cpp
+    src/initialize_spdlog.cpp)
 
 add_executable(
     ${APP_NAME}
