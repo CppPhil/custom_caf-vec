@@ -4,6 +4,7 @@
 #include "first_pass.hpp"
 #include "io/istream_char_consumer.hpp"
 #include "io/line_reader.hpp"
+#include "io/read_until_decimal_digit.hpp"
 #include "io/skip_to_next_line.hpp"
 #include "io/skip_word.hpp"
 #include "node_id.hpp"
@@ -53,9 +54,13 @@ first_pass(caf::blocking_actor* self, std::istream& in, verbosity_level vl) {
   // TODO: HERE actor_id 6 seems to get ignored
 
   // TODO: read_until_decimal_digit rather than read_line
+
+  // TODO: Check if it works now.
+
+  // TODO: Clean up around here.
   while (in >> io::skip_word >> io::skip_word >> io::skip_word >> id
          >> io::skip_word >> io::skip_word >> io::skip_word
-         >> io::read_line(message)) {
+         >> io::read_until_decimal_digit(message)) {
     if (in.rdbuf()->pubseekoff(0, std::ios_base::cur, std::ios_base::in)
         > 0x3fa7 - 0xca) {
       for (volatile int l = 1; l; ++l) {

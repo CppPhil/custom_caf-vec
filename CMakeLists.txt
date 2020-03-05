@@ -57,7 +57,9 @@ set(HEADERS
     include/second_pass.hpp
     include/config.hpp
     include/boolalpha.hpp
-    include/initialize_spdlog.hpp)
+    include/initialize_spdlog.hpp
+    include/io/read_until.hpp
+    include/io/read_until_decimal_digit.hpp)
 
 set(SOURCES
     src/main.cpp
