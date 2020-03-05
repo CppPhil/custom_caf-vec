@@ -11,13 +11,12 @@
 
 namespace vec {
 namespace {
-// TODO: Make it so that it reads until it has read a newline
-//       and then has read a decimal digit at some later point.
-//       Use some sort of state in the lambda thingie to do that.
 auto read_remainder(std::string& buffer) {
-  return io::read_until([](auto c) {
-    bool b = isdigit(static_cast<unsigned char>(c)) != 0 || c == '\n';
-    return b;
+  return io::read_until([has_seen_new_line = false](auto c) mutable {
+    if (!has_seen_new_line)
+      has_seen_new_line = c == '\n';
+
+    return has_seen_new_line && isdigit(static_cast<unsigned char>(c)) != 0;
   })(buffer);
 }
 } // namespace

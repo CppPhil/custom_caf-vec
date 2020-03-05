@@ -1,3 +1,6 @@
+See in source TODOs
+Test the stuff and see if it works.
+
 Figure out why the actor6 gets ignored somehow.
 
 Figure out why the log produced by caf-vec ends up so
