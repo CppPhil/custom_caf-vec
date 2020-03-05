@@ -51,9 +51,19 @@ first_pass(caf::blocking_actor* self, std::istream& in, verbosity_level vl) {
   std::string message;
 
   // TODO: HERE actor_id 6 seems to get ignored
+
+  // TODO: read_until_decimal_digit rather than read_line
   while (in >> io::skip_word >> io::skip_word >> io::skip_word >> id
          >> io::skip_word >> io::skip_word >> io::skip_word
          >> io::read_line(message)) {
+    if (in.rdbuf()->pubseekoff(0, std::ios_base::cur, std::ios_base::in)
+        > 0x3fa7 - 0xca) {
+      for (volatile int l = 1; l; ++l) {
+        if (l == 2)
+          goto HERE;
+      }
+    }
+  HERE:
     SPDLOG_INFO("logger id read: \"{}\"", id);
 
     // store in map
@@ -69,6 +79,9 @@ first_pass(caf::blocking_actor* self, std::istream& in, verbosity_level vl) {
         i->second.hidden = true;
     }
   }
+
+  SPDLOG_INFO("exited read loop with file offset: {}",
+              in.rdbuf()->pubseekoff(0, std::ios_base::cur, std::ios_base::in));
 
   SPDLOG_INFO("res.entities: {}", res.entities);
 
