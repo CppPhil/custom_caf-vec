@@ -20,6 +20,6 @@ void initialize_spdlog() {
     "caf-vec logger", sinks.begin(), sinks.end(), spdlog::thread_pool(),
     spdlog::async_overflow_policy::block);
   spdlog::set_default_logger(logger);
-  spdlog::set_pattern("%^[%d.%m.%Y %T.%e]%$ [%s:%# %!] [tid %t]: %v");
+  spdlog::set_pattern("%^[%d.%m.%Y %T.%e]%$ [%s:%# %!] [thread %t]: \"%v\"");
 }
 } // namespace vec
