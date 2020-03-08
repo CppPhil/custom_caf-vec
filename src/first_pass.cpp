@@ -71,6 +71,9 @@ first_pass(caf::blocking_actor* self, std::istream& in, verbosity_level vl) {
   // TODO: Check if it works now.
 
   // TODO: Clean up around here.
+
+  volatile int i = 1;
+
   while (in >> io::skip_word >> io::skip_word >> io::skip_word >> id
          >> io::skip_word >> io::skip_word >> io::skip_word
          >> read_remainder(message)) {
@@ -82,7 +85,7 @@ first_pass(caf::blocking_actor* self, std::istream& in, verbosity_level vl) {
       }
     }
   HERE:
-    SPDLOG_INFO("logger id read: \"{}\"", id);
+    SPDLOG_INFO("logger id read: \"{}\", line: {}", id, ++i);
 
     // store in map
     auto i

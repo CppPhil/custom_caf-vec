@@ -661,6 +661,3 @@ build
 # generated documentation
 docs
 
-# log files
-logs
-
