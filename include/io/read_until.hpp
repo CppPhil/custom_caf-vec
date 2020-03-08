@@ -38,7 +38,7 @@ auto read_until(UnaryPredicate pred) {
           buffer.push_back(ch);
 
         trim(buffer);
-        return istream;
+        return istream.unget();
       }};
   };
 }

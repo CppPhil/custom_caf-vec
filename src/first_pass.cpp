@@ -13,8 +13,10 @@ namespace vec {
 namespace {
 auto read_remainder(std::string& buffer) {
   return io::read_until([has_seen_new_line = false](auto c) mutable {
-    if (!has_seen_new_line)
+    if (!has_seen_new_line) {
       has_seen_new_line = c == '\n';
+      return false;
+    }
 
     return has_seen_new_line && isdigit(static_cast<unsigned char>(c)) != 0;
   })(buffer);
