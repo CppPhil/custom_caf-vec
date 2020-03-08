@@ -1,5 +1,6 @@
 Figure out why the result ends up with fewer entries than the example_log.log
  -> Perhaps second_pass does something incorrectly.
+ -> See if it also does bug out with a newly created log file.
 
 Figure out why the log produced by caf-vec ends up so
 that ShiViz won't accept it on the laptop.
