@@ -298,7 +298,9 @@ void second_pass(caf::blocking_actor* self, const caf::group& grp,
 
       std::lock_guard<std::mutex> guard{out_mtx};
       out << entry << '\n';
-    }
+    } else
+      SPDLOG_WARN(
+        "Didn't write \"{}\" to \"out\", because \"internal\" was true", entry);
   }
 }
 } // namespace vec
