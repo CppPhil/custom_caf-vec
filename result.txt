@@ -44,19 +44,13 @@
 {"thread1":27} 0 caf DEBUG thread1 caf.actor_registry await_running_count_equal actor_registry.cpp:126 running_.load() = 2
 {"actor4":4} 0 caf TRACE actor4 caf.scheduled_actor resume scheduled_actor.cpp:381 ENTRY max_throughput = 18446744073709551615
 {"actor4":5} 0 caf TRACE actor4 caf.scheduled_actor activate scheduled_actor.cpp:744 ENTRY
-{"actor5":4} 0 caf TRACE actor5 caf.scheduled_actor resume scheduled_actor.cpp:381 ENTRY max_throughput = 18446744073709551615
-{"actor5":5} 0 caf TRACE actor5 caf.scheduled_actor activate scheduled_actor.cpp:744 ENTRY
 {"actor4":6} 0 caf TRACE actor4 caf.event_based_actor initialize event_based_actor.cpp:35 ENTRY subtype = "caf.event_based_actor"
 {"actor4":7} 0 caf TRACE actor4 caf.local_actor initialize local_actor.cpp:120 ENTRY id = 4 name = "scheduled_actor"
 {"actor4":8} 0 caf TRACE actor4 caf.local_actor operator() local_actor.cpp:120 EXIT
 {"actor4":9} 0 caf TRACE actor4 caf.event_based_actor make_behavior event_based_actor.cpp:50 ENTRY
 {"actor4":10} 0 caf TRACE actor4 caf.event_based_actor operator() event_based_actor.cpp:50 EXIT
 {"actor4":11} 0 caf DEBUG actor4 caf.event_based_actor initialize event_based_actor.cpp:44 make_behavior() did return a valid behavior
-{"actor5":6} 0 caf TRACE actor5 caf.event_based_actor initialize event_based_actor.cpp:35 ENTRY subtype = "caf.event_based_actor"
-{"actor5":7} 0 caf TRACE actor5 caf.local_actor initialize local_actor.cpp:120 ENTRY id = 5 name = "scheduled_actor"
-{"actor5":8} 0 caf TRACE actor5 caf.local_actor operator() local_actor.cpp:120 EXIT
 {"actor4":12} 0 caf TRACE actor4 caf.scheduled_actor set_receive_timeout scheduled_actor.cpp:482 ENTRY
-{"actor5":9} 0 caf TRACE actor5 caf.event_based_actor make_behavior event_based_actor.cpp:50 ENTRY
 {"actor4":13} 0 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:482 EXIT
 {"actor4":14} 0 caf TRACE actor4 caf.event_based_actor operator() event_based_actor.cpp:35 EXIT
 {"actor4":15} 0 caf TRACE actor4 caf.scheduled_actor finalize scheduled_actor.cpp:842 ENTRY
@@ -65,6 +59,12 @@
 {"actor4":18} 0 caf TRACE actor4 caf.scheduled_actor operator() scheduled_actor.cpp:744 EXIT
 {"actor4":19} 0 caf DEBUG actor4 caf.scheduled_actor resume scheduled_actor.cpp:402 start new DRR round
 {"actor4":20} 0 caf TRACE actor4 size_t)<GLOBAL operator() scheduled_actor.cpp:381 EXIT
+{"actor5":4} 0 caf TRACE actor5 caf.scheduled_actor resume scheduled_actor.cpp:381 ENTRY max_throughput = 18446744073709551615
+{"actor5":5} 0 caf TRACE actor5 caf.scheduled_actor activate scheduled_actor.cpp:744 ENTRY
+{"actor5":6} 0 caf TRACE actor5 caf.event_based_actor initialize event_based_actor.cpp:35 ENTRY subtype = "caf.event_based_actor"
+{"actor5":7} 0 caf TRACE actor5 caf.local_actor initialize local_actor.cpp:120 ENTRY id = 5 name = "scheduled_actor"
+{"actor5":8} 0 caf TRACE actor5 caf.local_actor operator() local_actor.cpp:120 EXIT
+{"actor5":9} 0 caf TRACE actor5 caf.event_based_actor make_behavior event_based_actor.cpp:50 ENTRY
 {"actor5":10} 0 caf TRACE actor5 caf.scheduled_actor enqueue scheduled_actor.cpp:158 ENTRY *ptr = mailbox_element(5@invalid-node, message_id(1152921504606846977), <unprintable>, ("HiTheRe"))
 {"actor5":11} 0 caf_flow DEBUG actor5 caf.scheduled_actor enqueue scheduled_actor.cpp:159 SEND ; TO = 4@invalid-node ; FROM = 5@invalid-node ; STAGES = [] ; CONTENT = ("HiTheRe")
 {"actor5":12} 0 caf_flow DEBUG actor5 caf.scheduled_actor enqueue scheduled_actor.cpp:164 ACCEPT ; UNBLOCKED = true
@@ -130,244 +130,244 @@
 {"actor4":35,"actor5":38} 0 caf_flow DEBUG actor5 caf.blocking_actor enqueue blocking_actor.cpp:68 SEND ; TO = 3@invalid-node ; FROM = null:pointer ; STAGES = [] ; CONTENT = (caf::add_atom(), 5, "HITHERE")
 {"actor4":35,"actor5":39} 0 caf_flow DEBUG actor5 caf.blocking_actor enqueue blocking_actor.cpp:79 ACCEPT ; UNBLOCKED = false
 {"actor4":35,"actor5":40} 0 caf TRACE actor5 caf.execution_unit*)<GLOBAL operator() blocking_actor.cpp:67 EXIT
+{"actor3":6} 0 caf TRACE actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:162 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (caf::add_atom(), 5, "test_actor_buddy_function: Got \""))
 {"actor4":35,"actor5":41} 0 caf TRACE actor5 caf.blocking_actor enqueue blocking_actor.cpp:67 ENTRY *ptr = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (caf::add_atom(), 5, ".
 ))
-{"actor3":6} 0 caf TRACE actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:162 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (caf::add_atom(), 5, "test_actor_buddy_function: Got \""))
+{"actor3":7,"actor4":35,"actor5":34} 0 caf_flow DEBUG actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:163 RECEIVE ; FROM = null:pointer ; STAGES = [] ; CONTENT = (caf::add_atom(), 5, "test_actor_buddy_function: Got \"")
 {"actor4":35,"actor5":42} 0 caf_flow DEBUG actor5 caf.blocking_actor enqueue blocking_actor.cpp:68 SEND ; TO = 3@invalid-node ; FROM = null:pointer ; STAGES = [] ; CONTENT = (caf::add_atom(), 5, ".
 )
 {"actor4":35,"actor5":43} 0 caf_flow DEBUG actor5 caf.blocking_actor enqueue blocking_actor.cpp:79 ACCEPT ; UNBLOCKED = false
 {"actor4":35,"actor5":44} 0 caf TRACE actor5 caf.execution_unit*)<GLOBAL operator() blocking_actor.cpp:67 EXIT
-{"actor3":7,"actor4":35,"actor5":34} 0 caf_flow DEBUG actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:163 RECEIVE ; FROM = null:pointer ; STAGES = [] ; CONTENT = (caf::add_atom(), 5, "test_actor_buddy_function: Got \"")
+{"actor3":8,"actor4":35,"actor5":34} 0 caf TRACE actor3 caf.detail.default_invoke_result_visitor<Self> operator() default_invoke_result_visitor.hpp:48 ENTRY x = <empty-message>
+{"actor3":9,"actor4":35,"actor5":34} 0 caf DEBUG actor3 caf.detail.default_invoke_result_visitor<Self> delegate default_invoke_result_visitor.hpp:80 suppress response message: invalid response promise
+{"actor3":10,"actor4":35,"actor5":34} 0 caf TRACE actor3 [with%20Self%20=%20caf.blocking_actor]<GLOBAL operator() default_invoke_result_visitor.hpp:48 EXIT
 {"actor4":35,"actor5":45} 0 caf_flow DEBUG actor5 caf.scheduled_actor consume scheduled_actor.cpp:729 FINALIZE
 {"actor4":35,"actor5":46} 0 caf TRACE actor5 caf.scheduled_actor operator() scheduled_actor.cpp:626 EXIT
 {"actor4":35,"actor5":47} 0 caf TRACE actor5 caf.scheduled_actor finalize scheduled_actor.cpp:842 ENTRY
 {"actor4":35,"actor5":48} 0 caf DEBUG actor5 caf.scheduled_actor finalize scheduled_actor.cpp:865 actor has no behavior and is ready for cleanup
-{"actor4":35,"actor5":49} 0 caf TRACE actor5 caf.scheduled_actor cleanup scheduled_actor.cpp:225 ENTRY fail_state = none
-{"actor3":8,"actor4":35,"actor5":34} 0 caf TRACE actor3 caf.detail.default_invoke_result_visitor<Self> operator() default_invoke_result_visitor.hpp:48 ENTRY x = <empty-message>
-{"actor3":9,"actor4":35,"actor5":34} 0 caf DEBUG actor3 caf.detail.default_invoke_result_visitor<Self> delegate default_invoke_result_visitor.hpp:80 suppress response message: invalid response promise
-{"actor3":10,"actor4":35,"actor5":34} 0 caf TRACE actor3 [with%20Self%20=%20caf.blocking_actor]<GLOBAL operator() default_invoke_result_visitor.hpp:48 EXIT
-{"actor4":35,"actor5":50} 0 caf TRACE actor5 caf.local_actor cleanup local_actor.cpp:124 ENTRY fail_state = none
 {"actor3":11,"actor4":35,"actor5":34} 0 caf_flow DEBUG actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:227 FINALIZE
 {"actor3":12,"actor4":35,"actor5":34} 0 caf TRACE actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:162 EXIT
-{"actor4":35,"actor5":51} 0 caf DEBUG actor5 caf.actor_registry dec_running actor_registry.cpp:118 new_val = 1
-{"actor4":35,"actor5":52} 0 caf_flow DEBUG actor5 caf.local_actor cleanup local_actor.cpp:127 TERMINATE ; ID = 5 ; REASON = none ; NODE = invalid-node
 {"actor3":13,"actor4":35,"actor5":34} 0 caf TRACE actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:162 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (caf::add_atom(), 5, "HITHERE"))
+{"actor4":35,"actor5":49} 0 caf TRACE actor5 caf.scheduled_actor cleanup scheduled_actor.cpp:225 ENTRY fail_state = none
 {"actor3":14,"actor4":35,"actor5":38} 0 caf_flow DEBUG actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:163 RECEIVE ; FROM = null:pointer ; STAGES = [] ; CONTENT = (caf::add_atom(), 5, "HITHERE")
-{"thread1":28} 0 caf DEBUG thread1 caf.actor_registry await_running_count_equal actor_registry.cpp:126 running_.load() = 1
-{"actor4":35,"actor5":53} 0 caf TRACE actor5 caf.monitorable_actor cleanup monitorable_actor.cpp:78 ENTRY reason = none
 {"actor3":15,"actor4":35,"actor5":38} 0 caf TRACE actor3 caf.detail.default_invoke_result_visitor<Self> operator() default_invoke_result_visitor.hpp:48 ENTRY x = <empty-message>
+{"actor4":35,"actor5":50} 0 caf TRACE actor5 caf.local_actor cleanup local_actor.cpp:124 ENTRY fail_state = none
 {"actor3":16,"actor4":35,"actor5":38} 0 caf DEBUG actor3 caf.detail.default_invoke_result_visitor<Self> delegate default_invoke_result_visitor.hpp:80 suppress response message: invalid response promise
 {"actor3":17,"actor4":35,"actor5":38} 0 caf TRACE actor3 [with%20Self%20=%20caf.blocking_actor]<GLOBAL operator() default_invoke_result_visitor.hpp:48 EXIT
-{"actor4":35,"actor5":54} 0 caf DEBUG actor5 caf.monitorable_actor cleanup monitorable_actor.cpp:94 cleanup id() = 5 node() = invalid-node fail_state_ = none
 {"actor3":18,"actor4":35,"actor5":38} 0 caf_flow DEBUG actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:227 FINALIZE
 {"actor3":19,"actor4":35,"actor5":38} 0 caf TRACE actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:162 EXIT
-{"actor4":35,"actor5":55} 0 caf TRACE actor5 caf.blocking_actor enqueue blocking_actor.cpp:67 ENTRY *ptr = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (caf::delete_atom(), 5))
+{"actor4":35,"actor5":51} 0 caf DEBUG actor5 caf.actor_registry dec_running actor_registry.cpp:118 new_val = 1
 {"actor3":20,"actor4":35,"actor5":38} 0 caf TRACE actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:162 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (caf::add_atom(), 5, ".
 ))
 {"actor3":21,"actor4":35,"actor5":42} 0 caf_flow DEBUG actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:163 RECEIVE ; FROM = null:pointer ; STAGES = [] ; CONTENT = (caf::add_atom(), 5, ".
 )
-{"actor4":35,"actor5":56} 0 caf_flow DEBUG actor5 caf.blocking_actor enqueue blocking_actor.cpp:68 SEND ; TO = 3@invalid-node ; FROM = null:pointer ; STAGES = [] ; CONTENT = (caf::delete_atom(), 5)
-{"actor4":35,"actor5":57} 0 caf_flow DEBUG actor5 caf.blocking_actor enqueue blocking_actor.cpp:79 ACCEPT ; UNBLOCKED = false
-{"actor4":35,"actor5":58} 0 caf TRACE actor5 caf.execution_unit*)<GLOBAL operator() blocking_actor.cpp:67 EXIT
-{"actor4":35,"actor5":59} 0 caf TRACE actor5 caf.execution_unit*)<GLOBAL operator() monitorable_actor.cpp:78 EXIT
+{"actor4":35,"actor5":52} 0 caf_flow DEBUG actor5 caf.local_actor cleanup local_actor.cpp:127 TERMINATE ; ID = 5 ; REASON = none ; NODE = invalid-node
+{"thread1":28} 0 caf DEBUG thread1 caf.actor_registry await_running_count_equal actor_registry.cpp:126 running_.load() = 1
+{"actor4":35,"actor5":53} 0 caf TRACE actor5 caf.monitorable_actor cleanup monitorable_actor.cpp:78 ENTRY reason = none
+{"actor4":35,"actor5":54} 0 caf DEBUG actor5 caf.monitorable_actor cleanup monitorable_actor.cpp:94 cleanup id() = 5 node() = invalid-node fail_state_ = none
 {"actor3":22,"actor4":35,"actor5":42} 0 caf TRACE actor3 caf.detail.default_invoke_result_visitor<Self> operator() default_invoke_result_visitor.hpp:48 ENTRY x = <empty-message>
+{"actor4":35,"actor5":55} 0 caf TRACE actor5 caf.blocking_actor enqueue blocking_actor.cpp:67 ENTRY *ptr = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (caf::delete_atom(), 5))
 {"actor3":23,"actor4":35,"actor5":42} 0 caf DEBUG actor3 caf.detail.default_invoke_result_visitor<Self> delegate default_invoke_result_visitor.hpp:80 suppress response message: invalid response promise
 {"actor3":24,"actor4":35,"actor5":42} 0 caf TRACE actor3 [with%20Self%20=%20caf.blocking_actor]<GLOBAL operator() default_invoke_result_visitor.hpp:48 EXIT
+{"actor4":35,"actor5":56} 0 caf_flow DEBUG actor5 caf.blocking_actor enqueue blocking_actor.cpp:68 SEND ; TO = 3@invalid-node ; FROM = null:pointer ; STAGES = [] ; CONTENT = (caf::delete_atom(), 5)
+{"actor3":25,"actor4":35,"actor5":42} 0 caf_flow DEBUG actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:227 FINALIZE
+{"actor3":26,"actor4":35,"actor5":42} 0 caf TRACE actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:162 EXIT
+{"actor4":35,"actor5":57} 0 caf_flow DEBUG actor5 caf.blocking_actor enqueue blocking_actor.cpp:79 ACCEPT ; UNBLOCKED = false
+{"actor4":35,"actor5":58} 0 caf TRACE actor5 caf.execution_unit*)<GLOBAL operator() blocking_actor.cpp:67 EXIT
+{"actor3":27,"actor4":35,"actor5":42} 0 caf TRACE actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:162 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (caf::delete_atom(), 5))
+{"actor3":28,"actor4":35,"actor5":56} 0 caf_flow DEBUG actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:163 RECEIVE ; FROM = null:pointer ; STAGES = [] ; CONTENT = (caf::delete_atom(), 5)
+{"actor4":35,"actor5":59} 0 caf TRACE actor5 caf.execution_unit*)<GLOBAL operator() monitorable_actor.cpp:78 EXIT
 {"actor4":35,"actor5":60} 0 caf TRACE actor5 caf.execution_unit*)<GLOBAL operator() local_actor.cpp:124 EXIT
 {"actor4":35,"actor5":61} 0 caf TRACE actor5 caf.execution_unit*)<GLOBAL operator() scheduled_actor.cpp:225 EXIT
-{"actor4":35,"actor5":62} 0 caf TRACE actor5 caf.scheduled_actor operator() scheduled_actor.cpp:842 EXIT
-{"actor3":25,"actor4":35,"actor5":42} 0 caf_flow DEBUG actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:227 FINALIZE
-{"actor4":35,"actor5":63} 0 caf DEBUG actor5 caf.scheduled_actor reactivate scheduled_actor.cpp:805 actor finalized
-{"actor3":26,"actor4":35,"actor5":42} 0 caf TRACE actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:162 EXIT
-{"actor4":35,"actor5":64} 0 caf TRACE actor5 caf.scheduled_actor operator() scheduled_actor.cpp:787 EXIT
-{"actor3":27,"actor4":35,"actor5":42} 0 caf TRACE actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:162 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (caf::delete_atom(), 5))
-{"actor4":35,"actor5":65} 0 caf TRACE actor5 caf.scheduled_actor.mailbox_visitor operator() scheduled_actor.cpp:364 EXIT
-{"actor3":28,"actor4":35,"actor5":56} 0 caf_flow DEBUG actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:163 RECEIVE ; FROM = null:pointer ; STAGES = [] ; CONTENT = (caf::delete_atom(), 5)
 {"actor3":29,"actor4":35,"actor5":56} 0 caf TRACE actor3 caf.detail.default_invoke_result_visitor<Self> operator() default_invoke_result_visitor.hpp:48 ENTRY x = <empty-message>
+{"actor4":35,"actor5":62} 0 caf TRACE actor5 caf.scheduled_actor operator() scheduled_actor.cpp:842 EXIT
 {"actor3":30,"actor4":35,"actor5":56} 0 caf DEBUG actor3 caf.detail.default_invoke_result_visitor<Self> delegate default_invoke_result_visitor.hpp:80 suppress response message: invalid response promise
 {"actor3":31,"actor4":35,"actor5":56} 0 caf TRACE actor3 [with%20Self%20=%20caf.blocking_actor]<GLOBAL operator() default_invoke_result_visitor.hpp:48 EXIT
+{"actor4":35,"actor5":63} 0 caf DEBUG actor5 caf.scheduled_actor reactivate scheduled_actor.cpp:805 actor finalized
+{"actor3":32,"actor4":35,"actor5":56} 0 caf_flow DEBUG actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:227 FINALIZE
+{"actor3":33,"actor4":35,"actor5":56} 0 caf TRACE actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:162 EXIT
+{"actor4":35,"actor5":64} 0 caf TRACE actor5 caf.scheduled_actor operator() scheduled_actor.cpp:787 EXIT
+{"actor4":35,"actor5":65} 0 caf TRACE actor5 caf.scheduled_actor.mailbox_visitor operator() scheduled_actor.cpp:364 EXIT
 {"actor4":55,"actor5":11} 0 caf TRACE actor4 caf.scheduled_actor cleanup scheduled_actor.cpp:225 ENTRY fail_state = exit_reason(unreachable)
 {"actor4":56,"actor5":11} 0 caf TRACE actor4 caf.local_actor cleanup local_actor.cpp:124 ENTRY fail_state = exit_reason(unreachable)
 {"actor4":57,"actor5":11} 0 caf DEBUG actor4 caf.actor_registry dec_running actor_registry.cpp:118 new_val = 0
-{"actor3":32,"actor4":35,"actor5":56} 0 caf_flow DEBUG actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:227 FINALIZE
-{"actor3":33,"actor4":35,"actor5":56} 0 caf TRACE actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:162 EXIT
 {"actor4":58,"actor5":11} 0 caf_flow DEBUG actor4 caf.local_actor cleanup local_actor.cpp:127 TERMINATE ; ID = 4 ; REASON = exit_reason(unreachable) ; NODE = invalid-node
 {"thread1":29} 0 caf TRACE thread1 <GLOBALGLOBAL operator() actor_registry.cpp:123 EXIT
-{"actor4":59,"actor5":11} 0 caf TRACE actor4 caf.monitorable_actor cleanup monitorable_actor.cpp:78 ENTRY reason = exit_reason(unreachable)
 {"thread1":30} 0 caf TRACE thread1 caf anon_send_exit send.hpp:140 ENTRY dest = 1@invalid-node reason = user_shutdown
-{"actor4":60,"actor5":11} 0 caf DEBUG actor4 caf.monitorable_actor cleanup monitorable_actor.cpp:94 cleanup id() = 4 node() = invalid-node fail_state_ = exit_reason(unreachable)
-{"actor4":61,"actor5":11} 0 caf TRACE actor4 caf.execution_unit*)<GLOBAL operator() monitorable_actor.cpp:78 EXIT
+{"actor4":59,"actor5":11} 0 caf TRACE actor4 caf.monitorable_actor cleanup monitorable_actor.cpp:78 ENTRY reason = exit_reason(unreachable)
 {"thread1":31} 0 caf TRACE thread1 caf.scheduled_actor enqueue scheduled_actor.cpp:158 ENTRY *ptr = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (exit_msg(1@invalid-node, exit_reason(user_shutdown))))
-{"actor4":62,"actor5":11} 0 caf TRACE actor4 caf.execution_unit*)<GLOBAL operator() local_actor.cpp:124 EXIT
-{"actor4":63,"actor5":11} 0 caf TRACE actor4 caf.execution_unit*)<GLOBAL operator() scheduled_actor.cpp:225 EXIT
 {"thread1":32} 0 caf_flow DEBUG thread1 caf.scheduled_actor enqueue scheduled_actor.cpp:159 SEND ; TO = 1@invalid-node ; FROM = null:pointer ; STAGES = [] ; CONTENT = (exit_msg(1@invalid-node, exit_reason(user_shutdown)))
 {"thread1":33} 0 caf_flow DEBUG thread1 caf.scheduled_actor enqueue scheduled_actor.cpp:164 ACCEPT ; UNBLOCKED = true
 {"thread1":34} 0 caf TRACE thread1 caf.execution_unit*)<GLOBAL operator() scheduled_actor.cpp:158 EXIT
 {"thread1":35} 0 caf TRACE thread1 Dest&,%20caf.exit_reason)%20[with%20Dest%20=%20caf.intrusive_ptr<caf.actor_control_block>.]<GLOBAL operator() send.hpp:140 EXIT
 {"thread1":36} 0 caf TRACE thread1 caf anon_send_exit send.hpp:140 ENTRY dest = 2@invalid-node reason = user_shutdown
 {"thread1":37} 0 caf TRACE thread1 caf.scheduled_actor enqueue scheduled_actor.cpp:158 ENTRY *ptr = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (exit_msg(2@invalid-node, exit_reason(user_shutdown))))
-{"thread1":38} 0 caf_flow DEBUG thread1 caf.scheduled_actor enqueue scheduled_actor.cpp:159 SEND ; TO = 2@invalid-node ; FROM = null:pointer ; STAGES = [] ; CONTENT = (exit_msg(2@invalid-node, exit_reason(user_shutdown)))
-{"thread1":39} 0 caf_flow DEBUG thread1 caf.scheduled_actor enqueue scheduled_actor.cpp:164 ACCEPT ; UNBLOCKED = true
-{"actor4":35,"actor5":66} 0 caf TRACE actor5 caf.scheduled_actor finalize scheduled_actor.cpp:842 ENTRY
-{"thread1":40} 0 caf TRACE thread1 caf.execution_unit*)<GLOBAL operator() scheduled_actor.cpp:158 EXIT
-{"thread1":41} 0 caf TRACE thread1 Dest&,%20caf.exit_reason)%20[with%20Dest%20=%20caf.intrusive_ptr<caf.actor_control_block>.]<GLOBAL operator() send.hpp:140 EXIT
-{"actor4":35,"actor5":67} 0 caf TRACE actor5 caf.scheduled_actor operator() scheduled_actor.cpp:842 EXIT
-{"actor4":35,"actor5":68} 0 caf TRACE actor5 size_t)<GLOBAL operator() scheduled_actor.cpp:381 EXIT
-{"thread1":42} 0 caf TRACE thread1 caf.group_manager stop group_manager.cpp:480 ENTRY
 {"actor1":3} 0 caf TRACE actor1 caf.scheduled_actor resume scheduled_actor.cpp:381 ENTRY max_throughput = 18446744073709551615
 {"actor1":4} 0 caf TRACE actor1 caf.scheduled_actor activate scheduled_actor.cpp:744 ENTRY
-{"thread1":43} 0 caf TRACE thread1 caf.$.local_group_module stop group_manager.cpp:415 ENTRY
+{"actor4":60,"actor5":11} 0 caf DEBUG actor4 caf.monitorable_actor cleanup monitorable_actor.cpp:94 cleanup id() = 4 node() = invalid-node fail_state_ = exit_reason(unreachable)
+{"thread1":38} 0 caf_flow DEBUG thread1 caf.scheduled_actor enqueue scheduled_actor.cpp:159 SEND ; TO = 2@invalid-node ; FROM = null:pointer ; STAGES = [] ; CONTENT = (exit_msg(2@invalid-node, exit_reason(user_shutdown)))
+{"thread1":39} 0 caf_flow DEBUG thread1 caf.scheduled_actor enqueue scheduled_actor.cpp:164 ACCEPT ; UNBLOCKED = true
 {"actor1":5} 0 caf TRACE actor1 caf.event_based_actor initialize event_based_actor.cpp:35 ENTRY subtype = "caf.stateful_actor"
-{"actor2":3} 0 caf TRACE actor2 caf.scheduled_actor resume scheduled_actor.cpp:381 ENTRY max_throughput = 18446744073709551615
 {"actor1":6} 0 caf TRACE actor1 caf.local_actor initialize local_actor.cpp:120 ENTRY id = 1 name = "spawn_server"
+{"actor1":7} 0 caf TRACE actor1 caf.local_actor operator() local_actor.cpp:120 EXIT
+{"actor1":8} 0 caf TRACE actor1 caf.event_based_actor make_behavior event_based_actor.cpp:50 ENTRY
+{"thread1":40} 0 caf TRACE thread1 caf.execution_unit*)<GLOBAL operator() scheduled_actor.cpp:158 EXIT
+{"thread1":41} 0 caf TRACE thread1 Dest&,%20caf.exit_reason)%20[with%20Dest%20=%20caf.intrusive_ptr<caf.actor_control_block>.]<GLOBAL operator() send.hpp:140 EXIT
+{"actor1":9} 0 caf TRACE actor1 caf.$ spawn_serv_impl actor_system.cpp:156 ENTRY
+{"actor4":61,"actor5":11} 0 caf TRACE actor4 caf.execution_unit*)<GLOBAL operator() monitorable_actor.cpp:78 EXIT
+{"actor2":3} 0 caf TRACE actor2 caf.scheduled_actor resume scheduled_actor.cpp:381 ENTRY max_throughput = 18446744073709551615
 {"actor2":4} 0 caf TRACE actor2 caf.scheduled_actor activate scheduled_actor.cpp:744 ENTRY
-{"thread1":44} 0 caf TRACE thread1 caf.$.local_group_module operator() group_manager.cpp:415 EXIT
+{"actor4":62,"actor5":11} 0 caf TRACE actor4 caf.execution_unit*)<GLOBAL operator() local_actor.cpp:124 EXIT
+{"thread1":42} 0 caf TRACE thread1 caf.group_manager stop group_manager.cpp:480 ENTRY
+{"thread1":43} 0 caf TRACE thread1 caf.$.local_group_module stop group_manager.cpp:415 ENTRY
+{"actor1":10} 0 caf TRACE actor1 caf.$ operator() actor_system.cpp:156 EXIT
 {"actor2":5} 0 caf TRACE actor2 caf.event_based_actor initialize event_based_actor.cpp:35 ENTRY subtype = "caf.stateful_actor"
+{"actor1":11} 0 caf TRACE actor1 caf.event_based_actor operator() event_based_actor.cpp:50 EXIT
+{"actor4":63,"actor5":11} 0 caf TRACE actor4 caf.execution_unit*)<GLOBAL operator() scheduled_actor.cpp:225 EXIT
+{"thread1":44} 0 caf TRACE thread1 caf.$.local_group_module operator() group_manager.cpp:415 EXIT
+{"thread1":45} 0 caf TRACE thread1 caf.group_manager operator() group_manager.cpp:480 EXIT
 {"actor2":6} 0 caf TRACE actor2 caf.local_actor initialize local_actor.cpp:120 ENTRY id = 2 name = "config_server"
 {"actor2":7} 0 caf TRACE actor2 caf.local_actor operator() local_actor.cpp:120 EXIT
-{"actor2":8} 0 caf TRACE actor2 caf.event_based_actor make_behavior event_based_actor.cpp:50 ENTRY
-{"actor2":9} 0 caf TRACE actor2 caf.$ config_serv_impl actor_system.cpp:54 ENTRY
-{"thread1":45} 0 caf TRACE thread1 caf.group_manager operator() group_manager.cpp:480 EXIT
+{"actor2":8} 1 caf TRACE actor2 caf.event_based_actor make_behavior event_based_actor.cpp:50 ENTRY
+{"actor2":9} 1 caf TRACE actor2 caf.$ config_serv_impl actor_system.cpp:54 ENTRY
+{"actor2":10} 1 caf TRACE actor2 caf.$ operator() actor_system.cpp:54 EXIT
+{"actor4":35,"actor5":66} 0 caf TRACE actor5 caf.scheduled_actor finalize scheduled_actor.cpp:842 ENTRY
+{"actor2":11} 1 caf TRACE actor2 caf.event_based_actor operator() event_based_actor.cpp:50 EXIT
+{"actor2":12} 1 caf DEBUG actor2 caf.event_based_actor initialize event_based_actor.cpp:44 make_behavior() did return a valid behavior
 {"thread1":46} 0 caf DEBUG thread1 caf.actor_system ~actor_system actor_system.cpp:314 stop module Scheduler
-{"actor1":7} 0 caf TRACE actor1 caf.local_actor operator() local_actor.cpp:120 EXIT
-{"actor2":10} 0 caf TRACE actor2 caf.$ operator() actor_system.cpp:54 EXIT
-{"actor1":8} 0 caf TRACE actor1 caf.event_based_actor make_behavior event_based_actor.cpp:50 ENTRY
-{"actor1":9} 0 caf TRACE actor1 caf.$ spawn_serv_impl actor_system.cpp:156 ENTRY
-{"actor1":10} 0 caf TRACE actor1 caf.$ operator() actor_system.cpp:156 EXIT
-{"actor1":11} 0 caf TRACE actor1 caf.event_based_actor operator() event_based_actor.cpp:50 EXIT
 {"actor1":12} 0 caf DEBUG actor1 caf.event_based_actor initialize event_based_actor.cpp:44 make_behavior() did return a valid behavior
-{"actor2":11} 0 caf TRACE actor2 caf.event_based_actor operator() event_based_actor.cpp:50 EXIT
-{"actor2":12} 0 caf DEBUG actor2 caf.event_based_actor initialize event_based_actor.cpp:44 make_behavior() did return a valid behavior
-{"actor2":13} 0 caf TRACE actor2 caf.scheduled_actor set_receive_timeout scheduled_actor.cpp:482 ENTRY
-{"actor1":13} 0 caf TRACE actor1 caf.scheduled_actor set_receive_timeout scheduled_actor.cpp:482 ENTRY
-{"actor2":14} 0 caf TRACE actor2 caf.scheduled_actor operator() scheduled_actor.cpp:482 EXIT
-{"actor2":15} 0 caf TRACE actor2 caf.event_based_actor operator() event_based_actor.cpp:35 EXIT
-{"actor1":14} 0 caf TRACE actor1 caf.scheduled_actor operator() scheduled_actor.cpp:482 EXIT
-{"actor2":16} 0 caf TRACE actor2 caf.scheduled_actor finalize scheduled_actor.cpp:842 ENTRY
-{"actor1":15} 0 caf TRACE actor1 caf.event_based_actor operator() event_based_actor.cpp:35 EXIT
-{"actor2":17} 0 caf TRACE actor2 caf.scheduled_actor operator() scheduled_actor.cpp:842 EXIT
-{"actor1":16} 0 caf TRACE actor1 caf.scheduled_actor finalize scheduled_actor.cpp:842 ENTRY
-{"actor1":17} 0 caf TRACE actor1 caf.scheduled_actor operator() scheduled_actor.cpp:842 EXIT
-{"actor2":18} 0 caf DEBUG actor2 caf.scheduled_actor activate scheduled_actor.cpp:761 initialized actor: name() = "config_server"
-{"actor1":18} 0 caf DEBUG actor1 caf.scheduled_actor activate scheduled_actor.cpp:761 initialized actor: name() = "spawn_server"
-{"actor1":19} 0 caf TRACE actor1 caf.scheduled_actor operator() scheduled_actor.cpp:744 EXIT
-{"actor2":19} 0 caf TRACE actor2 caf.scheduled_actor operator() scheduled_actor.cpp:744 EXIT
-{"actor1":20} 0 caf DEBUG actor1 caf.scheduled_actor resume scheduled_actor.cpp:402 start new DRR round
-{"actor1":21} 0 caf TRACE actor1 caf.scheduled_actor.mailbox_visitor operator() scheduled_actor.cpp:364 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (exit_msg(1@invalid-node, exit_reason(user_shutdown)))) handled_msgs = 0
-{"actor2":20} 0 caf DEBUG actor2 caf.scheduled_actor resume scheduled_actor.cpp:402 start new DRR round
-{"actor1":22} 0 caf TRACE actor1 caf.scheduled_actor reactivate scheduled_actor.cpp:787 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (exit_msg(1@invalid-node, exit_reason(user_shutdown))))
-{"actor2":21} 0 caf TRACE actor2 caf.scheduled_actor.mailbox_visitor operator() scheduled_actor.cpp:364 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (exit_msg(2@invalid-node, exit_reason(user_shutdown)))) handled_msgs = 0
-{"actor1":23} 0 caf TRACE actor1 caf.scheduled_actor consume scheduled_actor.cpp:626 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (exit_msg(1@invalid-node, exit_reason(user_shutdown))))
-{"actor2":22} 0 caf TRACE actor2 caf.scheduled_actor reactivate scheduled_actor.cpp:787 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (exit_msg(2@invalid-node, exit_reason(user_shutdown))))
-{"thread1":32,"actor1":24} 0 caf_flow DEBUG actor1 caf.scheduled_actor consume scheduled_actor.cpp:628 RECEIVE ; FROM = null:pointer ; STAGES = [] ; CONTENT = (exit_msg(1@invalid-node, exit_reason(user_shutdown)))
-{"actor2":23} 0 caf TRACE actor2 caf.scheduled_actor consume scheduled_actor.cpp:626 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (exit_msg(2@invalid-node, exit_reason(user_shutdown))))
-{"thread1":32,"actor1":25} 0 caf TRACE actor1 caf.scheduled_actor categorize scheduled_actor.cpp:551 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (exit_msg(1@invalid-node, exit_reason(user_shutdown))))
-{"thread1":38,"actor2":24} 0 caf_flow DEBUG actor2 caf.scheduled_actor consume scheduled_actor.cpp:628 RECEIVE ; FROM = null:pointer ; STAGES = [] ; CONTENT = (exit_msg(2@invalid-node, exit_reason(user_shutdown)))
-{"thread1":32,"actor1":26} 0 caf TRACE actor1 caf.monitorable_actor unlink_from monitorable_actor.cpp:65 ENTRY x = 1@invalid-node
-{"thread1":32,"actor1":27} 0 caf TRACE actor1 caf.actor_addr&)<GLOBAL operator() monitorable_actor.cpp:65 EXIT
-{"thread1":32,"actor1":28} 0 caf TRACE actor1 caf.scheduled_actor quit scheduled_actor.cpp:436 ENTRY x = exit_reason(user_shutdown)
-{"thread1":32,"actor1":29} 0 caf TRACE actor1 caf.scheduled_actor operator() scheduled_actor.cpp:436 EXIT
-{"thread1":38,"actor2":25} 0 caf TRACE actor2 caf.scheduled_actor categorize scheduled_actor.cpp:551 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (exit_msg(2@invalid-node, exit_reason(user_shutdown))))
-{"thread1":32,"actor1":30} 0 caf TRACE actor1 caf.scheduled_actor operator() scheduled_actor.cpp:551 EXIT
-{"thread1":38,"actor2":26} 0 caf TRACE actor2 caf.monitorable_actor unlink_from monitorable_actor.cpp:65 ENTRY x = 2@invalid-node
-{"thread1":32,"actor1":31} 0 caf DEBUG actor1 caf.scheduled_actor operator() scheduled_actor.cpp:678 handled system message
-{"thread1":38,"actor2":27} 0 caf TRACE actor2 caf.actor_addr&)<GLOBAL operator() monitorable_actor.cpp:65 EXIT
-{"thread1":32,"actor1":32} 0 caf_flow DEBUG actor1 caf.scheduled_actor consume scheduled_actor.cpp:729 FINALIZE
-{"thread1":38,"actor2":28} 0 caf TRACE actor2 caf.scheduled_actor quit scheduled_actor.cpp:436 ENTRY x = exit_reason(user_shutdown)
-{"thread1":38,"actor2":29} 0 caf TRACE actor2 caf.scheduled_actor operator() scheduled_actor.cpp:436 EXIT
-{"thread1":38,"actor2":30} 0 caf TRACE actor2 caf.scheduled_actor operator() scheduled_actor.cpp:551 EXIT
-{"thread1":38,"actor2":31} 0 caf DEBUG actor2 caf.scheduled_actor operator() scheduled_actor.cpp:678 handled system message
-{"thread1":32,"actor1":33} 0 caf TRACE actor1 caf.scheduled_actor operator() scheduled_actor.cpp:626 EXIT
-{"thread1":38,"actor2":32} 0 caf_flow DEBUG actor2 caf.scheduled_actor consume scheduled_actor.cpp:729 FINALIZE
+{"actor2":13} 1 caf TRACE actor2 caf.scheduled_actor set_receive_timeout scheduled_actor.cpp:482 ENTRY
+{"actor2":14} 1 caf TRACE actor2 caf.scheduled_actor operator() scheduled_actor.cpp:482 EXIT
+{"actor1":13} 1 caf TRACE actor1 caf.scheduled_actor set_receive_timeout scheduled_actor.cpp:482 ENTRY
+{"actor2":15} 1 caf TRACE actor2 caf.event_based_actor operator() event_based_actor.cpp:35 EXIT
+{"actor4":35,"actor5":67} 1 caf TRACE actor5 caf.scheduled_actor operator() scheduled_actor.cpp:842 EXIT
+{"actor1":14} 1 caf TRACE actor1 caf.scheduled_actor operator() scheduled_actor.cpp:482 EXIT
+{"actor2":16} 1 caf TRACE actor2 caf.scheduled_actor finalize scheduled_actor.cpp:842 ENTRY
+{"actor2":17} 1 caf TRACE actor2 caf.scheduled_actor operator() scheduled_actor.cpp:842 EXIT
+{"actor2":18} 1 caf DEBUG actor2 caf.scheduled_actor activate scheduled_actor.cpp:761 initialized actor: name() = "config_server"
+{"actor1":15} 1 caf TRACE actor1 caf.event_based_actor operator() event_based_actor.cpp:35 EXIT
+{"actor2":19} 1 caf TRACE actor2 caf.scheduled_actor operator() scheduled_actor.cpp:744 EXIT
+{"actor1":16} 1 caf TRACE actor1 caf.scheduled_actor finalize scheduled_actor.cpp:842 ENTRY
+{"actor2":20} 1 caf DEBUG actor2 caf.scheduled_actor resume scheduled_actor.cpp:402 start new DRR round
+{"actor2":21} 1 caf TRACE actor2 caf.scheduled_actor.mailbox_visitor operator() scheduled_actor.cpp:364 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (exit_msg(2@invalid-node, exit_reason(user_shutdown)))) handled_msgs = 0
+{"actor2":22} 1 caf TRACE actor2 caf.scheduled_actor reactivate scheduled_actor.cpp:787 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (exit_msg(2@invalid-node, exit_reason(user_shutdown))))
+{"actor2":23} 1 caf TRACE actor2 caf.scheduled_actor consume scheduled_actor.cpp:626 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (exit_msg(2@invalid-node, exit_reason(user_shutdown))))
+{"thread1":38,"actor2":24} 1 caf_flow DEBUG actor2 caf.scheduled_actor consume scheduled_actor.cpp:628 RECEIVE ; FROM = null:pointer ; STAGES = [] ; CONTENT = (exit_msg(2@invalid-node, exit_reason(user_shutdown)))
+{"actor1":17} 1 caf TRACE actor1 caf.scheduled_actor operator() scheduled_actor.cpp:842 EXIT
+{"thread1":38,"actor2":25} 1 caf TRACE actor2 caf.scheduled_actor categorize scheduled_actor.cpp:551 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (exit_msg(2@invalid-node, exit_reason(user_shutdown))))
+{"thread1":38,"actor2":26} 1 caf TRACE actor2 caf.monitorable_actor unlink_from monitorable_actor.cpp:65 ENTRY x = 2@invalid-node
+{"thread1":38,"actor2":27} 1 caf TRACE actor2 caf.actor_addr&)<GLOBAL operator() monitorable_actor.cpp:65 EXIT
+{"thread1":38,"actor2":28} 1 caf TRACE actor2 caf.scheduled_actor quit scheduled_actor.cpp:436 ENTRY x = exit_reason(user_shutdown)
+{"thread1":38,"actor2":29} 1 caf TRACE actor2 caf.scheduled_actor operator() scheduled_actor.cpp:436 EXIT
+{"actor1":18} 1 caf DEBUG actor1 caf.scheduled_actor activate scheduled_actor.cpp:761 initialized actor: name() = "spawn_server"
+{"actor1":19} 1 caf TRACE actor1 caf.scheduled_actor operator() scheduled_actor.cpp:744 EXIT
+{"actor1":20} 1 caf DEBUG actor1 caf.scheduled_actor resume scheduled_actor.cpp:402 start new DRR round
+{"thread1":38,"actor2":30} 1 caf TRACE actor2 caf.scheduled_actor operator() scheduled_actor.cpp:551 EXIT
+{"actor1":21} 1 caf TRACE actor1 caf.scheduled_actor.mailbox_visitor operator() scheduled_actor.cpp:364 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (exit_msg(1@invalid-node, exit_reason(user_shutdown)))) handled_msgs = 0
+{"actor1":22} 1 caf TRACE actor1 caf.scheduled_actor reactivate scheduled_actor.cpp:787 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (exit_msg(1@invalid-node, exit_reason(user_shutdown))))
+{"actor4":35,"actor5":68} 1 caf TRACE actor5 size_t)<GLOBAL operator() scheduled_actor.cpp:381 EXIT
+{"thread1":38,"actor2":31} 1 caf DEBUG actor2 caf.scheduled_actor operator() scheduled_actor.cpp:678 handled system message
+{"actor1":23} 1 caf TRACE actor1 caf.scheduled_actor consume scheduled_actor.cpp:626 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (exit_msg(1@invalid-node, exit_reason(user_shutdown))))
+{"thread1":32,"actor1":24} 1 caf_flow DEBUG actor1 caf.scheduled_actor consume scheduled_actor.cpp:628 RECEIVE ; FROM = null:pointer ; STAGES = [] ; CONTENT = (exit_msg(1@invalid-node, exit_reason(user_shutdown)))
+{"thread1":38,"actor2":32} 1 caf_flow DEBUG actor2 caf.scheduled_actor consume scheduled_actor.cpp:729 FINALIZE
+{"thread1":32,"actor1":25} 1 caf TRACE actor1 caf.scheduled_actor categorize scheduled_actor.cpp:551 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (exit_msg(1@invalid-node, exit_reason(user_shutdown))))
 {"thread1":38,"actor2":33} 1 caf TRACE actor2 caf.scheduled_actor operator() scheduled_actor.cpp:626 EXIT
-{"thread1":32,"actor1":34} 1 caf TRACE actor1 caf.scheduled_actor finalize scheduled_actor.cpp:842 ENTRY
+{"thread1":32,"actor1":26} 1 caf TRACE actor1 caf.monitorable_actor unlink_from monitorable_actor.cpp:65 ENTRY x = 1@invalid-node
+{"thread1":32,"actor1":27} 1 caf TRACE actor1 caf.actor_addr&)<GLOBAL operator() monitorable_actor.cpp:65 EXIT
 {"thread1":38,"actor2":34} 1 caf TRACE actor2 caf.scheduled_actor finalize scheduled_actor.cpp:842 ENTRY
-{"thread1":32,"actor1":35} 1 caf DEBUG actor1 caf.scheduled_actor finalize scheduled_actor.cpp:865 actor has no behavior and is ready for cleanup
+{"thread1":32,"actor1":28} 1 caf TRACE actor1 caf.scheduled_actor quit scheduled_actor.cpp:436 ENTRY x = exit_reason(user_shutdown)
 {"thread1":38,"actor2":35} 1 caf DEBUG actor2 caf.scheduled_actor finalize scheduled_actor.cpp:865 actor has no behavior and is ready for cleanup
 {"thread1":38,"actor2":36} 1 caf TRACE actor2 caf.stateful_actor<<template-parameter-1-1>%20.,%20<template-parameter-1-2>> on_exit stateful_actor.hpp:53 ENTRY
+{"thread1":32,"actor1":29} 1 caf TRACE actor1 caf.scheduled_actor operator() scheduled_actor.cpp:436 EXIT
 {"thread1":38,"actor2":37} 1 caf TRACE actor2 [with%20State%20=%20caf.$.kvstate;%20Base%20=%20caf.event_based_actor]<GLOBAL operator() stateful_actor.hpp:53 EXIT
-{"thread1":32,"actor1":36} 1 caf TRACE actor1 caf.stateful_actor<<template-parameter-1-1>%20.,%20<template-parameter-1-2>> on_exit stateful_actor.hpp:53 ENTRY
+{"thread1":32,"actor1":30} 1 caf TRACE actor1 caf.scheduled_actor operator() scheduled_actor.cpp:551 EXIT
 {"thread1":38,"actor2":38} 1 caf TRACE actor2 caf.scheduled_actor cleanup scheduled_actor.cpp:225 ENTRY fail_state = exit_reason(user_shutdown)
-{"thread1":32,"actor1":37} 1 caf TRACE actor1 [with%20State%20=%20caf.$.spawn_serv_state;%20Base%20=%20caf.event_based_actor]<GLOBAL operator() stateful_actor.hpp:53 EXIT
+{"thread1":32,"actor1":31} 1 caf DEBUG actor1 caf.scheduled_actor operator() scheduled_actor.cpp:678 handled system message
 {"thread1":38,"actor2":39} 1 caf TRACE actor2 caf.local_actor cleanup local_actor.cpp:124 ENTRY fail_state = exit_reason(user_shutdown)
-{"thread1":32,"actor1":38} 1 caf TRACE actor1 caf.scheduled_actor cleanup scheduled_actor.cpp:225 ENTRY fail_state = exit_reason(user_shutdown)
+{"thread1":32,"actor1":32} 1 caf_flow DEBUG actor1 caf.scheduled_actor consume scheduled_actor.cpp:729 FINALIZE
 {"thread1":38,"actor2":40} 1 caf_flow DEBUG actor2 caf.local_actor cleanup local_actor.cpp:127 TERMINATE ; ID = 2 ; REASON = exit_reason(user_shutdown) ; NODE = invalid-node
-{"thread1":32,"actor1":39} 1 caf TRACE actor1 caf.local_actor cleanup local_actor.cpp:124 ENTRY fail_state = exit_reason(user_shutdown)
 {"thread1":38,"actor2":41} 1 caf TRACE actor2 caf.monitorable_actor cleanup monitorable_actor.cpp:78 ENTRY reason = exit_reason(user_shutdown)
-{"thread1":32,"actor1":40} 1 caf_flow DEBUG actor1 caf.local_actor cleanup local_actor.cpp:127 TERMINATE ; ID = 1 ; REASON = exit_reason(user_shutdown) ; NODE = invalid-node
+{"thread1":32,"actor1":33} 1 caf TRACE actor1 caf.scheduled_actor operator() scheduled_actor.cpp:626 EXIT
+{"thread1":32,"actor1":34} 1 caf TRACE actor1 caf.scheduled_actor finalize scheduled_actor.cpp:842 ENTRY
+{"thread1":32,"actor1":35} 1 caf DEBUG actor1 caf.scheduled_actor finalize scheduled_actor.cpp:865 actor has no behavior and is ready for cleanup
+{"thread1":32,"actor1":36} 1 caf TRACE actor1 caf.stateful_actor<<template-parameter-1-1>%20.,%20<template-parameter-1-2>> on_exit stateful_actor.hpp:53 ENTRY
+{"thread1":32,"actor1":37} 1 caf TRACE actor1 [with%20State%20=%20caf.$.spawn_serv_state;%20Base%20=%20caf.event_based_actor]<GLOBAL operator() stateful_actor.hpp:53 EXIT
 {"thread1":38,"actor2":42} 1 caf DEBUG actor2 caf.monitorable_actor cleanup monitorable_actor.cpp:94 cleanup id() = 2 node() = invalid-node fail_state_ = exit_reason(user_shutdown)
 {"thread1":38,"actor2":43} 1 caf TRACE actor2 caf.execution_unit*)<GLOBAL operator() monitorable_actor.cpp:78 EXIT
-{"thread1":32,"actor1":41} 1 caf TRACE actor1 caf.monitorable_actor cleanup monitorable_actor.cpp:78 ENTRY reason = exit_reason(user_shutdown)
 {"thread1":38,"actor2":44} 1 caf TRACE actor2 caf.execution_unit*)<GLOBAL operator() local_actor.cpp:124 EXIT
-{"thread1":32,"actor1":42} 1 caf DEBUG actor1 caf.monitorable_actor cleanup monitorable_actor.cpp:94 cleanup id() = 1 node() = invalid-node fail_state_ = exit_reason(user_shutdown)
 {"thread1":38,"actor2":45} 1 caf TRACE actor2 caf.execution_unit*)<GLOBAL operator() scheduled_actor.cpp:225 EXIT
-{"thread1":32,"actor1":43} 1 caf TRACE actor1 caf.execution_unit*)<GLOBAL operator() monitorable_actor.cpp:78 EXIT
 {"thread1":38,"actor2":46} 1 caf TRACE actor2 caf.scheduled_actor operator() scheduled_actor.cpp:842 EXIT
+{"thread1":32,"actor1":38} 1 caf TRACE actor1 caf.scheduled_actor cleanup scheduled_actor.cpp:225 ENTRY fail_state = exit_reason(user_shutdown)
 {"thread1":38,"actor2":47} 1 caf DEBUG actor2 caf.scheduled_actor reactivate scheduled_actor.cpp:805 actor finalized
 {"thread1":38,"actor2":48} 1 caf TRACE actor2 caf.scheduled_actor operator() scheduled_actor.cpp:787 EXIT
+{"thread1":32,"actor1":39} 1 caf TRACE actor1 caf.local_actor cleanup local_actor.cpp:124 ENTRY fail_state = exit_reason(user_shutdown)
 {"thread1":38,"actor2":49} 1 caf TRACE actor2 caf.scheduled_actor.mailbox_visitor operator() scheduled_actor.cpp:364 EXIT
+{"thread1":32,"actor1":40} 1 caf_flow DEBUG actor1 caf.local_actor cleanup local_actor.cpp:127 TERMINATE ; ID = 1 ; REASON = exit_reason(user_shutdown) ; NODE = invalid-node
+{"thread1":32,"actor1":41} 1 caf TRACE actor1 caf.monitorable_actor cleanup monitorable_actor.cpp:78 ENTRY reason = exit_reason(user_shutdown)
+{"thread1":38,"actor2":50} 1 caf TRACE actor2 caf.scheduled_actor finalize scheduled_actor.cpp:842 ENTRY
+{"thread1":38,"actor2":51} 1 caf TRACE actor2 caf.scheduled_actor operator() scheduled_actor.cpp:842 EXIT
+{"thread1":32,"actor1":42} 1 caf DEBUG actor1 caf.monitorable_actor cleanup monitorable_actor.cpp:94 cleanup id() = 1 node() = invalid-node fail_state_ = exit_reason(user_shutdown)
+{"thread1":32,"actor1":43} 1 caf TRACE actor1 caf.execution_unit*)<GLOBAL operator() monitorable_actor.cpp:78 EXIT
+{"thread1":38,"actor2":52} 1 caf TRACE actor2 size_t)<GLOBAL operator() scheduled_actor.cpp:381 EXIT
 {"thread1":32,"actor1":44} 1 caf TRACE actor1 caf.execution_unit*)<GLOBAL operator() local_actor.cpp:124 EXIT
 {"thread1":32,"actor1":45} 1 caf TRACE actor1 caf.execution_unit*)<GLOBAL operator() scheduled_actor.cpp:225 EXIT
 {"thread1":32,"actor1":46} 1 caf TRACE actor1 caf.scheduled_actor operator() scheduled_actor.cpp:842 EXIT
 {"thread1":32,"actor1":47} 1 caf DEBUG actor1 caf.scheduled_actor reactivate scheduled_actor.cpp:805 actor finalized
 {"thread1":32,"actor1":48} 1 caf TRACE actor1 caf.scheduled_actor operator() scheduled_actor.cpp:787 EXIT
 {"thread1":32,"actor1":49} 1 caf TRACE actor1 caf.scheduled_actor.mailbox_visitor operator() scheduled_actor.cpp:364 EXIT
-{"thread1":38,"actor2":50} 1 caf TRACE actor2 caf.scheduled_actor finalize scheduled_actor.cpp:842 ENTRY
-{"thread1":38,"actor2":51} 1 caf TRACE actor2 caf.scheduled_actor operator() scheduled_actor.cpp:842 EXIT
-{"thread1":38,"actor2":52} 1 caf TRACE actor2 size_t)<GLOBAL operator() scheduled_actor.cpp:381 EXIT
 {"thread1":32,"actor1":50} 1 caf TRACE actor1 caf.scheduled_actor finalize scheduled_actor.cpp:842 ENTRY
 {"thread1":32,"actor1":51} 1 caf TRACE actor1 caf.scheduled_actor operator() scheduled_actor.cpp:842 EXIT
 {"thread1":32,"actor1":52} 1 caf TRACE actor1 size_t)<GLOBAL operator() scheduled_actor.cpp:381 EXIT
-{"thread1":47} 1 caf TRACE thread1 caf.scheduler.abstract_coordinator stop_actors abstract_coordinator.cpp:262 ENTRY
-{"thread1":48} 1 caf_flow DEBUG thread1 caf make_actor make_actor.hpp:43 SPAWN ; ID = 6 ; NAME = scoped_actor ; TYPE = caf.ANON.impl ; ARGS = (actor_config(detached_flag, hidden_flag)) ; NODE = invalid-node ; GROUPS = []
-{"actor6":1} 1 caf TRACE actor6 caf.$.impl launch scoped_actor.cpp:46 ENTRY hide = false
-{"actor6":2} 1 caf DEBUG actor6 caf.actor_registry inc_running actor_registry.cpp:102 value = 1
-{"actor6":3} 1 caf TRACE actor6 caf.local_actor initialize local_actor.cpp:120 ENTRY id = 6 name = "scoped_actor"
-{"actor6":4} 1 caf TRACE actor6 caf.local_actor operator() local_actor.cpp:120 EXIT
-{"actor6":5} 1 caf TRACE actor6 bool,%20bool)<GLOBAL operator() scoped_actor.cpp:46 EXIT
-{"actor6":6} 1 caf TRACE actor6 caf anon_send_exit send.hpp:140 ENTRY dest = 3@invalid-node reason = user_shutdown
-{"actor6":7} 1 caf TRACE actor6 caf.blocking_actor enqueue blocking_actor.cpp:67 ENTRY *ptr = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (exit_msg(3@invalid-node, exit_reason(user_shutdown))))
-{"actor6":8} 1 caf_flow DEBUG actor6 caf.blocking_actor enqueue blocking_actor.cpp:68 SEND ; TO = 3@invalid-node ; FROM = null:pointer ; STAGES = [] ; CONTENT = (exit_msg(3@invalid-node, exit_reason(user_shutdown)))
-{"actor6":9} 1 caf_flow DEBUG actor6 caf.blocking_actor enqueue blocking_actor.cpp:79 ACCEPT ; UNBLOCKED = false
-{"actor6":10} 1 caf TRACE actor6 caf.execution_unit*)<GLOBAL operator() blocking_actor.cpp:67 EXIT
-{"actor6":11} 1 caf TRACE actor6 Dest&,%20caf.exit_reason)%20[with%20Dest%20=%20caf.actor]<GLOBAL operator() send.hpp:140 EXIT
-{"actor6":12} 1 caf TRACE actor6 caf.monitorable_actor attach monitorable_actor.cpp:40 ENTRY
-{"actor6":13} 1 caf TRACE actor6 caf.monitorable_actor operator() monitorable_actor.cpp:40 EXIT
-{"actor6":14} 1 caf TRACE actor6 caf.blocking_actor receive_impl blocking_actor.cpp:234 ENTRY mid = message_id(1152921504606846976)
-{"actor3":34,"actor4":35,"actor5":56} 1 caf TRACE actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:162 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (exit_msg(3@invalid-node, exit_reason(user_shutdown))))
-{"actor3":35,"actor4":35,"actor5":56,"actor6":8} 1 caf_flow DEBUG actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:163 RECEIVE ; FROM = null:pointer ; STAGES = [] ; CONTENT = (exit_msg(3@invalid-node, exit_reason(user_shutdown)))
-{"actor3":36,"actor4":35,"actor5":56,"actor6":8} 1 caf TRACE actor3 caf.monitorable_actor unlink_from monitorable_actor.cpp:65 ENTRY x = 3@invalid-node
-{"actor3":37,"actor4":35,"actor5":56,"actor6":8} 1 caf TRACE actor3 caf.actor_addr&)<GLOBAL operator() monitorable_actor.cpp:65 EXIT
-{"actor3":38,"actor4":35,"actor5":56,"actor6":8} 1 caf TRACE actor3 caf.detail.default_invoke_result_visitor<Self> operator() default_invoke_result_visitor.hpp:48 ENTRY x = <empty-message>
-{"actor3":39,"actor4":35,"actor5":56,"actor6":8} 1 caf DEBUG actor3 caf.detail.default_invoke_result_visitor<Self> delegate default_invoke_result_visitor.hpp:80 suppress response message: invalid response promise
-{"actor3":40,"actor4":35,"actor5":56,"actor6":8} 1 caf TRACE actor3 [with%20Self%20=%20caf.blocking_actor]<GLOBAL operator() default_invoke_result_visitor.hpp:48 EXIT
-{"actor3":41,"actor4":35,"actor5":56,"actor6":8} 1 caf_flow DEBUG actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:227 FINALIZE
-{"actor3":42,"actor4":35,"actor5":56,"actor6":8} 1 caf TRACE actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:162 EXIT
-{"actor3":43,"actor4":35,"actor5":56,"actor6":8} 1 caf TRACE actor3 caf.message_id,%20caf.detail.blocking_behavior&)<GLOBAL operator() blocking_actor.cpp:234 EXIT
-{"actor3":44,"actor4":35,"actor5":56,"actor6":8} 1 caf TRACE actor3 caf.local_actor cleanup local_actor.cpp:124 ENTRY fail_state = exit_reason(user_shutdown)
-{"actor3":45,"actor4":35,"actor5":56,"actor6":8} 1 caf_flow DEBUG actor3 caf.local_actor cleanup local_actor.cpp:127 TERMINATE ; ID = 3 ; REASON = exit_reason(user_shutdown) ; NODE = invalid-node
-{"actor3":46,"actor4":35,"actor5":56,"actor6":8} 1 caf TRACE actor3 caf.monitorable_actor cleanup monitorable_actor.cpp:78 ENTRY reason = exit_reason(user_shutdown)
-{"actor3":47,"actor4":35,"actor5":56,"actor6":8} 1 caf DEBUG actor3 caf.monitorable_actor cleanup monitorable_actor.cpp:94 cleanup id() = 3 node() = invalid-node fail_state_ = exit_reason(user_shutdown)
-{"actor3":48,"actor4":35,"actor5":56,"actor6":8} 1 caf TRACE actor3 caf.blocking_actor enqueue blocking_actor.cpp:67 ENTRY *ptr = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (caf::wait_for_atom()))
-{"actor3":49,"actor4":35,"actor5":56,"actor6":8} 1 caf_flow DEBUG actor3 caf.blocking_actor enqueue blocking_actor.cpp:68 SEND ; TO = 6@invalid-node ; FROM = null:pointer ; STAGES = [] ; CONTENT = (caf::wait_for_atom())
-{"actor3":50,"actor4":35,"actor5":56,"actor6":8} 1 caf_flow DEBUG actor3 caf.blocking_actor enqueue blocking_actor.cpp:79 ACCEPT ; UNBLOCKED = false
-{"actor3":51,"actor4":35,"actor5":56,"actor6":8} 1 caf TRACE actor3 caf.execution_unit*)<GLOBAL operator() blocking_actor.cpp:67 EXIT
-{"actor3":52,"actor4":35,"actor5":56,"actor6":8} 1 caf TRACE actor3 caf.execution_unit*)<GLOBAL operator() monitorable_actor.cpp:78 EXIT
-{"actor6":15} 1 caf TRACE actor6 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:162 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (caf::wait_for_atom()))
-{"actor3":53,"actor4":35,"actor5":56,"actor6":8} 1 caf TRACE actor3 caf.execution_unit*)<GLOBAL operator() local_actor.cpp:124 EXIT
-{"actor3":49,"actor4":35,"actor5":56,"actor6":16} 1 caf_flow DEBUG actor6 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:163 RECEIVE ; FROM = null:pointer ; STAGES = [] ; CONTENT = (caf::wait_for_atom())
-{"actor3":49,"actor4":35,"actor5":56,"actor6":17} 1 caf TRACE actor6 caf.detail.default_invoke_result_visitor<Self> operator() default_invoke_result_visitor.hpp:48 ENTRY x = <empty-message>
-{"actor3":49,"actor4":35,"actor5":56,"actor6":18} 1 caf DEBUG actor6 caf.detail.default_invoke_result_visitor<Self> delegate default_invoke_result_visitor.hpp:80 suppress response message: invalid response promise
-{"actor3":49,"actor4":35,"actor5":56,"actor6":19} 1 caf TRACE actor6 [with%20Self%20=%20caf.blocking_actor]<GLOBAL operator() default_invoke_result_visitor.hpp:48 EXIT
-{"actor3":49,"actor4":35,"actor5":56,"actor6":20} 1 caf_flow DEBUG actor6 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:227 FINALIZE
-{"actor3":49,"actor4":35,"actor5":56,"actor6":21} 1 caf TRACE actor6 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:162 EXIT
-{"actor3":49,"actor4":35,"actor5":56,"actor6":22} 1 caf TRACE actor6 caf.message_id,%20caf.detail.blocking_behavior&)<GLOBAL operator() blocking_actor.cpp:234 EXIT
-{"actor3":49,"actor4":35,"actor5":56,"actor6":23} 1 caf TRACE actor6 caf.local_actor cleanup local_actor.cpp:124 ENTRY fail_state = none
-{"actor3":49,"actor4":35,"actor5":56,"actor6":24} 1 caf DEBUG actor6 caf.actor_registry dec_running actor_registry.cpp:118 new_val = 0
-{"actor3":49,"actor4":35,"actor5":56,"actor6":25} 1 caf_flow DEBUG actor6 caf.local_actor cleanup local_actor.cpp:127 TERMINATE ; ID = 6 ; REASON = none ; NODE = invalid-node
-{"actor3":49,"actor4":35,"actor5":56,"actor6":26} 1 caf TRACE actor6 caf.monitorable_actor cleanup monitorable_actor.cpp:78 ENTRY reason = none
-{"actor3":49,"actor4":35,"actor5":56,"actor6":27} 1 caf DEBUG actor6 caf.monitorable_actor cleanup monitorable_actor.cpp:94 cleanup id() = 6 node() = invalid-node fail_state_ = none
-{"actor3":49,"actor4":35,"actor5":56,"actor6":28} 1 caf TRACE actor6 caf.execution_unit*)<GLOBAL operator() monitorable_actor.cpp:78 EXIT
-{"actor3":49,"actor4":35,"actor5":56,"actor6":29} 1 caf TRACE actor6 caf.execution_unit*)<GLOBAL operator() local_actor.cpp:124 EXIT
-{"thread1":49} 1 caf TRACE thread1 caf.scheduler.abstract_coordinator operator() abstract_coordinator.cpp:262 EXIT
-{"thread1":50} 1 caf TRACE thread1 caf.actor_system operator() actor_system.cpp:295 EXIT
+{"thread1":47} 2 caf TRACE thread1 caf.scheduler.abstract_coordinator stop_actors abstract_coordinator.cpp:262 ENTRY
+{"thread1":48} 2 caf_flow DEBUG thread1 caf make_actor make_actor.hpp:43 SPAWN ; ID = 6 ; NAME = scoped_actor ; TYPE = caf.ANON.impl ; ARGS = (actor_config(detached_flag, hidden_flag)) ; NODE = invalid-node ; GROUPS = []
+{"actor6":1} 2 caf TRACE actor6 caf.$.impl launch scoped_actor.cpp:46 ENTRY hide = false
+{"actor6":2} 2 caf DEBUG actor6 caf.actor_registry inc_running actor_registry.cpp:102 value = 1
+{"actor6":3} 2 caf TRACE actor6 caf.local_actor initialize local_actor.cpp:120 ENTRY id = 6 name = "scoped_actor"
+{"actor6":4} 2 caf TRACE actor6 caf.local_actor operator() local_actor.cpp:120 EXIT
+{"actor6":5} 2 caf TRACE actor6 bool,%20bool)<GLOBAL operator() scoped_actor.cpp:46 EXIT
+{"actor6":6} 2 caf TRACE actor6 caf anon_send_exit send.hpp:140 ENTRY dest = 3@invalid-node reason = user_shutdown
+{"actor6":7} 2 caf TRACE actor6 caf.blocking_actor enqueue blocking_actor.cpp:67 ENTRY *ptr = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (exit_msg(3@invalid-node, exit_reason(user_shutdown))))
+{"actor6":8} 2 caf_flow DEBUG actor6 caf.blocking_actor enqueue blocking_actor.cpp:68 SEND ; TO = 3@invalid-node ; FROM = null:pointer ; STAGES = [] ; CONTENT = (exit_msg(3@invalid-node, exit_reason(user_shutdown)))
+{"actor6":9} 2 caf_flow DEBUG actor6 caf.blocking_actor enqueue blocking_actor.cpp:79 ACCEPT ; UNBLOCKED = false
+{"actor6":10} 2 caf TRACE actor6 caf.execution_unit*)<GLOBAL operator() blocking_actor.cpp:67 EXIT
+{"actor6":11} 2 caf TRACE actor6 Dest&,%20caf.exit_reason)%20[with%20Dest%20=%20caf.actor]<GLOBAL operator() send.hpp:140 EXIT
+{"actor6":12} 2 caf TRACE actor6 caf.monitorable_actor attach monitorable_actor.cpp:40 ENTRY
+{"actor6":13} 2 caf TRACE actor6 caf.monitorable_actor operator() monitorable_actor.cpp:40 EXIT
+{"actor6":14} 2 caf TRACE actor6 caf.blocking_actor receive_impl blocking_actor.cpp:234 ENTRY mid = message_id(1152921504606846976)
+{"actor3":34,"actor4":35,"actor5":56} 2 caf TRACE actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:162 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (exit_msg(3@invalid-node, exit_reason(user_shutdown))))
+{"actor3":35,"actor4":35,"actor5":56,"actor6":8} 2 caf_flow DEBUG actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:163 RECEIVE ; FROM = null:pointer ; STAGES = [] ; CONTENT = (exit_msg(3@invalid-node, exit_reason(user_shutdown)))
+{"actor3":36,"actor4":35,"actor5":56,"actor6":8} 2 caf TRACE actor3 caf.monitorable_actor unlink_from monitorable_actor.cpp:65 ENTRY x = 3@invalid-node
+{"actor3":37,"actor4":35,"actor5":56,"actor6":8} 2 caf TRACE actor3 caf.actor_addr&)<GLOBAL operator() monitorable_actor.cpp:65 EXIT
+{"actor3":38,"actor4":35,"actor5":56,"actor6":8} 2 caf TRACE actor3 caf.detail.default_invoke_result_visitor<Self> operator() default_invoke_result_visitor.hpp:48 ENTRY x = <empty-message>
+{"actor3":39,"actor4":35,"actor5":56,"actor6":8} 2 caf DEBUG actor3 caf.detail.default_invoke_result_visitor<Self> delegate default_invoke_result_visitor.hpp:80 suppress response message: invalid response promise
+{"actor3":40,"actor4":35,"actor5":56,"actor6":8} 2 caf TRACE actor3 [with%20Self%20=%20caf.blocking_actor]<GLOBAL operator() default_invoke_result_visitor.hpp:48 EXIT
+{"actor3":41,"actor4":35,"actor5":56,"actor6":8} 2 caf_flow DEBUG actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:227 FINALIZE
+{"actor3":42,"actor4":35,"actor5":56,"actor6":8} 2 caf TRACE actor3 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:162 EXIT
+{"actor3":43,"actor4":35,"actor5":56,"actor6":8} 2 caf TRACE actor3 caf.message_id,%20caf.detail.blocking_behavior&)<GLOBAL operator() blocking_actor.cpp:234 EXIT
+{"actor3":44,"actor4":35,"actor5":56,"actor6":8} 2 caf TRACE actor3 caf.local_actor cleanup local_actor.cpp:124 ENTRY fail_state = exit_reason(user_shutdown)
+{"actor3":45,"actor4":35,"actor5":56,"actor6":8} 2 caf_flow DEBUG actor3 caf.local_actor cleanup local_actor.cpp:127 TERMINATE ; ID = 3 ; REASON = exit_reason(user_shutdown) ; NODE = invalid-node
+{"actor3":46,"actor4":35,"actor5":56,"actor6":8} 2 caf TRACE actor3 caf.monitorable_actor cleanup monitorable_actor.cpp:78 ENTRY reason = exit_reason(user_shutdown)
+{"actor3":47,"actor4":35,"actor5":56,"actor6":8} 2 caf DEBUG actor3 caf.monitorable_actor cleanup monitorable_actor.cpp:94 cleanup id() = 3 node() = invalid-node fail_state_ = exit_reason(user_shutdown)
+{"actor3":48,"actor4":35,"actor5":56,"actor6":8} 2 caf TRACE actor3 caf.blocking_actor enqueue blocking_actor.cpp:67 ENTRY *ptr = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (caf::wait_for_atom()))
+{"actor3":49,"actor4":35,"actor5":56,"actor6":8} 2 caf_flow DEBUG actor3 caf.blocking_actor enqueue blocking_actor.cpp:68 SEND ; TO = 6@invalid-node ; FROM = null:pointer ; STAGES = [] ; CONTENT = (caf::wait_for_atom())
+{"actor3":50,"actor4":35,"actor5":56,"actor6":8} 2 caf_flow DEBUG actor3 caf.blocking_actor enqueue blocking_actor.cpp:79 ACCEPT ; UNBLOCKED = false
+{"actor3":51,"actor4":35,"actor5":56,"actor6":8} 2 caf TRACE actor3 caf.execution_unit*)<GLOBAL operator() blocking_actor.cpp:67 EXIT
+{"actor3":52,"actor4":35,"actor5":56,"actor6":8} 2 caf TRACE actor3 caf.execution_unit*)<GLOBAL operator() monitorable_actor.cpp:78 EXIT
+{"actor3":53,"actor4":35,"actor5":56,"actor6":8} 2 caf TRACE actor3 caf.execution_unit*)<GLOBAL operator() local_actor.cpp:124 EXIT
+{"actor6":15} 2 caf TRACE actor6 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:162 ENTRY x = mailbox_element(null:pointer, message_id(1152921504606846976), <unprintable>, (caf::wait_for_atom()))
+{"actor3":49,"actor4":35,"actor5":56,"actor6":16} 2 caf_flow DEBUG actor6 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:163 RECEIVE ; FROM = null:pointer ; STAGES = [] ; CONTENT = (caf::wait_for_atom())
+{"actor3":49,"actor4":35,"actor5":56,"actor6":17} 2 caf TRACE actor6 caf.detail.default_invoke_result_visitor<Self> operator() default_invoke_result_visitor.hpp:48 ENTRY x = <empty-message>
+{"actor3":49,"actor4":35,"actor5":56,"actor6":18} 2 caf DEBUG actor6 caf.detail.default_invoke_result_visitor<Self> delegate default_invoke_result_visitor.hpp:80 suppress response message: invalid response promise
+{"actor3":49,"actor4":35,"actor5":56,"actor6":19} 2 caf TRACE actor6 [with%20Self%20=%20caf.blocking_actor]<GLOBAL operator() default_invoke_result_visitor.hpp:48 EXIT
+{"actor3":49,"actor4":35,"actor5":56,"actor6":20} 2 caf_flow DEBUG actor6 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:227 FINALIZE
+{"actor3":49,"actor4":35,"actor5":56,"actor6":21} 2 caf TRACE actor6 caf.blocking_actor.mailbox_visitor operator() blocking_actor.cpp:162 EXIT
+{"actor3":49,"actor4":35,"actor5":56,"actor6":22} 2 caf TRACE actor6 caf.message_id,%20caf.detail.blocking_behavior&)<GLOBAL operator() blocking_actor.cpp:234 EXIT
+{"actor3":49,"actor4":35,"actor5":56,"actor6":23} 2 caf TRACE actor6 caf.local_actor cleanup local_actor.cpp:124 ENTRY fail_state = none
+{"actor3":49,"actor4":35,"actor5":56,"actor6":24} 2 caf DEBUG actor6 caf.actor_registry dec_running actor_registry.cpp:118 new_val = 0
+{"actor3":49,"actor4":35,"actor5":56,"actor6":25} 2 caf_flow DEBUG actor6 caf.local_actor cleanup local_actor.cpp:127 TERMINATE ; ID = 6 ; REASON = none ; NODE = invalid-node
+{"actor3":49,"actor4":35,"actor5":56,"actor6":26} 2 caf TRACE actor6 caf.monitorable_actor cleanup monitorable_actor.cpp:78 ENTRY reason = none
+{"actor3":49,"actor4":35,"actor5":56,"actor6":27} 2 caf DEBUG actor6 caf.monitorable_actor cleanup monitorable_actor.cpp:94 cleanup id() = 6 node() = invalid-node fail_state_ = none
+{"actor3":49,"actor4":35,"actor5":56,"actor6":28} 2 caf TRACE actor6 caf.execution_unit*)<GLOBAL operator() monitorable_actor.cpp:78 EXIT
+{"actor3":49,"actor4":35,"actor5":56,"actor6":29} 2 caf TRACE actor6 caf.execution_unit*)<GLOBAL operator() local_actor.cpp:124 EXIT
+{"thread1":49} 2 caf TRACE thread1 caf.scheduler.abstract_coordinator operator() abstract_coordinator.cpp:262 EXIT
+{"thread1":50} 2 caf TRACE thread1 caf.actor_system operator() actor_system.cpp:295 EXIT
