@@ -5,24 +5,12 @@
 #include "io/istream_char_consumer.hpp"
 #include "io/line_reader.hpp"
 #include "io/read_until.hpp"
+#include "io/read_until_newline_and_digit.hpp"
 #include "io/skip_to_next_line.hpp"
 #include "io/skip_word.hpp"
 #include "node_id.hpp"
 
 namespace vec {
-namespace {
-auto read_remainder(std::string& buffer) {
-  return io::read_until([has_seen_new_line = false](auto c) mutable {
-    if (!has_seen_new_line) {
-      has_seen_new_line = c == '\n';
-      return false;
-    }
-
-    return has_seen_new_line && isdigit(static_cast<unsigned char>(c)) != 0;
-  })(buffer);
-}
-} // namespace
-
 template <class OutputStream>
 OutputStream&
 operator<<(OutputStream& os,
@@ -66,7 +54,7 @@ first_pass(caf::blocking_actor* self, std::istream& in, verbosity_level vl) {
 
   while (in >> io::skip_word >> io::skip_word >> io::skip_word >> id
          >> io::skip_word >> io::skip_word >> io::skip_word
-         >> read_remainder(message)) {
+         >> io::read_until_newline_and_digit(message)) {
     // store in map
     auto i
       = res.entities.emplace(id, logger_id_meta_data{false, "actor"}).first;

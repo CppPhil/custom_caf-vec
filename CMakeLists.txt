@@ -58,7 +58,8 @@ set(HEADERS
     include/config.hpp
     include/boolalpha.hpp
     include/initialize_spdlog.hpp
-    include/io/read_until.hpp)
+    include/io/read_until.hpp
+    include/io/read_until_newline_and_digit.hpp)
 
 set(SOURCES
     src/main.cpp
