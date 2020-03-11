@@ -35,7 +35,7 @@ first_pass(caf::blocking_actor* self, std::istream& in, verbosity_level vl) {
   first_pass_result res;
 
   // read first line to extract the node ID of local actors
-  // _ caf INFO actor0 _ caf.logger start _:_ level = _, node = NODE
+  // _ caf DEBUG actor0 _ caf.logger log_first_line _:_ level = _, node = NODE
   if (!(in >> io::skip_word >> io::consume("caf") >> io::consume("DEBUG")
         >> io::consume("actor0") >> io::skip_word >> io::consume("caf.logger")
         >> io::consume("log_first_line") >> io::skip_word
